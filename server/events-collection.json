@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5fcb67b01afe0f31be849a90"},"date":{"$date":"2020-12-05T10:57:52.604Z"},"name":"Presentación del libro","place":"FNAC Callao","author":{"$oid":"5fcb67b01afe0f31be849a8f"},"capacity":10,"createdAt":{"$date":"2020-12-05T10:57:52.738Z"},"updatedAt":{"$date":"2020-12-05T10:57:52.738Z"},"__v":0}
