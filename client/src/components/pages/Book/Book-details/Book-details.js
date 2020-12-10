@@ -60,7 +60,6 @@ class BookDetails extends Component {
     newChapter = () => {
 
         const book_id = this.props.match.params.book_id
-        console.log(this.props)
 
         this.bookService
             .getBook(book_id)
@@ -89,7 +88,7 @@ class BookDetails extends Component {
             .getChapters(book_id)
             .then(res => {
                 this.setState({ chapters: res.data })
-                console.log(res.data)
+           
             })
             .catch(err => console.log(err))
     }
@@ -97,7 +96,6 @@ class BookDetails extends Component {
 
     render() {
 
-        console.log(this.state)
         return (
             <>
                 <Container>

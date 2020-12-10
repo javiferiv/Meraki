@@ -22,7 +22,7 @@ const bookSchema = new Schema({
     },
 
     chapters: {
-        type: [],
+        type: [Object],
     },
 
     image: {
