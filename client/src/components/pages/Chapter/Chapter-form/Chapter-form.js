@@ -20,33 +20,36 @@ class ChapterForm extends Component {
         this.bookService = new BookService()
     }
 
+    componentDidMount = () => {
+
+        const book_id = this.props.match.params.book_id
+
+        this.bookService
+            .getBook(book_id)
+            .then(res => this.setState({ book: res.data }))
+            .catch(err => console.log(err))
+    }
+
     handleInputChange = e => this.setState({ chapter: {... this.state.chapter, [e.target.name]: e.target.value }})
 
     handleSubmit = e => {
 
         e.preventDefault()
+        const capitulos = this.state.book.chapters
         const book_id = this.props.match.params.book_id
 
         this.chaptersService
             .saveChapter(this.state.chapter)
-            .then(res => {
+            .then(res => capitulos.push(res.data))
+            .then(() => {
+                this.bookService.editBook(book_id, {chapters: capitulos})
                 this.props.history.push('/libros')
             })
-            .then(() => {
-                this.bookService
-                    .getBook(book_id)
-                    .then(res => { 
-                        const chapterInfo = this.state.chapter
-                        const bookInfo = res.data.chapters
-                        console.log (bookInfo)
-                        console.log (chapterInfo)
-                        this.setState({ book: bookInfo })
-                        chapterInfo.push(bookInfo)
-                    })
-            })
             .catch(err => console.log(err))
-    }
+  
 
+
+    }
 
     render() {
 
