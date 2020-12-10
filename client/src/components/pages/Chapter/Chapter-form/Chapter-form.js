@@ -16,6 +16,7 @@ class ChapterForm extends Component {
             }
         }
         this.chaptersService = new ChaptersService()
+        this.bookService = new BookService()
         console.log(this.state.chapter)
     }
 
@@ -24,11 +25,22 @@ class ChapterForm extends Component {
     handleSubmit = e => {
 
         e.preventDefault()
+        const book_id = this.props.match.params.book_id
 
         this.chaptersService
             .saveChapter(this.state.chapter)
             .then(res => {
                 this.props.history.push('/libros')
+            })
+            .then(() => {
+                this.bookService
+                        .getBook(book_id)
+                        .then(res => { 
+                            const bookInfo = res.data.chapters
+                            console.log (bookInfo)
+                            bookInfo.push(res.data)
+                            this.setState({ book: bookInfo })
+                            })
             })
             .catch(err => console.log(err))
     }

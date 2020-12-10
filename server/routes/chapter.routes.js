@@ -21,7 +21,7 @@ router.get('/chapterDetails/:chapter_id', (req, res) => {
     }
 
     Chapter
-        .findById(req.params.book_id)
+        .findById(req.params.chapter_id)
         .populate('book')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
@@ -38,7 +38,7 @@ router.post('/newChapter', (req, res) => {
 router.put('/editChapter/:chapter_id', (req, res) => {
 
     Chapter
-        .findByIdAndUpdate(req.params.book_id, req.body)
+        .findByIdAndUpdate(req.params.chapter_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -46,7 +46,7 @@ router.put('/editChapter/:chapter_id', (req, res) => {
 router.delete('/deleteChapter/:book_id', (req, res) => {
 
     Chapter
-        .findByIdAndDelete(req.params.book_id, req.body)
+        .findByIdAndDelete(req.params.chapter_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
