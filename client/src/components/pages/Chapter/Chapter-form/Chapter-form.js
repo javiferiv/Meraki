@@ -13,11 +13,11 @@ class ChapterForm extends Component {
                 resume: '',
                 text: '',
                 book: this.props.match.params.book_id
-            }
+            },
+            book: []
         }
         this.chaptersService = new ChaptersService()
         this.bookService = new BookService()
-        console.log(this.state.chapter)
     }
 
     handleInputChange = e => this.setState({ chapter: {... this.state.chapter, [e.target.name]: e.target.value }})
@@ -34,13 +34,15 @@ class ChapterForm extends Component {
             })
             .then(() => {
                 this.bookService
-                        .getBook(book_id)
-                        .then(res => { 
-                            const bookInfo = res.data.chapters
-                            console.log (bookInfo)
-                            bookInfo.push(res.data)
-                            this.setState({ book: bookInfo })
-                            })
+                    .getBook(book_id)
+                    .then(res => { 
+                        const chapterInfo = this.state.chapter
+                        const bookInfo = res.data.chapters
+                        console.log (bookInfo)
+                        console.log (chapterInfo)
+                        this.setState({ book: bookInfo })
+                        chapterInfo.push(bookInfo)
+                    })
             })
             .catch(err => console.log(err))
     }
