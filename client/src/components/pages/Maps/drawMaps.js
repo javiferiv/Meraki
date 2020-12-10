@@ -21,20 +21,6 @@ class Maps extends Component {
     }
 
 
-    // componentDidMount = () => {
-
-    //     const eventID = this.props._id
-
-    //     this.eventService
-    //         .getOneEvent(eventID)
-    //         .then(res => {
-    //             console.log(res.data)
-    //             this.setState({ event: res.data })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
-
     render() {
 
 

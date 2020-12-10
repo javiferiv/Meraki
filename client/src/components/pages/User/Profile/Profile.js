@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import AuthService from '../../../../service/auth.service'
+import BookService from '../../../../service/book.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import FavoriteBooksCard from './favorite-books'
 import { Link } from 'react-router-dom'
 
 
@@ -12,11 +14,13 @@ class Profile extends Component {
         this.state = {
             user: {
                 username: "",
-                name: ""
+                name: "",
+                favoriteBooks: []
             }
         }
 
         this.authService = new AuthService()
+        this.bookService = new BookService()
     }
 
 
@@ -40,14 +44,16 @@ class Profile extends Component {
             .getOneUser(userID)
             .then(res => {
                 this.setState({ user: res.data })
-                console.log(this.state.user)
               })
             .catch(err => console.log(err))
+        
     }
 
 
     render() {
 
+        console.log(this.state.user.favoriteBooks)
+        
         return (
             <Container>
                 <h1>¡Bienvenid@, {this.state.user.username}!</h1>
@@ -71,6 +77,18 @@ class Profile extends Component {
 
                     </Col>
                 </Row>
+                <Row>
+                    <Col md={6}>
+                        <h2>Estos son tus libros favoritos</h2>
+                        </Col>
+                    <hr></hr>
+                </Row>
+                <Row>
+                        {this.state.user.favoriteBooks.map(elm => <FavoriteBooksCard key={elm._id} books={elm} />)}
+         
+           </Row>
+    
+            
             </Container>
         )
     }

@@ -12,11 +12,13 @@ class EventDetails extends Component {
     constructor() {
         super()
         this.state = {
-            event: []
+            event: [],
+            eventDetail: ""
         }
 
-        this.eventService = new EventService()
 
+
+        this.eventService = new EventService()
 
     }
 
@@ -29,17 +31,22 @@ class EventDetails extends Component {
 
     refreshEvents = () => {
 
+        
         const event_id = this.props.match.params.event_id
-        this.eventService
+
+        this.eventService      
             .getOneEvent(event_id)
             .then(res => {
-
                 const eventInfo = this.state.event
                 eventInfo.push(res.data)
                 this.setState({ event: eventInfo })
-
-
             })
+            
+                .then(() => {
+                    const eventDetails = this.state.event[0]
+                    this.setState({ eventDetail: eventDetails })
+                })
+            
             .catch(err => console.log(err))
     }
 
@@ -58,10 +65,12 @@ class EventDetails extends Component {
 
     render() {
 
+        console.log(this.state.eventDetail)
+
         return (
             <>
                 <Container>
-                    <h1>{this.state.event.name}</h1>
+                    <h1>{this.state.eventDetail.name}</h1>
                 </Container>
                 <Container className="event-details">
                     <Row>
@@ -81,9 +90,9 @@ class EventDetails extends Component {
 
                             <h3>Detalles</h3>
 
-                            <p>{this.state.event.name}</p>
+                            <p>{this.state.eventDetail.name}</p>
                             <hr />
-                            <p>Descripción: {this.state.event.description}</p>
+                            <p>Descripción: {this.state.eventDetail.description}</p>
                             <Link to="/eventos" className="btn btn-sm btn-dark">Volver</Link>
                             <Button onClick={() => this.deleteEvent()} className="btn btn-sm btn-danger">Borrar</Button>
                         </Col>
@@ -98,18 +107,3 @@ class EventDetails extends Component {
 }
 
 export default EventDetails
-
-
-// {
-//     this.state.event.map(elm =>
-
-//         <Maps
-//             googleMapURL={mapURL}
-//             containerElement={<div style={{ height: "400px" }} />}
-//             mapElement={<div style={{ height: "100%" }} />}
-//             loadingElement={<p>Cargando</p>}
-//             {...elm}
-//         />
-
-//     )
-// }

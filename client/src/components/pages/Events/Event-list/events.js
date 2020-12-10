@@ -4,7 +4,6 @@ import MapContainer from './../../Maps/mapModel'
 import MapMarker from './../../Maps/drawAllMaps'
 import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
-// import { Link } from 'react-router-dom'
 import { Component } from 'react';
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;
@@ -19,11 +18,13 @@ class Events extends Component {
         }
         this.eventService = new EventService()
 
+     
     }
 
     componentDidMount = () => {
 
         this.refreshEvents()
+
     }
 
     refreshEvents = () => {
@@ -36,24 +37,25 @@ class Events extends Component {
 
 
     render() {
-        return (
+        
+console.log(this.state.events)
 
+        return (
             <>
                 <Container>
                     <h1>Listado de eventos</h1>
-
-                    <Row>
-                        <Col md={6}>
-
-
                             <MapContainer
                                 googleMapURL={mapURL}
                                 containerElement={<div style={{ height: "400px" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
-                                loadingElement={<p>Cargando</p>}
+                                 loadingElement={<p>Cargando</p>}
+                                 {...this.state.events}
+                                 
                             />
 
-
+                    <Row>
+               
+{/* 
                             {this.state.events.map(elm =>
                                 <MapMarker
                                     googleMapURL={mapURL}
@@ -62,18 +64,18 @@ class Events extends Component {
                                     loadingElement={<p>Cargando</p>}
                                     {...elm}
                                 />
-                            )}
+                            )} */}
 
-                        </Col>
 
-                        <Col md={6}>
-                            <ul>
+                        <Col md={12}>
+                           
                                 <h3>Próximos eventos</h3>
                                 <hr></hr>
                                 {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
 
-                            </ul>
+                            
                         </Col>
+                        
                     </Row>
 
 

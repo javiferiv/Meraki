@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import EventService from "../../../service/event.service"
-
 import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
 
 
@@ -16,13 +14,9 @@ class allMaps extends Component {
             }
         }
 
-        this.eventService = new EventService()
-
     }
 
-
     render() {
-
 
         return (
             <>
@@ -34,9 +28,7 @@ class allMaps extends Component {
 
                 <Marker
                     position={{ lat: parseFloat(this.props.latitude), lng: parseFloat(this.props.longitude) }}
-                    name={this.props.name}
                 />
-
 
             </>
         )
