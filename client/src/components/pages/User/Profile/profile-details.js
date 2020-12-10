@@ -65,6 +65,14 @@ class ProfileEdit extends Component {
                                 <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Form.Control type="date" name="birthday" onChange={this.handleInputChange} />
                             </Form.Group>
+                            <Form.Group controlId="role">
+                                <Form.Label>Rol</Form.Label>
+                                <Form.Control as="select" defaultValue="Elige una opción" name="role" value={this.state.role} onChange={this.handleInputChange} >
+                                    <option>Selecciona una opción: </option>
+                                    <option>Escritor</option>
+                                    <option>Lector</option>
+                                </Form.Control>
+                            </Form.Group>
                             <Form.Group controlId="gender">
                                 <Form.Label>Género</Form.Label>
                                 <Form.Control as="select" defaultValue="Elige una opción" name="gender" value={this.state.gender} onChange={this.handleInputChange} >

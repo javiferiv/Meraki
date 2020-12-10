@@ -35,6 +35,13 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Books'
     }],
+    role: {
+        type: String,
+        enum: ['Escritor', 'Lector'],
+        default: "Lector",
+        required: true
+
+    }
 }, {
     timestamps: true
 })

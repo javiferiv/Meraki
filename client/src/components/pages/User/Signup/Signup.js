@@ -11,6 +11,7 @@ class Signup extends Component {
             username: '',
             password: '',
             name: '',
+            role:'',
             birthday: '',
         }
         this.authService = new AuthService()
@@ -67,6 +68,14 @@ class Signup extends Component {
                                     <option>Femenino</option>
                                     <option>Masculino</option>
                                     <option>Otro</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId="role">
+                                <Form.Label>Rol</Form.Label>
+                                <Form.Control as="select" defaultValue="Elige una opción" name="role" value={this.state.role} onChange={this.handleInputChange} >
+                                    <option>Selecciona una opción: </option>
+                                    <option>Escritor</option>
+                                    <option>Lector</option>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group controlId="image">

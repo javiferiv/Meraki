@@ -54,18 +54,6 @@ class allMaps extends Component {
 export default withScriptjs(withGoogleMap(allMaps))
 
 
-// {
-
-//           this.state.events.map(elm =><MapMarker
-//             googleMapURL={mapURL}
-//             containerElement={<div style={{ height: "400px" }} />}
-//             mapElement={<div style={{ height: "100%" }} />}
-//             loadingElement={<p>Cargando</p>}
-//             {...elm}
-//         />
-//     )
-// } * /}
-
 
 
 
