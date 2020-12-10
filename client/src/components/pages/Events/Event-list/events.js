@@ -38,7 +38,6 @@ class Events extends Component {
 
     render() {
         
-console.log(this.state.events)
 
         return (
             <>
@@ -55,16 +54,6 @@ console.log(this.state.events)
 
                     <Row>
                
-{/* 
-                            {this.state.events.map(elm =>
-                                <MapMarker
-                                    googleMapURL={mapURL}
-                                    containerElement={<div style={{ height: "400px" }} />}
-                                    mapElement={<div style={{ height: "100%" }} />}
-                                    loadingElement={<p>Cargando</p>}
-                                    {...elm}
-                                />
-                            )} */}
 
 
                         <Col md={12}>

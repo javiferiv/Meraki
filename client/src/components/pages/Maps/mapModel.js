@@ -1,40 +1,39 @@
 import React, { Component } from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
+import EventService from "../../../service/event.service"
+import MarkerCard from "../Maps/marker"
+import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+
+
 
 
 class allMaps extends Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            event: [
-               this.props.name,
-                this.props.longitude,
-              this.props.latitude,
-            ],
-            eventList: "",
+            event: [],
+
         }
+        this.eventService = new EventService()
     }
 
+    componentDidMount = () => {
 
-    // componentDidMount = () => {
+        this.refreshEvents()
 
+    }
 
-    //     const eventoDes = { ...this.props[0] }
-    //     const newLongitude = eventoDes.longitude
-    //     const newLatitude = eventoDes.latitude
-    //     console.log(newLongitude)
-    //     console.log(newLatitude)
-        
+    refreshEvents = () => {
 
-
-    // }
-
-
-
+        this.eventService
+            .getEvent()
+            .then(res => this.setState({ event: res.data }))
+            .catch(err => console.log(err))
+    }
 
     render() {
 
+       console.log(this.state.event)
 
         return (
             <>
@@ -43,16 +42,9 @@ class allMaps extends Component {
                     defaultZoom={12}
                     defaultCenter={{ lat: 40.428637831327386, lng: - 3.6969483107523127, }}
                 />
-                
-                {
-                    
-          this.state.event.map(elm =>
-                <Marker
-                    position={{ lat: parseFloat(this.props.latitude), lng: parseFloat(this.props.longitude) }}
 
-              />
-              
-          )}
+                {this.state.event.map(elm => <MarkerCard  key={elm._id} {...elm} />)}
+
 
             </>
         )
