@@ -43,7 +43,7 @@ router.put('/editChapter/:chapter_id', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
-router.delete('/deleteChapter/:book_id', (req, res) => {
+router.delete('/deleteChapter/:chapter_id', (req, res) => {
 
     Chapter
         .findByIdAndDelete(req.params.chapter_id, req.body)
