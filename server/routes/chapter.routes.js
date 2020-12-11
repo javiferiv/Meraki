@@ -15,7 +15,7 @@ router.get('/getAllChapters', (req, res) => {
 
 router.get('/chapterDetails/:chapter_id', (req, res) => {
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.chapter_id)) {
         res.status(404).json({ message: 'Invalid ID' })
         return
     }

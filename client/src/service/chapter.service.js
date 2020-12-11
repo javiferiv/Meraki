@@ -10,7 +10,7 @@ export default class ChapterService {
     }
 
     getChapters = () => this.apiHandler.get('/getAllChapters')
-    getChapter = chapterId => this.apiHandler.get(`/chapterDetails/${chapterId}`)
+    getOneChapter = chapterId => this.apiHandler.get(`/chapterDetails/${chapterId}`)
     saveChapter = chapterInfo => this.apiHandler.post(`/newChapter`, chapterInfo)
     editChapter = (chapterId, chapter) => this.apiHandler.put(`/editChapter/${chapterId}`, chapter)
     deleteChapter = chapterId => this.apiHandler.delete(`/deleteChapter/${chapterId}`)
