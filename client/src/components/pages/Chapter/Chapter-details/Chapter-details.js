@@ -32,6 +32,7 @@ class ChapterDetails extends Component {
             .then(res => this.setState({ chapters: res.data }))
             .catch(err => console.log(err))
 
+        //this.resfreshChapters()
     }
 
 
@@ -39,23 +40,22 @@ class ChapterDetails extends Component {
 
         const chapter_id = this.props.match.params.capitulo_id
         console.log(chapter_id)
+        console.log(this.props.history)
         this.chapterService
             .deleteChapter(chapter_id)
             .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
-
+            
     }
 
-        refreshChapters = () => {
 
-        const book_id = this.props.match.params.book_id
+    refreshChapters = () => {
+
+        const chapter_id = this.props.match.params.capitulo_id
 
         this.chapterService
-            .getChapters(book_id)
-            .then(res => {
-                this.setState({ chapters: res.data })
-           
-            })
+            .getChapters(chapter_id)
+            .then(res => this.setState({ chapters: res.data }))
             .catch(err => console.log(err))
     }
 
@@ -66,7 +66,6 @@ class ChapterDetails extends Component {
     //     //     .getBook(book_id)
     //     //     .then(res => {
     //     //         this.setState({ chapters: res.data })
-           
     //     //     })
     //     //     //.then(res => this.props.history.push(`/libros/${props._id}`))
     //     //     .catch(err => console.log(err))
