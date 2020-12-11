@@ -44,10 +44,17 @@ class BookDetails extends Component {
 
         this.bookService
             .getBook(book_id)
-            .then(res => { this.setState({ book: res.data }) })
+            .then(res => {
+                
+                this.setState({ book: res.data })
+                this.isAuthorised()
+        
+            })
+            
             .catch(err => console.log(err))
 
         this.refreshChapters()
+     
 
     }
 
@@ -104,24 +111,21 @@ class BookDetails extends Component {
 
        
         let newUserID = ""
-        let newBookAuthorID = this.state.book
+        let newBookAuthorID = this.state.book.author._id
         
         if (this.props.loggedUser)
 
         {
             newUserID = this.props.loggedUser._id
-            
-        }
+           }
 
-        this.setState({ authority: true })
+        if (newUserID === newBookAuthorID) {this.setState({ authority: true })}
         
-        console.log(newBookAuthorID)
 
     }
 
 
     render() {
-
 
         return (
             <>
@@ -136,47 +140,23 @@ class BookDetails extends Component {
                             <p>{this.state.book.resume}</p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
-{/* <>
+<>
                             {
-                                this.props.loggedUser
-
-                                             &&
-                                
-                                        <>
-                                    {
-                                        this.state.book
-                                            
-                                            ?
-                                                <>
-                                                {
-                                    
-                                                        
-                                                        ?
-                                                        
-                                                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
-                                                        :
-                                                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">ERROR</Button>
-                                                        
-                                                        
-                                                }
-                                                </>
-                                                :
-                                            null
-                                            
-                                    }
-                                        
-                                    </>
-                                
+                                    this.state.authority === true
+                                    && 
+                            <>
+                                <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>      
+                            <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
+                            </>
                                
                             }
-</> */}
+</>
 
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
                             {
                                 this.props.loggedUser && <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
 
                             }
-                            <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
 
 
                         </Col>

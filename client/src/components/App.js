@@ -72,7 +72,7 @@ class App extends Component {
             <Route path="/eventos/nuevo-evento" render={props => this.state.loggedInUser ? <EventsForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/eventos/editar-evento/:event_id" render={props => this.state.loggedInUser ? <EventEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/eventos/:event_id" render={props => <EventDetails {...props} />} />
-            <Route path="/libros" exact render={() => <BookList />} />
+            <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser} />} />
             <Route path="/libros/crear" render={props => this.state.loggedInUser ? <BookForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/libros/editar/:book_id" exact render={props => this.state.loggedInUser ? <BookEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/libros/nuevo-capitulo/:book_id" render={props => this.state.loggedInUser ? <ChapterForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
