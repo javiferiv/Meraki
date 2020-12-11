@@ -20,8 +20,6 @@ class FavoriteBooksCard extends Component {
 
         const book_id = this.state.books.books
 
-        console.log(book_id)
-
         this.booksService
             .getBook(book_id)
             .then(res => { this.setState({ books: res.data }) })
@@ -31,8 +29,6 @@ class FavoriteBooksCard extends Component {
 
 
     render() {
-
-        console.log(this.state)
  
     return (
 

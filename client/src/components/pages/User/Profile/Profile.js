@@ -51,8 +51,6 @@ class Profile extends Component {
 
 
     render() {
-
-        console.log(this.state.user.favoriteBooks)
         
         return (
             <Container>
