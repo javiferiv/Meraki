@@ -25,10 +25,14 @@ class BookDetails extends Component {
                 chapters: [],
                 author: '',
             },
+            user: {
+               
+            },
 
             authority: false,
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
+
         }
         
 
@@ -54,7 +58,18 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
 
         this.refreshChapters()
-     
+        this.getUser()
+    }
+
+    getUser = () => {
+
+
+        this.authService
+            .getAllUser()
+            .then(res => {
+            this.setState({ user: res.data})})
+            .catch(err => console.log(err))
+
 
     }
 
@@ -64,7 +79,7 @@ class BookDetails extends Component {
 
         this.bookService
             .deleteBook(book_id)
-            .then(res => this.props.history.push('/libros'))
+            .then(res => {this.props.history.push('/libros')})
             .catch(err => console.log(err))
 
     }
@@ -91,6 +106,7 @@ class BookDetails extends Component {
             .then((response) => { this.props.setTheUser(response.data) })
             .catch(err => console.log(err))
     }
+
 
     refreshChapters = () => {
 
@@ -145,7 +161,7 @@ class BookDetails extends Component {
                                     this.state.authority === true
                                     && 
                             <>
-                                <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>      
+                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>      
                             <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
                             </>
                                

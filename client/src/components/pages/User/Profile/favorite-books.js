@@ -30,21 +30,21 @@ class FavoriteBooksCard extends Component {
 
     render() {
  
-    return (
+        return (
+        <h1>HOLA</h1> )
 
-            <Col md={3}>
-            <Card className="favoriteBook-card">
-                <Card.Img variant="top" src={this.state.books.image} />
-                <Card.Body>
-                    <Card.Title>{this.state.books.title}</Card.Title>
-                    <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                        {/* <Link className="btn btn-dark" to={`/libros/editar/${props._id}`}>Editar</Link> */}
-                    </ButtonGroup>
-                </Card.Body>
-                </Card>
-            </Col>
+            // <Col md={3}>
+            // <Card className="favoriteBook-card">
+            //     <Card.Img variant="top" src={this.state.books.image} />
+            //     <Card.Body>
+            //         <Card.Title>{this.state.books.title}</Card.Title>
+            //         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+            //         </ButtonGroup>
+            //     </Card.Body>
+            //     </Card>
+            // </Col>
 
-        )
+        
     
     }
 }
