@@ -33,15 +33,11 @@ class BookForm extends Component {
 
         const book_id = this.props.match.params.book_id
         e.preventDefault()
-        console.log(this.state.book)
 
         this.bookService
 
             .editBook(book_id, this.state.book)
-            .then(res => {
-                console.log(this.state.book)
-                this.props.history.push('/libros')
-            })
+            .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
     }
 
