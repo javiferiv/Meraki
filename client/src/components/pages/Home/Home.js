@@ -25,7 +25,7 @@ const Home = (props) => {
                  <Button variant='dark'><Link to={'/eventos/nuevo-evento'}>Crear nuevo evento</Link></Button>
                 </Container>
                     :
-                    <h1>NO HAY CONTAINER</h1>
+                    <h1>Bienvenido a Meraki</h1>
             }
         </>
     )

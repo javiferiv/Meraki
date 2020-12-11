@@ -22,8 +22,11 @@ class BookDetails extends Component {
                 title: '',
                 genre: '',
                 resume: '',
-                chapters: []
+                chapters: [],
+                author: '',
             },
+
+            authority: false,
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
         }
@@ -32,9 +35,10 @@ class BookDetails extends Component {
         this.bookService = new BooksService()
         this.authService = new AuthService()
         this.chapterService = new ChapterService()
+
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
 
         const book_id = this.props.match.params.book_id
 
@@ -44,6 +48,7 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
 
         this.refreshChapters()
+
     }
 
     deleteThisBook = () => {
@@ -91,10 +96,32 @@ class BookDetails extends Component {
            
             })
             .catch(err => console.log(err))
+    
+    }
+
+    isAuthorised = () => {
+
+
+       
+        let newUserID = ""
+        let newBookAuthorID = this.state.book
+        
+        if (this.props.loggedUser)
+
+        {
+            newUserID = this.props.loggedUser._id
+            
+        }
+
+        this.setState({ authority: true })
+        
+        console.log(newBookAuthorID)
+
     }
 
 
     render() {
+
 
         return (
             <>
@@ -109,7 +136,41 @@ class BookDetails extends Component {
                             <p>{this.state.book.resume}</p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
-                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
+{/* <>
+                            {
+                                this.props.loggedUser
+
+                                             &&
+                                
+                                        <>
+                                    {
+                                        this.state.book
+                                            
+                                            ?
+                                                <>
+                                                {
+                                    
+                                                        
+                                                        ?
+                                                        
+                                                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
+                                                        :
+                                                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">ERROR</Button>
+                                                        
+                                                        
+                                                }
+                                                </>
+                                                :
+                                            null
+                                            
+                                    }
+                                        
+                                    </>
+                                
+                               
+                            }
+</> */}
+
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
                             {
                                 this.props.loggedUser && <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
@@ -132,6 +193,7 @@ class BookDetails extends Component {
 }
 
 export default BookDetails
+
 
 
 
