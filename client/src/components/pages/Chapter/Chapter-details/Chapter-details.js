@@ -5,7 +5,7 @@ import './Chapter-details.css'
 //si ponemos loader, irá aquí 
 
 import { Link } from 'react-router-dom'
-import { Container, Row, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 class ChapterDetails extends Component {
@@ -17,6 +17,7 @@ class ChapterDetails extends Component {
                 title: '',
                 resume: '',
                 text: '',
+                book: '',
                 comments: [],
             },
             book: []
@@ -29,23 +30,52 @@ class ChapterDetails extends Component {
 
         this.chapterService
             .getOneChapter(this.props.match.params.capitulo_id)
-            .then(res => this.setState({ chapters: res.data }))
-            .catch(err => console.log(err))
+            .then(res => {
+                this.setState({ chapters: res.data })
+                console.log(res)
+                this.bookService.getBook(res.data.book._id)
+                    .then((res) => {
+                        console.log(res.data._id, res.data.chapters) //saca la info del libro
+                        this.bookService.editBook(res.data._id, { chapters: res.data.chapters })
+                    })
+                    .catch(err => console.log(err))
+            })
+    }
 
-        //this.resfreshChapters()
+    componentDidUpdate = (res) => {
+        if (this.props.match.params.capitulo_id != this.props.match.params.capitulo_id) {
+            this.bookService.getBook(res.data.book._id)
+                .then((res) => {
+                    console.log(res.data._id, res.data.chapters) //saca la info del libro
+                    this.bookService.editBook(res.data._id, { chapters: res.data.chapters })
+                })
+        }
     }
 
 
     deleteChapter = () => {
 
-        const chapter_id = this.props.match.params.capitulo_id
-        console.log(chapter_id)
-        console.log(this.props.history)
         this.chapterService
-            .deleteChapter(chapter_id)
+            .deleteChapter(this.props.match.params.capitulo_id)
+            .then(res => {
+                this.setState({ chapters: res.data })
+                console.log(res) // saca info del capitulo que borra 
+                this.bookService.getBook(res.data.book)
+                    .then((res) => {
+                        console.log(res.data._id, res.data.chapters) // saca la info del libro
+                        this.bookService.editBook(res.data._id, { chapters: res.data.chapters })
+                    })
+            })
+
+            //this.state.book.splice(chapter.id,1)
+            //.deleteChapter(this.props.match.params.capitulo_id)
+            // .then(() => {
+            //     this.bookService.editBook(book_id, { chapters: capitulos })
+            //     this.props.history.push('/libros')
+            // })
             .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
-            
+
     }
 
 
@@ -78,15 +108,18 @@ class ChapterDetails extends Component {
                 <Container>
                     <h1>{this.state.chapters.title}</h1>
                     <small>{this.state.chapters.resume}</small>
-                </Container>
-                <Container className="chapter">
-                    <p>{this.state.chapters.text}</p>
-                </Container>
-                <Container>
+
                     <Row>
-                        <Link to='/libros' className="btn btn-sm btn-dark">Volver a todos los libros</Link>
-                        <Button onClick={() => this.deleteChapter()} className="btn btn-sm btn-danger">Borrar</Button>
-                        {/* <Button onClick={() => this.goBack()} className="btn btn-sm btn-primary">Volver al libro</Button> */}
+                        <Col className="chapter">
+                            <text>{this.state.chapters.text}</text>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Link to='/libros' className="btn btn-sm btn-dark">Volver a todos los libros</Link>
+                            <Button onClick={() => this.deleteChapter()} className="btn btn-sm btn-danger">Borrar</Button>
+                            {/* <Button onClick={() => this.goBack()} className="btn btn-sm btn-primary">Volver al libro</Button> */}
+                        </Col>
                     </Row>
                 </Container>
             </>

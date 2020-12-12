@@ -5,12 +5,14 @@ import ChapterService from '../../../../service/chapter.service'
 
 import './Book-details.css'
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
+import Popup from './../../../shared/Popup/Popup'
 
 //si ponemos loader, irá aquí 
 
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
+import Poll from 'react-polls'
 
 class BookDetails extends Component {
 
@@ -25,14 +27,17 @@ class BookDetails extends Component {
                 chapters: [],
                 author: '',
             },
-            user: '',
-            id: '',
+            user: {
+
+            },
+
             authority: false,
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
 
+            showModal: false
         }
-        
+
 
         this.bookService = new BooksService()
         this.authService = new AuthService()
@@ -47,14 +52,11 @@ class BookDetails extends Component {
         this.bookService
             .getBook(book_id)
             .then(res => {
-                
+
                 this.setState({ book: res.data })
                 this.isAuthorised()
-        
-               
-        
             })
-            
+
             .catch(err => console.log(err))
 
         this.refreshChapters()
@@ -70,8 +72,7 @@ class BookDetails extends Component {
             .getAllUser()
             .then(res => {
                 this.setState({ user: res.data })
-            }
-             )
+            })
             .catch(err => console.log(err))
 
       
@@ -146,30 +147,29 @@ class BookDetails extends Component {
             .getChapters(book_id)
             .then(res => {
                 this.setState({ chapters: res.data })
-           
+
             })
             .catch(err => console.log(err))
-    
+
     }
 
     isAuthorised = () => {
 
 
-       
+
         let newUserID = ""
         let newBookAuthorID = this.state.book.author._id
-        
-        if (this.props.loggedUser)
 
-        {
+        if (this.props.loggedUser) {
             newUserID = this.props.loggedUser._id
-           }
+        }
 
-        if (newUserID === newBookAuthorID) {this.setState({ authority: true })}
-        
+        if (newUserID === newBookAuthorID) { this.setState({ authority: true }) }
+
 
     }
 
+    handleModal = visible => this.setState({ showModal: visible })
 
     render() {
 
@@ -188,17 +188,17 @@ class BookDetails extends Component {
                             <p>{this.state.book.resume}</p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
-<>
-                            {
-                                    this.state.authority === true
-                                    && 
                             <>
-                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>      
-                            <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
+                                {
+                                    this.state.authority === true
+                                    &&
+                                    <>
+                                        <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
+                                        <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
+                                    </>
+
+                                }
                             </>
-                               
-                            }
-</>
 
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
                             {
@@ -210,7 +210,17 @@ class BookDetails extends Component {
                         </Col>
                         <Col md={4}>
                             <h3>Lista de capítulos</h3>
-                            {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm}/>)}
+                            {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm} />)}
+                        </Col>
+                    </Row>
+                </Container>
+                <br />
+                <br />
+                <br />
+                <Container>
+                    <Row>
+                        <Col md={{ span: 8, offset: 2 }}>
+                            <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>
                         </Col>
                     </Row>
                 </Container>

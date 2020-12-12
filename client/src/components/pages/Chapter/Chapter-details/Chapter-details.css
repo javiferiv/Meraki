@@ -1,8 +1,14 @@
-.chapter p{
+.chapter {
     
-    margin-top: 30px;
+    margin: 30px auto;
+    padding: 10px 15px;
     background: #f9f3f3;
-    border: 1px solid #dc3545;
-    text-align: center;
+    border: 1px solid #0a0a0a;
+    text-align: justify;
+    white-space: pre-wrap;
+    height: auto;
+    font-size: 20px;
+    min-height: 300px;
+
 
 }
