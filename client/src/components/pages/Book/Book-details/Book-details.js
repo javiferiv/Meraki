@@ -5,14 +5,13 @@ import ChapterService from '../../../../service/chapter.service'
 
 import './Book-details.css'
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
+import thePoll from './../../../shared/Poll/Poll'
 import Popup from './../../../shared/Popup/Popup'
-
 //si ponemos loader, irá aquí 
 
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
-import Poll from 'react-polls'
 
 class BookDetails extends Component {
 
@@ -35,7 +34,9 @@ class BookDetails extends Component {
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
 
-            showModal: false
+            showModal: false,
+            showToast: false,
+            toastText: ''
         }
 
 
@@ -75,7 +76,7 @@ class BookDetails extends Component {
             })
             .catch(err => console.log(err))
 
-      
+
 
     }
 
@@ -108,12 +109,12 @@ class BookDetails extends Component {
             newUserID = userID._id
             this.setState({ id: newUserID })
             console.log(newUserID)
-            
+
         }
-        
+
     }
 
-      
+
 
     newChapter = () => {
 
@@ -170,6 +171,7 @@ class BookDetails extends Component {
     }
 
     handleModal = visible => this.setState({ showModal: visible })
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
     render() {
 
@@ -220,10 +222,13 @@ class BookDetails extends Component {
                 <Container>
                     <Row>
                         <Col md={{ span: 8, offset: 2 }}>
-                            <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>
+                            {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>}
                         </Col>
                     </Row>
                 </Container>
+                <Popup show={this.state.showModal} handleModal={this.handleModal} title="Tú decides cómo continuar la historia">
+                    <thePoll handleToast={this.handleToast} closeModal={() => this.handleModal(false)} loggedUser={this.props.loggedUser} />
+                </Popup>
             </>
 
         )
