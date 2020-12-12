@@ -1,0 +1,22 @@
+.poll .main {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.poll .main > div {
+  margin: 0 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.2);
+  width: 322px;
+}
+
+@media (max-width: 768px) {
+  .poll .main {
+    flex-direction: column;
+  }
+
+  .poll .main > div {
+    margin: 0 0 20px 0;
+  }
+}
