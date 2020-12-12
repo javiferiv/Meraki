@@ -16,7 +16,8 @@ class Profile extends Component {
                 username: "",
                 name: "",
                 favoriteBooks: []
-            }
+            },
+            books: [],
         }
 
         this.authService = new AuthService()
@@ -42,15 +43,45 @@ class Profile extends Component {
 
         this.authService
             .getOneUser(userID)
-            .then(res => {
+            .then(res =>
+            {
                 this.setState({ user: res.data })
-              })
+                this.isBookAvailable()
+            })
             .catch(err => console.log(err))
         
+     
+        
+    }
+
+    isBookAvailable = () => {
+
+
+        const Books = this.state.user.favoriteBooks
+
+        const userBooks = this.state.books
+
+        console.log(userBooks)
+  
+        
+        if (Books != undefined) {
+ 
+            Books.forEach(elm => 
+
+                this.bookService
+                    .getBook(elm)       
+                    .then(res => res.data != null && userBooks.push(res.data._id) )
+                    .catch(err => console.log(err))
+                
+            )
+        }
+
     }
 
 
     render() {
+
+        console.log(this.state.books)
         
         return (
             <Container>
@@ -82,8 +113,19 @@ class Profile extends Component {
                     <hr></hr>
                 </Row>
                 <Row>
-                        {this.state.user.favoriteBooks.map(elm => <FavoriteBooksCard key={elm._id} books={elm} />)}
-         
+                    
+                    {this.state.user.favoriteBooks.map(elm =>
+                        
+                    
+                        <FavoriteBooksCard
+                            
+                            key = { elm._id }
+                            books={ elm }
+                           
+                            
+                        />)}
+                
+                 
            </Row>
     
             

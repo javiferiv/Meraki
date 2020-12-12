@@ -25,10 +25,8 @@ class BookDetails extends Component {
                 chapters: [],
                 author: '',
             },
-            user: {
-               
-            },
-
+            user: '',
+            id: '',
             authority: false,
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
@@ -53,13 +51,17 @@ class BookDetails extends Component {
                 this.setState({ book: res.data })
                 this.isAuthorised()
         
+               
+        
             })
             
             .catch(err => console.log(err))
 
         this.refreshChapters()
         this.getUser()
+        this.isUser()
     }
+
 
     getUser = () => {
 
@@ -67,9 +69,12 @@ class BookDetails extends Component {
         this.authService
             .getAllUser()
             .then(res => {
-            this.setState({ user: res.data})})
+                this.setState({ user: res.data })
+            }
+             )
             .catch(err => console.log(err))
 
+      
 
     }
 
@@ -77,12 +82,37 @@ class BookDetails extends Component {
 
         const book_id = this.props.match.params.book_id
 
+
         this.bookService
             .deleteBook(book_id)
-            .then(res => {this.props.history.push('/libros')})
+            .then(res => {
+                this.state.favoritesBook.splice(book_id, 1)
+                this.setState({ user: this.state.favoritesBook })
+                // this.authService
+                // .editUser(this.state.user._id, )
+                // this.props.history.push('/libros')
+            }
+            )
             .catch(err => console.log(err))
 
     }
+
+    isUser = () => {
+
+        let userID = this.state.user
+
+        let newUserID = ""
+
+        if (userID != undefined) {
+            newUserID = userID._id
+            this.setState({ id: newUserID })
+            console.log(newUserID)
+            
+        }
+        
+    }
+
+      
 
     newChapter = () => {
 
@@ -142,6 +172,8 @@ class BookDetails extends Component {
 
 
     render() {
+
+
 
         return (
             <>

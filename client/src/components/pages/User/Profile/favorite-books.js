@@ -11,7 +11,9 @@ class FavoriteBooksCard extends Component {
         super(props)
         this.state = {
             books: props,
+            newbooks: "",
         }
+
 
         this.booksService = new BooksService()
     }
@@ -22,31 +24,44 @@ class FavoriteBooksCard extends Component {
 
         this.booksService
             .getBook(book_id)
-            .then(res => { this.setState({ books: res.data }) })
-            .catch(err => console.log(err))
+            .then(res => {
 
+                if (res.data != null) {
+                
+                    this.setState({ newbooks: res.data })
+
+                }
+
+
+            })
+            .catch(err => console.log(err))
+        
     }
+
 
 
     render() {
  
         return (
-        <h1>HOLA</h1> )
-
-            // <Col md={3}>
-            // <Card className="favoriteBook-card">
-            //     <Card.Img variant="top" src={this.state.books.image} />
-            //     <Card.Body>
-            //         <Card.Title>{this.state.books.title}</Card.Title>
-            //         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-            //         </ButtonGroup>
-            //     </Card.Body>
-            //     </Card>
-            // </Col>
-
         
+  
+            < Col md = { 3} >
+            <Card className="favoriteBook-card">
+                <Card.Img variant="top" src={this.state.newbooks.image} />
+                <Card.Body>
+                        <Card.Title>{this.state.newbooks.title}</Card.Title>
+                    <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+                    </ButtonGroup>
+                </Card.Body>
+            </Card>
+                </Col >
+                
+      
+
+        )
     
-    }
+    
+}
 }
 
 export default FavoriteBooksCard

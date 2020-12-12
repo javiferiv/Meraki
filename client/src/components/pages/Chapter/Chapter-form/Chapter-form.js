@@ -46,9 +46,7 @@ class ChapterForm extends Component {
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
-  
-
-
+        
     }
 
     render() {

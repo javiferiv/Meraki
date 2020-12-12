@@ -43,7 +43,9 @@ class navbar extends Component {
                                 </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/eventos">Eventos</NavDropdown.Item>
+                            <Link to="/Eventos">
+                                <Nav.Link as="div" id="basic-nav-dropdown">Eventos</Nav.Link>
+                            </Link>
 
                         </NavDropdown>
 

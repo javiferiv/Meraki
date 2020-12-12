@@ -13,6 +13,7 @@ class BookList extends Component {
         this.state = {
             books: [],
             user: "",
+            genre: "",
         }
         this.booksService = new BooksService()
     }
@@ -20,13 +21,19 @@ class BookList extends Component {
     componentDidMount = () => {
         this.refreshBooks()
         this.isLoggedUser()
+  
     }
 
     refreshBooks = () => {
         
         this.booksService
             .getBooks()
-            .then(res => this.setState({ books: res.data }))
+            .then(res =>
+                
+                this.setState({ books: res.data }),
+                
+        
+        )
             .catch(err => console.log(err))
         
     }
@@ -40,20 +47,124 @@ class BookList extends Component {
         }
     }
 
+   
+
     render() {
 
+
+        let adventuresBooks = this.state.books.filter(elm => elm.genre === "Aventuras")
+        let fictionBooks = this.state.books.filter(elm => elm.genre === "Ciencia Ficción")
+        let childrenBooks = this.state.books.filter(elm => elm.genre === "Infantil")
+        let misteriousBooks = this.state.books.filter(elm => elm.genre === "Misterio")
+        let darkBooks = this.state.books.filter(elm => elm.genre === "Novela negra")
+        let terrorBooks = this.state.books.filter(elm => elm.genre === "Terror")
+        let romanticBooks = this.state.books.filter(elm => elm.genre === "Romántico")
+        let otherBooks = this.state.books.filter(elm => elm.genre === "Otro")
+  
+       
+        
         return (
             <>
                 <Container>
 
                     <h1>Listado de libros</h1>
+                    <hr></hr>
+                    <h2>Novelas de aventuras</h2>
+                    <hr></hr>
                     <Row>
-                        {this.state.books.map(elm => <BookCard
+                        {adventuresBooks.map(elm => <BookCard
                             key={elm._id}
                             userId={this.state.user}
                             {...elm} />)}
                     </Row>
+                    <br></br>
+  
                    
+                </Container>
+                <Container>
+
+                    <h2>Novelas de ciencia ficción</h2>
+                    <hr></hr>
+                    <Row>
+                        {fictionBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+                  
+                </Container>
+                <Container>
+
+                    <h2>Cuentos infantiles</h2>
+                    <hr></hr>
+                    <Row>
+                        {childrenBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+                  
+                </Container>
+                <Container>
+                    <h2>Novelas de Terror</h2>
+                    <hr></hr>
+                    <Row>
+                        {terrorBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+               
+                </Container>
+                <Container>
+                    <h2>Novelas de misterio</h2>
+                    <hr></hr>
+                    <Row>
+                        {misteriousBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+      
+                </Container>
+                <Container>
+                    <h2>Novela negra</h2>
+                    <hr></hr>
+                    <Row>
+                        {darkBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+        
+                </Container>
+                <Container>
+                    <h2>Novelas románticas</h2>
+                    <hr></hr>
+                    <Row>
+                        {romanticBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+                    <br></br>
+          
+                </Container>
+                <Container>
+                    <h2>Otros</h2>
+                    <hr></hr>
+                    <Row>
+                        {otherBooks.map(elm => <BookCard
+                            key={elm._id}
+                            userId={this.state.user}
+                            {...elm} />)}
+                    </Row>
+
                 </Container>
             </>
         )
