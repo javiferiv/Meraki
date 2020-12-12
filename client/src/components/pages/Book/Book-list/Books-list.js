@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Form, FormControl, Button } from 'react-bootstrap'
+
+
 
 import BooksService from '../../../../service/book.service'
 import BookCard from './Book-card'
@@ -13,7 +15,7 @@ class BookList extends Component {
         this.state = {
             books: [],
             user: "",
-            genre: "",
+            busqueda: "",
         }
         this.booksService = new BooksService()
     }
@@ -23,6 +25,8 @@ class BookList extends Component {
         this.isLoggedUser()
   
     }
+
+
 
     refreshBooks = () => {
         
@@ -47,6 +51,25 @@ class BookList extends Component {
         }
     }
 
+    onChange = e => {
+
+        const { name, value } = e.target
+        
+        this.setState({ busqueda: value })
+        
+        const filteredBooks = this.state.books.filter(elm => elm.title.includes(value))
+
+        if (filteredBooks.length >= 1) {
+
+            this.setState({ books: filteredBooks })
+            
+        }
+        else {
+            this.setState({books : this.props.books})
+        }
+   
+    }
+
    
 
     render() {
@@ -65,6 +88,11 @@ class BookList extends Component {
         
         return (
             <>
+                
+                <Form inline>
+                    <FormControl type="text" placeholder="Encuentra tu novela" name="busqueda" className="mr-sm-2" value={this.state.busqueda} onChange={this.onChange}/>
+                    <Button variant="outline-success">Buscar novela</Button>
+                </Form>
                 <Container>
 
                     <h1>Listado de libros</h1>
