@@ -22,32 +22,26 @@ class ChapterForm extends Component {
 
     componentDidMount = () => {
 
-        const book_id = this.props.match.params.book_id
-
-        this.bookService
-            .getBook(book_id)
-            .then(res => this.setState({ book: res.data }))
+        console.log(this.props.match.params.capitulo_id)
+        this.chaptersService
+            .getOneChapter(this.props.match.params.capitulo_id)
+            .then(res => this.setState({ chapter: res.data }))
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => this.setState({ chapter: {... this.state.chapter, [e.target.name]: e.target.value }})
+    handleInputChange = e => this.setState({ chapter: { ...this.state.chapter, [e.target.name]: e.target.value }})
 
     handleSubmit = e => {
 
         e.preventDefault()
-        const capitulos = this.state.book.chapters
-        const book_id = this.props.match.params.book_id
 
         this.chaptersService
-            .editChapter(capitulos, this.state.chapter)
-            .then(res => capitulos.push(res.data))
-            .then(() => {
-                this.bookService.editBook(book_id, {chapters: capitulos})
+            .editChapter(this.props.match.params.capitulo_id, this.state.chapter)
+            .then((res) => {
+                this.bookService.editBook(res.data.book, { chapters: res.data.book.chapters })//NO LO COGE EN EL LIBRO
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
-  
-
 
     }
 
@@ -65,11 +59,11 @@ class ChapterForm extends Component {
                         </Form.Group>
                         <Form.Group controlId="description">
                             <Form.Label>Descripción</Form.Label>
-                            <Form.Control type="text" name="resume" value={this.state.resume} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="resume" value={this.state.chapter.resume} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="text">
                             <Form.Label>Texto</Form.Label>
-                            <Form.Control as="textarea" rows={15} placeholder="Comienza aquí a escribir..." type="text" name="text" value={this.state.text} onChange={this.handleInputChange} />
+                            <Form.Control as="textarea" rows={15} value={this.state.chapter.text} type="text" name="text" onChange={this.handleInputChange} />
                         </Form.Group>
                         <Button variant="dark" type="submit">Guardar capítulo</Button>
                     </Form>
