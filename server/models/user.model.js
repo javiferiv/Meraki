@@ -35,6 +35,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Books'
     }],
+    favoriteAuthors: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     role: {
         type: String,
         enum: ['Escritor', 'Lector'],

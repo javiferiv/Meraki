@@ -1,13 +1,14 @@
 import { Modal } from 'react-bootstrap'
+import Poll from '../Poll/Poll'
 
 const Popup = ({ show, title, handleModal, children }) => {
     return (
         <Modal show={show} onHide={() => handleModal(false)}>
             <Modal.Header closeButton>
-                <Modal.Title>{title}</Modal.Title>
+                <Modal.Title>¿Cómo continúa la historia?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {children}
+                <Poll/>
             </Modal.Body>
         </Modal>
 
