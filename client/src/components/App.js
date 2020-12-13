@@ -17,6 +17,7 @@ import Signup from './pages/User/Signup/Signup'
 import Login from './pages/User/Login/Login'
 import Profile from './pages/User/Profile/Profile'
 import ProfileDetails from './pages/User/Profile/profile-details'
+import UserDetails from './pages/User/Profile/user-details'
 import Events from './pages/Events/Event-list/events'
 import EventDetails from './pages/Events/Event-details/event-details'
 import EventsForm from './pages/Events/Event-list/events-form'
@@ -78,6 +79,7 @@ class App extends Component {
             <Route path="/libros/:book_id" render={props => <BookDetails {...props} loggedUser={this.state.loggedInUser} />} />         
             <Route path="/capitulo/editar/:capitulo_id" exact render={props => this.state.loggedInUser ? <ChapterEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/capitulo/:capitulo_id" render={props => <ChapterDetails {...props} loggedUser={this.state.loggedInUser} />} />
+            <Route path="/usuario/:user_id" render={props => <UserDetails {...props} loggedUser={this.state.loggedInUser} />} />
           </Switch>
         </main>
 

@@ -5,7 +5,6 @@ import ChapterService from '../../../../service/chapter.service'
 
 import './Book-details.css'
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
-import thePoll from './../../../shared/Poll/Poll'
 import Popup from './../../../shared/Popup/Popup'
 //si ponemos loader, irá aquí 
 
@@ -175,8 +174,6 @@ class BookDetails extends Component {
 
     render() {
 
-
-
         return (
             <>
                 <Container>
@@ -188,6 +185,7 @@ class BookDetails extends Component {
                             <img src={this.state.book.image} alt={this.state.book.title} />
                             <h3>Detalles</h3>
                             <p>{this.state.book.resume}</p>
+                            <p>Autor/a:<Link to={`/usuario/${this.state.book.author._id}`}>{this.state.book.author.name}</Link></p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
                             <>
@@ -226,9 +224,8 @@ class BookDetails extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <Popup show={this.state.showModal} handleModal={this.handleModal} title="Tú decides cómo continuar la historia">
-                    <thePoll handleToast={this.handleToast} closeModal={() => this.handleModal(false)} loggedUser={this.props.loggedUser} />
-                </Popup>
+                
+                <Popup show={this.state.showModal} handleModal={this.handleModal} loggedUser={this.props.loggedUser}/>
             </>
 
         )
