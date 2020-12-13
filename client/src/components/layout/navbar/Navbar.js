@@ -30,10 +30,7 @@ class navbar extends Component {
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Form inline>
-                    <FormControl type="text" placeholder="Encuentra tu novela" className="mr-sm-2" />
-                    <Button variant="outline-success">Buscar novela</Button>
-                </Form>
+          
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <NavDropdown title="Zona Lector" id="basic-nav-dropdown">
