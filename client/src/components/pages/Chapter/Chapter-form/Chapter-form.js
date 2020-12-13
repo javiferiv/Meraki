@@ -30,7 +30,7 @@ class ChapterForm extends Component {
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => this.setState({ chapter: {... this.state.chapter, [e.target.name]: e.target.value }})
+    handleInputChange = e => this.setState({ chapter: {...this.state.chapter, [e.target.name]: e.target.value }})
 
     handleSubmit = e => {
 

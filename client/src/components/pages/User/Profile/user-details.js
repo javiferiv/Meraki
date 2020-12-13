@@ -33,12 +33,9 @@ class Profile extends Component {
 
         const userID = this.props.match.params.user_id
 
-        console.log(userID)
-
         this.authService
             .getOneUser(userID)
             .then(res => {
-                console.log(res.data)
                 this.setState({ user: res.data })
                 this.isBookAvailable()
             })
@@ -55,10 +52,7 @@ class Profile extends Component {
 
         const userBooks = this.state.books
 
-        console.log(userBooks)
-
-
-        if (Books != undefined) {
+        if (Books !== undefined) {
 
             Books.forEach(elm =>
 
@@ -102,7 +96,7 @@ class Profile extends Component {
 
                         <h2>Datos del perfil: </h2>
                         <p>Nombre de usuario: {this.state.user.username}</p>
-                        <p>Su fecha de nacimiento es: {this.state.user.birthday}!</p>
+                        <p>Su fecha de nacimiento es: {this.state.user.birthday}</p>
 
                         <Button className="btn btn-sm btn-dark"><Link to={`/libros`}>Volver a libros</Link></Button>
                         <br/>

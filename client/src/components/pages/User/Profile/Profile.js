@@ -16,10 +16,12 @@ class Profile extends Component {
             user: {
                 username: "",
                 name: "",
+                birthday: "",
                 favoriteBooks: [],
                 favoriteAuthors: []
             },
             books: [],
+            newBirthday : "",
         }
 
         this.authService = new AuthService()
@@ -48,6 +50,7 @@ class Profile extends Component {
             .then(res => {
                 this.setState({ user: res.data })
                 this.isBookAvailable()
+                this.newBirthdayDate()
             })
             .catch(err => console.log(err))
 
@@ -62,10 +65,7 @@ class Profile extends Component {
 
         const userBooks = this.state.books
 
-        console.log(userBooks)
-
-
-        if (Books != undefined) {
+        if (Books !== undefined) {
 
             Books.forEach(elm =>
 
@@ -79,10 +79,20 @@ class Profile extends Component {
 
     }
 
+    newBirthdayDate = () => {
+
+        let month = this.state.user.birthday.slice(5,7)
+        let day = this.state.user.birthday.slice(8, 10)
+        let year = this.state.user.birthday.slice(0, 4)
+
+        let birthdayDate = day + "-" + month + "-" + year
+        
+        this.setState({ newBirthday : birthdayDate })
+
+    }
+
 
     render() {
-
-        console.log(this.state.books)
 
         return (
             <Container>
@@ -99,7 +109,7 @@ class Profile extends Component {
 
                         <h2>Datos del perfil: </h2>
                         <p>Nombre: {this.state.user.name}</p>
-                        <p>Tu fecha de nacimiento es: {this.state.user.birthday}!</p>
+                        <p>Tu fecha de nacimiento es: {this.state.newBirthday}!</p>
 
                         <Link to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
                         <br></br>

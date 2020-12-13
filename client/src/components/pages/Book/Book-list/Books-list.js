@@ -34,7 +34,8 @@ class BookList extends Component {
 
     }
 
-    isLoggedUser = () => {{ this.props.loggedUser  &&  this.setState({ user: this.props.loggedUser._id })}}
+    isLoggedUser = () => {this.props.loggedUser && this.setState({ user: this.props.loggedUser._id })}
+    
 
     handleInputChange = e => {
 
@@ -45,8 +46,6 @@ class BookList extends Component {
         this.setState({ filteredBook : searchBook })
 
     }
-
-
 
     render() {
 

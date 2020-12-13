@@ -74,8 +74,8 @@ class Signup extends Component {
                                 <Form.Label>Rol</Form.Label>
                                 <Form.Control as="select" defaultValue="Elige una opción" name="role" value={this.state.role} onChange={this.handleInputChange} >
                                     <option>Selecciona una opción: </option>
-                                    <option>Escritor</option>
                                     <option>Lector</option>
+                                    <option>Escritor</option>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group controlId="image">

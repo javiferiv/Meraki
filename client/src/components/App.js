@@ -16,7 +16,7 @@ import ChapterEditForm from './pages/Chapter/Chapter-edit-form/Chapter-edit-form
 import Signup from './pages/User/Signup/Signup'
 import Login from './pages/User/Login/Login'
 import Profile from './pages/User/Profile/Profile'
-import ProfileDetails from './pages/User/Profile/profile-details'
+import ProfileDetails from './pages/User/Profile/edit-profiles'
 import UserDetails from './pages/User/Profile/user-details'
 import Events from './pages/Events/Event-list/events'
 import EventDetails from './pages/Events/Event-details/event-details'

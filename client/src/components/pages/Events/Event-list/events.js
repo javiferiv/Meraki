@@ -1,7 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Credentials from "../../../../credential"
 import MapContainer from './../../Maps/mapModel'
-import MapMarker from './../../Maps/drawAllMaps'
 import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
 import { Component } from 'react';
