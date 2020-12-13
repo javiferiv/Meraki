@@ -62,7 +62,6 @@ class Profile extends Component {
 
 
         const Books = this.state.user.favoriteBooks
-
         const userBooks = this.state.books
 
         if (Books !== undefined) {
@@ -117,48 +116,67 @@ class Profile extends Component {
 
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={6}>
-                        <h2>Estos son tus libros favoritos</h2>
-                    </Col>
-                    <hr></hr>
-                </Row>
-                <Row>
+                <br />
+                {
+                    this.state.user.favoriteBooks.length >= 1
+                    &&
+                    <>
+                        <Row>
+                            <Col md={6}>
+                                <h2>Estos son tus libros favoritos</h2>
+                            </Col>
+                        </Row>
+                        <hr></hr>
+                        <Row>
 
-                    {this.state.user.favoriteBooks.map(elm =>
-
-
-                        <FavoriteBooksCard
-
-                            key={elm._id}
-                            books={elm}
-
-
-                        />)}
+                            <>
+                                {
+                                    this.state.user.favoriteBooks.map(elm =>
 
 
-                </Row>
-                <Col md={6}>
-                    <h2>Estos son tus autores favoritos</h2>
-                </Col>
-                <hr></hr>
+                                        <FavoriteBooksCard
 
-                <Row>
-
-                    {this.state.user.favoriteAuthors.map(elm =>
+                                            key={elm._id}
+                                            books={elm}
 
 
-                        <FavoriteAuthCard
-
-                            key={elm._id}
-                            author={elm}
-
-
-                        />)}
+                                        />)
+                                }
+                            </>
 
 
-                </Row>
+                        </Row>
+                    </>
+                }
+                <br />
+                {
+                    this.state.user.favoriteAuthors.length >= 1
+                    &&
+                    <>
+                        <Row>
+                            <Col md={6}>
+                                <h2>Estos son tus autores favoritos</h2>
+                            </Col>
+                        </Row>
+                        <hr></hr>
 
+                        <Row>
+
+                            {this.state.user.favoriteAuthors.map(elm =>
+
+
+                                <FavoriteAuthCard
+
+                                    key={elm._id}
+                                    author={elm}
+
+
+                                />)}
+
+
+                        </Row>
+                    </>
+                }
 
             </Container >
         )

@@ -49,7 +49,7 @@ class FavoriteAuthsCard extends Component {
 
             < Col md={3} >
                 <Card className="favoriteBook-card">
-                    <Card.Img variant="top" src={this.state.newauthors.image} />
+                    <Link to={`/usuario/${this.state.newauthors._id}`}><Card.Img variant="top" src={this.state.newauthors.image}/></Link>
                     <Card.Body>
                         <Card.Title>{this.state.newauthors.name}</Card.Title>
                         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
