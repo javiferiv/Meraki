@@ -1,0 +1,181 @@
+@font-face { 
+    font-family: 'Atalla'; 
+    src: url(../../../fonts/Atalla.ttf) format('truetype'); 
+} 
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+h1{
+    font-family: Atalla;
+    font-size: 60px;
+
+}
+
+// h2 {
+//   padding-top: 30px;
+// }
+
+p {
+  font-family:'Times New Roman', Times, serif
+}
+
+.picture-home{
+  
+     -webkit-box-reflect: reverse;
+    background-image: url("https://www.edumpus.com/images/articles/SAT-Exam5f60bf3394927.jpg");
+    background-size: cover;
+    background-position-y: -130px;
+    padding-bottom: 200px;
+}
+
+.first-container-text {
+  padding-top: 200px;
+  
+}
+
+.button-first {
+  position: relative;
+  background: none;
+  color: aqua;
+  text-decoration: none;
+  border: 0.2em solid aqua;
+  padding: 0.5em 1em;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  
+  &:hover {
+    &::before {
+      right: 80%;
+    }
+    &::after {
+      left: 80%;
+    }
+  }
+}
+.button-second {
+  position: relative;
+  background: none;
+  color: black;
+  text-decoration: none;
+  border: 0.2em solid #eeded0;
+  padding: 0.7em 1.2em;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #FAF5EC;
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #FAF5EC;
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  
+  &:hover {
+    &::after {
+      right: 80%;
+    }
+    &::before {
+      left: 80%;
+    }
+  }
+}
+
+.container-background{
+  background-color: #FAF5EC;
+
+
+}
+
+.second-container-home{
+  padding-bottom: 30px;
+  
+}
+
+.second-container-title{
+  margin-top: 35px;
+}
+
+.first-home-image{
+    background-image: url("https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=623&q=80");
+    object-fit: cover;
+    width: 260px;
+    padding-bottom: 300px;
+
+}
+
+.second-home-image{
+    background-image: url("https://images.unsplash.com/photo-1526395050546-dc5b0fe8df5f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80");
+  object-fit: contain;
+    width: 260px;
+    padding-bottom: 300px;
+
+}
+
+
+.col-home-container{
+  text-align: center;
+  background-color: #FAF5EC;
+  padding: 20px 10px 40px;
+  margin: 40px;
+
+  
+}
+
+.phrase-container{
+  padding-top: 30px;
+  background-color:#F3E7DC;
+  padding-bottom: 30px;
+  text-align: center;
+  
+}
+
+
+
+

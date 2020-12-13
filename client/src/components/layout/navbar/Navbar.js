@@ -23,7 +23,7 @@ class navbar extends Component {
 
         return (
 
-            <Navbar bg="light" expand="lg">
+            <Navbar className="fixed-top" expand="lg">
                 <Navbar.Brand>
                     <Link to='/'>
                         <Nav.Link as="div" id="basic-nav-dropdown">Meraki_</Nav.Link>
@@ -36,13 +36,15 @@ class navbar extends Component {
                         <NavDropdown title="Zona Lector" id="basic-nav-dropdown">
                             <NavDropdown.Item>
                                 <Link to="/libros">
-                                    <Nav.Link as="div" id="basic-nav-dropdown">Todas las novelas</Nav.Link>
+                                <Nav.Link as="div" id="basic-nav-dropdown">Todas las novelas</Nav.Link>
                                 </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
+                            <NavDropdown.Item>
                             <Link to="/Eventos">
                                 <Nav.Link as="div" id="basic-nav-dropdown">Eventos</Nav.Link>
                             </Link>
+                                 </NavDropdown.Item>
 
                         </NavDropdown>
 

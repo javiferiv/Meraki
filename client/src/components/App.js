@@ -82,10 +82,9 @@ class App extends Component {
             <Route path="/usuario/:user_id" render={props => <UserDetails {...props} loggedUser={this.state.loggedInUser} />} />
           </Switch>
         </main>
-
-        <footer>
+     
           <Footer />
-        </footer>
+     
       </>
     )
   }

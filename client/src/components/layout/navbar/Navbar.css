@@ -1,3 +1,20 @@
-.navbar{
-    margin-bottom: 20px;
+@font-face { 
+    font-family: 'Derabaro'; 
+    src: url(../../../fonts/Derabaro.ttf) format('truetype'); 
+} 
+
+
+.navbar {
+    background-color: #FAF5EC;
+}
+
+
+
+
+* {
+    font-family: Atalla;
+    font-size: 20px;
+    font-weight: 200;
+  
+
 }
