@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Book = require('./../models/book.model')
 const Chapter = require('./../models/chapter.model')
+//const { checkId } = require('./../../middlewares/middlewares.js')
 
 router.get('/getAllChapters', (req, res) => {
 
