@@ -17,7 +17,7 @@ const BookCard = (props) => {
                 <Card className="book-card">
                     <Card.Img variant="top" src={props.image} />
                     <Card.Body>
-                        <Card.Title>{props.title}</Card.Title>
+                        <Card.Title className="book-title-card">{props.title}</Card.Title>
                         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
                             {
                                 props.userId === props.author

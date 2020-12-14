@@ -23,7 +23,7 @@ class navbar extends Component {
 
         return (
 
-            <Navbar className="fixed-top" expand="lg">
+            <Navbar className="sticky-top" expand="lg">
                 <Navbar.Brand>
                     <Link to='/'>
                         <Nav.Link as="div" id="basic-nav-dropdown">Meraki_</Nav.Link>

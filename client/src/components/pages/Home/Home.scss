@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
 @font-face { 
     font-family: 'Atalla'; 
     src: url(../../../fonts/Atalla.ttf) format('truetype'); 
@@ -19,7 +22,9 @@ h1{
 // }
 
 p {
-  font-family:'Times New Roman', Times, serif
+  font-size: 0.8em;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
 .picture-home{
@@ -175,7 +180,6 @@ p {
   text-align: center;
   
 }
-
 
 
 

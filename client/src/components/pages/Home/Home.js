@@ -59,6 +59,7 @@ const Home = (props) => {
             </Container>
             </div>
 
+            <div className="third-container-home">
             <Container>
                 <Row>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
@@ -84,7 +85,7 @@ const Home = (props) => {
                     
             </Container>
           
-
+</div>
             <Container fluid className="phrase-container">
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>

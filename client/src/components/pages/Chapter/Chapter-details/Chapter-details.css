@@ -2,8 +2,8 @@
     
     margin: 30px auto;
     padding: 10px 15px;
-    background: #f9f3f3;
-    border: 1px solid #0a0a0a;
+    background: #FAF5EC;
+    border: 1px dashed #535050;
     text-align: justify;
     white-space: pre-wrap;
     height: auto;
@@ -11,4 +11,14 @@
     min-height: 300px;
 
 
+}
+
+.book-chapter-text{
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8em;
+
+}
+
+.title-book-chapter{
+    margin-top: 20px;
 }

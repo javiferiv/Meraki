@@ -106,12 +106,13 @@ class ChapterDetails extends Component {
         return (
             <>
                 <Container>
-                    <h1>{this.state.chapters.title}</h1>
-                    <small>{this.state.chapters.resume}</small>
+                    <h1 className="title-book-chapter">{this.state.chapters.title}</h1>
+                    <hr></hr>
+                    <h3>{this.state.chapters.resume}</h3>
 
                     <Row>
                         <Col className="chapter">
-                            <text>{this.state.chapters.text}</text>
+                            <text className="book-chapter-text">{this.state.chapters.text}</text>
                         </Col>
                     </Row>
                     <Row>
