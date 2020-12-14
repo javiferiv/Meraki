@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Profile.scss'
 import AuthService from '../../../../service/auth.service'
 import BookService from '../../../../service/book.service'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import FavoriteBooksCard from './favorite-books'
 import FavoriteAuthCard from './favorite-authors'
 import { Link } from 'react-router-dom'
@@ -104,7 +104,7 @@ class Profile extends Component {
 
                     </Col>
 
-                    <Col md={6}>
+                    <Col className="profile-data" md={6}>
 
                         <h2>Datos del perfil: </h2>
                         <p>Nombre: {this.state.user.name}</p>
@@ -112,7 +112,7 @@ class Profile extends Component {
 
                         <Link to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
                         <br></br>
-                        <Button onClick={() => this.deleteThisUser()} className="btn btn-sm btn-danger">Borrar perfil</Button>
+                        <Link className="profile-btn" onClick={() => this.deleteThisUser()}>Borrar perfil</Link>
 
                     </Col>
                 </Row>
