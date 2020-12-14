@@ -35,14 +35,14 @@ class ChapterForm extends Component {
     handleSubmit = e => {
 
         e.preventDefault()
-        const capitulos = this.state.book.chapters
+        const chaptersInfo = [...this.state.book.chapters]
         const book_id = this.props.match.params.book_id
 
         this.chaptersService
             .saveChapter(this.state.chapter)
-            .then(res => capitulos.push(res.data))
+            .then(res => chaptersInfo.push(res.data))
             .then(() => {
-                this.bookService.editBook(book_id, {chapters: capitulos})
+                this.bookService.editBook(book_id, { chapters: chaptersInfo})
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))

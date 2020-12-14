@@ -1,8 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Credentials from "../../../../credential"
-import MapContainer from './../../Maps/mapModel'
+import MapContainer from '../../Maps/MapModel'
 import EventService from "../../../../service/event.service"
-import EventCard from './event-card'
+import EventCard from './Event-card'
 import { Component } from 'react';
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;
@@ -30,7 +30,7 @@ class Events extends Component {
 
         this.eventService
             .getEvent()
-            .then(res => this.setState({ events: res.data }))
+            .then(res => this.setState({ events : res.data }))
             .catch(err => console.log(err))
     }
 
@@ -52,14 +52,12 @@ class Events extends Component {
                             />
 
                     <Row>
-               
-
 
                         <Col md={12}>
                            
                                 <h3>Próximos eventos</h3>
                                 <hr></hr>
-                                {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
+                            {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
 
                             
                         </Col>

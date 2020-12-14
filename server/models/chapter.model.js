@@ -18,11 +18,7 @@ const chapterSchema = new Schema({
         type: String,
         required: true
     },
-
-    comments: {
-        type: [],
-    },
-
+    
     book: {
         type: Schema.Types.ObjectId,
         ref: 'Book'

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
+import imageColumn1 from './images/image-column-1.jpeg'
+import imageColumn2 from './images/image-column-2.jpeg'
+
 
 
 const Home = (props) => {
@@ -40,11 +43,11 @@ const Home = (props) => {
                 
                 <Row >
                     <Col md={3}>
-                            <img className="first-home-image" src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=623&q=80"></img>
+                            <img className="first-home-image" src={imageColumn1} alt="pencil"></img>
 
                     </Col>
                     <Col md={3}>
-                        <img className="second-home-image" src="https://images.unsplash.com/photo-1526395050546-dc5b0fe8df5f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80"></img>
+                            <img className="second-home-image" src={imageColumn2} alt="library"></img>
 
                     </Col>
                     <Col md={6}>

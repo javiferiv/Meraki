@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import AuthService from '../../../../service/auth.service'
-import { Link } from 'react-router-dom'
+import UserService from '../../../../service/user.service'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 class ProfileEdit extends Component {
@@ -13,7 +12,8 @@ class ProfileEdit extends Component {
             name: this.props.loggedUser.name,
             birthday: this.props.loggedUser.birthday,
         }
-        this.authService = new AuthService()
+
+        this.userService = new UserService()
      
 
     }
@@ -21,12 +21,10 @@ class ProfileEdit extends Component {
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
     handleSubmit = e => {
-   
 
         e.preventDefault()
 
-        this.authService
-            
+        this.userService
             .editUser(this.props.match.params.user_id, this.state)
             .then(res => {
                 this.props.history.push('/perfil')

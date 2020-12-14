@@ -27,10 +27,7 @@ class EventForm extends Component {
 
         this.eventService
             .newEvent(this.state)
-            .then(res => {
-                console.log(this.props)
-                this.props.history.push('/eventos')
-            })
+            .then(res => {this.props.history.push('/eventos')})
             .catch(err => console.log(err))
     }
 

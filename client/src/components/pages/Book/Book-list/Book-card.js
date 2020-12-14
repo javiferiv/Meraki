@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './Book-card.scss'
 
-const BookCard = (props) => {
+const BookCard = ({ image, title, author, userId, _id }) => {
     
     
     return (
@@ -15,17 +15,17 @@ const BookCard = (props) => {
             <Col lg={4}>
             
                 <Card className="book-card">
-                    <Card.Img variant="top" src={props.image} />
+                    <Card.Img variant="top" src={image} />
          
-                        <Card.Title className="book-title-card">{props.title}</Card.Title>
+                        <Card.Title className="book-title-card">{title}</Card.Title>
                         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
                             {
-                                props.userId === props.author
+                                userId === author
                                 &&
-                                <Link className="btn btn-book-card" to={`/libros/editar/${props._id}`}>Editar</Link>
+                                <Link className="btn btn-book-card" to={`/libros/editar/${_id}`}>Editar</Link>
 
                             }
-                        <Link className="btn btn-book-card" to={`/libros/${props._id}`}>Ver detalles</Link>
+                        <Link className="btn btn-book-card" to={`/libros/${_id}`}>Ver detalles</Link>
                         </ButtonGroup>
                    
 

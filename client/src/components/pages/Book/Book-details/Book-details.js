@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import BooksService from '../../../../service/book.service'
 import AuthService from '../../../../service/auth.service'
@@ -8,7 +9,7 @@ import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
 import Popup from './../../../shared/Popup/Popup'
 //si ponemos loader, irá aquí 
 
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { Form, Container, Row, Col, Button, Modal } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
 
@@ -23,8 +24,10 @@ class BookDetails extends Component {
                 genre: '',
                 resume: '',
                 chapters: [],
+                comments: [],
                 author: '',
             },
+
             user: {
 
             },
@@ -52,7 +55,6 @@ class BookDetails extends Component {
         this.bookService
             .getBook(book_id)
             .then(res => {
-
                 this.setState({ book: res.data })
                 this.isAuthorised()
             })
@@ -62,6 +64,8 @@ class BookDetails extends Component {
         this.refreshChapters()
         this.getUser()
         this.isUser()
+
+        console.log(this.state)
     }
 
 
@@ -107,8 +111,6 @@ class BookDetails extends Component {
         if (userID != undefined) {
             newUserID = userID._id
             this.setState({ id: newUserID })
-            console.log(newUserID)
-
         }
 
     }
@@ -155,8 +157,6 @@ class BookDetails extends Component {
 
     isAuthorised = () => {
 
-
-
         let newUserID = ""
         let newBookAuthorID = this.state.book.author._id
 
@@ -165,9 +165,26 @@ class BookDetails extends Component {
         }
 
         if (newUserID === newBookAuthorID) { this.setState({ authority: true }) }
-
-
+        
     }
+
+    // handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+
+    // handleSubmit = e => {
+        
+    //     e.preventDefault()
+        
+    //     const book_id = this.props.match.params.book_id
+
+    //     this.bookService
+    //         .editBook(book_id, this.state)
+    //         .then(res =>
+    //         {
+    //             this.props.history.push(`/libros`)
+    //         console.log(this.state)})
+    //         .catch(err => console.log('Error', err))
+        
+    // }
 
     handleModal = visible => this.setState({ showModal: visible })
     handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
@@ -225,7 +242,39 @@ class BookDetails extends Component {
                     </Row>
                 </Container>
                 
-                <Popup show={this.state.showModal} handleModal={this.handleModal} loggedUser={this.props.loggedUser}/>
+                <Popup show={this.state.showModal} handleModal={this.handleModal} loggedUser={this.props.loggedUser} />
+                
+                <Container>
+                    
+                    <Col md={4}>
+                        <h3>Comentarios</h3>
+                        {this.state.book.comments}
+                    </Col>
+                    <Row>
+                        <Col md={12}>
+                            
+                            {this.props.loggedUser &&
+                                
+                                <Form className="form" onSubmit={this.handleSubmit}>
+                    
+                                <Form.Group controlId="text">
+                                    
+                                        <Form.Label>Deja aquí tu comentario</Form.Label>
+                                        <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="comments" value={this.state.comments} onChange={this.handleInputChange} />
+
+                                </Form.Group>
+                                
+                                    <Button variant="dark" type="submit">Comentar</Button>
+                                
+                            </Form>
+                            
+                            
+                            }
+                        
+                        
+                        </Col>
+                    </Row>
+                </Container>
             </>
 
         )

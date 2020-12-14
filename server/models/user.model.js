@@ -18,7 +18,7 @@ const userSchema = new Schema({
         enum: ["Masculino", "Femenino", "Otro"],
         default: "Otro"
     },
-    image: {
+    imageUrl: {
         type: String,
         default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLufxaN3brIsx_3u42mCxRJKFvoyEhbbw73A&usqp=CAU"
     },

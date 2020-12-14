@@ -41,7 +41,7 @@ class BookList extends Component {
 
         const { value } = e.target
         
-        const searchBook = [...this.state.books].filter(elm => elm.title.toLowerCase().includes(value) || elm.title.toUpperCase().includes(value))
+        const searchBook = this.state.books.filter(elm => elm.title.toLowerCase().includes(value) || elm.title.toUpperCase().includes(value))
         
         this.setState({ filteredBook : searchBook })
 

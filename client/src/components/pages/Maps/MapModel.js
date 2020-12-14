@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EventService from "../../../service/event.service"
-import MarkerCard from "../Maps/marker"
+import MarkerCard from "./Marker"
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
 
 
@@ -32,8 +32,6 @@ class allMaps extends Component {
     }
 
     render() {
-
-       console.log(this.state.event)
 
         return (
             <>

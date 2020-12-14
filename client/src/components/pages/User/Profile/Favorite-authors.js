@@ -1,8 +1,8 @@
 import { Col, Card, ButtonGroup } from 'react-bootstrap'
-import AuthorsService from '../../../../service/auth.service'
+import UserService from '../../../../service/user.service'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './favoriteBooks-card.css'
+import './FavoriteBooks-card.css'
 
 
 class FavoriteAuthsCard extends Component {
@@ -15,7 +15,7 @@ class FavoriteAuthsCard extends Component {
         }
 
 
-        this.authService = new AuthorsService()
+        this.userService = new UserService()
     }
 
     componentDidMount = () => {
@@ -26,16 +26,7 @@ class FavoriteAuthsCard extends Component {
             .getOneUser(auth_id)
             .then(res => {
                 console.log(res.data)
-                this.setState({ newauthors: res.data })
-
-                // if (res.data != null) {
-
-                //     this.setState({ newauthors: res.data })
-
-                // }
-
-
-            })
+                this.setState({ newauthors: res.data })})
             .catch(err => console.log(err))
 
     }

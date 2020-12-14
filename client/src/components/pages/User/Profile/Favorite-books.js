@@ -2,7 +2,7 @@ import { Col, Card, ButtonGroup } from 'react-bootstrap'
 import BooksService from '../../../../service/book.service'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './favoriteBooks-card.css'
+import './FavoriteBooks-card.css'
 
 
 class FavoriteBooksCard extends Component {
@@ -37,8 +37,6 @@ class FavoriteBooksCard extends Component {
             .catch(err => console.log(err))
 
     }
-
-
 
     render() {
 

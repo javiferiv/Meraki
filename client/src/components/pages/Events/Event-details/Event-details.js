@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EventService from "../../../../service/event.service"
-import Maps from '../../Maps/drawMaps'
+import Maps from '../../Maps/DrawMaps'
 import Credentials from "../../../../credential"
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -37,13 +37,13 @@ class EventDetails extends Component {
         this.eventService      
             .getOneEvent(event_id)
             .then(res => {
-                const eventInfo = this.state.event
+                const eventInfo = [...this.state.event]
                 eventInfo.push(res.data)
                 this.setState({ event: eventInfo })
             })
             
                 .then(() => {
-                    const eventDetails = this.state.event[0]
+                    const eventDetails = [...this.state.event[0]]
                     this.setState({ eventDetail: eventDetails })
                 })
             
@@ -64,8 +64,6 @@ class EventDetails extends Component {
 
 
     render() {
-
-        console.log(this.state.eventDetail)
 
         return (
             <>

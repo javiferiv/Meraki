@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import AuthService from '../../../../service/auth.service'
+import UserService from '../../../../service/user.service'
 import BookService from '../../../../service/book.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import FavoriteBooksCard from './favorite-books'
-import FavoriteAuthCard from './favorite-authors'
+import FavoriteBooksCard from './Favorite-books'
+import FavoriteAuthCard from './Favorite-authors'
 import { Link } from 'react-router-dom'
 
 
@@ -24,7 +24,7 @@ class Profile extends Component {
         }
 
             
-        this.authService = new AuthService()
+        this.userService = new UserService()
         this.bookService = new BookService()
     }
 
@@ -33,7 +33,7 @@ class Profile extends Component {
 
         const userID = this.props.match.params.user_id
 
-        this.authService
+        this.userService
             .getOneUser(userID)
             .then(res => {
                 this.setState({ user: res.data })
@@ -48,9 +48,9 @@ class Profile extends Component {
     isBookAvailable = () => {
 
 
-        const Books = this.state.user.favoriteBooks
+        const Books = [...this.state.user.favoriteBooks]
 
-        const userBooks = this.state.books
+        const userBooks = [...this.state.books]
 
         if (Books !== undefined) {
 

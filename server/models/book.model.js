@@ -31,6 +31,11 @@ const bookSchema = new Schema({
 
     },
 
+    comments: {
+        type: [],
+    },
+
+
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

@@ -50,7 +50,7 @@ class Login extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button className="default-button login" type="submit">Iniciar sesión</Button>
+                            <Button className="default-button login" style={{ width: "100%" }} type="submit">Iniciar sesión</Button>
                         </Form>
                     </Col>
                 </Row>

@@ -44,10 +44,12 @@ class ChapterDetails extends Component {
 
     componentDidUpdate = (res) => {
         if (this.props.match.params.capitulo_id != this.props.match.params.capitulo_id) {
-            this.bookService.getBook(res.data.book._id)
+            this.bookService
+                .getBook(res.data.book._id)
                 .then((res) => {
                     console.log(res.data._id, res.data.chapters) //saca la info del libro
-                    this.bookService.editBook(res.data._id, { chapters: res.data.chapters })
+                    this.bookService
+                        .editBook(res.data._id, { chapters: res.data.chapters })
                 })
         }
     }
@@ -66,13 +68,6 @@ class ChapterDetails extends Component {
                         this.bookService.editBook(res.data._id, { chapters: res.data.chapters })
                     })
             })
-
-            //this.state.book.splice(chapter.id,1)
-            //.deleteChapter(this.props.match.params.capitulo_id)
-            // .then(() => {
-            //     this.bookService.editBook(book_id, { chapters: capitulos })
-            //     this.props.history.push('/libros')
-            // })
             .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
 
