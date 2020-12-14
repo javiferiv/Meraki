@@ -142,22 +142,12 @@ p {
   margin-top: 35px;
 }
 
-.first-home-image{
-    background-image: url("https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=623&q=80");
-    object-fit: cover;
+.first-home-image, .second-home-image{
+    object-fit: contain;
     width: 260px;
-    padding-bottom: 300px;
+    
 
 }
-
-.second-home-image{
-    background-image: url("https://images.unsplash.com/photo-1526395050546-dc5b0fe8df5f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80");
-  object-fit: contain;
-    width: 260px;
-    padding-bottom: 300px;
-
-}
-
 
 .col-home-container{
   text-align: center;
