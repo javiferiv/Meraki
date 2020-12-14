@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Profile.css'
+import './Profile.scss'
 import AuthService from '../../../../service/auth.service'
 import BookService from '../../../../service/book.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
@@ -100,7 +100,7 @@ class Profile extends Component {
                 <Row>
                     <Col md={6}>
 
-                        <img src={this.state.user.image} alt="profile"></img>
+                        <img className="profile-img" src={this.state.user.image} alt="profile"></img>
 
                     </Col>
 
