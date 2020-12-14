@@ -61,3 +61,21 @@ class FavoriteBooksCard extends Component {
 }
 
 export default FavoriteBooksCard
+
+// render() {
+
+//     return (
+//         <Carousel.Item>
+//             <Link className="favoriteBook-card" to={`/libros/${this.state.newbooks._id}`}><img variant="top" src={this.state.newbooks.image} /></Link>
+//             <Carousel.Caption>
+//                 <Card.Title>{this.state.newbooks.title}</Card.Title>
+//                 <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+//                 </ButtonGroup>
+//             </Carousel.Caption>
+//         </Carousel.Item>
+
+
+//     )
+
+
+// }

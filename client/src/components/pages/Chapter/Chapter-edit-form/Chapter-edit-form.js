@@ -21,15 +21,13 @@ class ChapterForm extends Component {
     }
 
     componentDidMount = () => {
-
-        console.log(this.props.match.params.capitulo_id)
         this.chaptersService
             .getOneChapter(this.props.match.params.capitulo_id)
             .then(res => this.setState({ chapter: res.data }))
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => this.setState({ chapter: { ...this.state.chapter, [e.target.name]: e.target.value }})
+    handleInputChange = e => this.setState({ chapter: { ...this.state.chapter, [e.target.name]: e.target.value } })
 
     handleSubmit = e => {
 
@@ -37,10 +35,22 @@ class ChapterForm extends Component {
 
         this.chaptersService
             .editChapter(this.props.match.params.capitulo_id, this.state.chapter)
-            .then((res) => {
-                this.bookService.editBook(res.data.book, { chapters: res.data.book.chapters })//NO LO COGE EN EL LIBRO
-                this.props.history.push('/libros')
+            .then(() => {
+                this.bookService.getBook(this.state.chapter.book._id)
+                    .then(res => {
+                        this.setState({ book: res.data })
+                        console.log()
+                    })
+                    .then(res => {
+                        const newChapters = [...this.state.book.chapters]
+                        const anotherChapter = newChapters.filter(elm => elm._id !== this.props.match.params.capitulo_id)
+                        const stateChapter = [...anotherChapter, this.state.chapter]
+                        this.setState({ book: { ...this.state.book, chapters: stateChapter } })
+                        this.bookService.editBook(this.state.chapter.book._id, this.state.book)
+                        this.props.history.push(`/libros/${this.state.chapter.book._id}`)
+                    })
             })
+
             .catch(err => console.log(err))
 
     }

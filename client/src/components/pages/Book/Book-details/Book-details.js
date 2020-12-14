@@ -93,11 +93,8 @@ class BookDetails extends Component {
             .then(res => {
                 this.state.favoritesBook.splice(book_id, 1)
                 this.setState({ user: this.state.favoritesBook })
-                // this.authService
-                // .editUser(this.state.user._id, )
-                // this.props.history.push('/libros')
-            }
-            )
+                this.props.history.push('/libros')
+            })
             .catch(err => console.log(err))
 
     }

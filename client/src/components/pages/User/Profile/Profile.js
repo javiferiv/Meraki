@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './Profile.scss'
 import UserService from '../../../../service/user.service'
 import BookService from '../../../../service/book.service'
-import { Container, Row, Col } from 'react-bootstrap'
-import FavoriteBooksCard from './Favorite-books'
-import FavoriteAuthCard from './Favorite-authors'
+import { Container, Row, Col, Carousel } from 'react-bootstrap'
+import FavoriteBooksCard from './favorite-books'
+import FavoriteAuthCard from './favorite-authors'
 import { Link } from 'react-router-dom'
 
 
@@ -117,9 +117,12 @@ class Profile extends Component {
                         <p>Nombre: {this.state.user.name}</p>
                         <p>Tu fecha de nacimiento es: {this.state.user.newBirthday}!</p>
 
-                        <Link to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
-                        <br></br>
-                        <Link className="profile-btn" onClick={() => this.deleteThisUser()}>Borrar perfil</Link>
+                        <Container style={{ display: 'flex', justifyContent:'space-between'}}>
+                        <Link className="default-button" to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
+                        <br />
+                        <br />
+                        <Link className="default-button" onClick={() => this.deleteThisUser()}>Borrar perfil</Link>
+                        </Container>
 
                     </Col>
                 </Row>
@@ -153,6 +156,7 @@ class Profile extends Component {
 
 
                         </Row>
+
                     </>
                 }
                 <br />
@@ -186,6 +190,7 @@ class Profile extends Component {
                 }
 
             </Container >
+            
         )
     }
 }
