@@ -1,0 +1,23 @@
+.btn{
+    font-family: 'Open Sans', sans-serif, italic;
+  font-size: 0.7em;
+}
+
+.form{
+      margin: 50px 50px;
+}
+
+.default-button{
+    color: black;
+    background-color: #F3E7DC;
+    padding: 10px;
+    border: none;
+      &:hover 
+    {
+    background-color: white;
+    color: black;
+    border: 1px solid;
+    &::before { width: 0; }
+    &::after { height: 0; }
+}
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import AuthService from '../../../../service/auth.service'
+import './Login.scss'
+
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
@@ -33,11 +35,11 @@ class Login extends Component {
 
         return (
 
-            <Container>
+            <Container className="form">
 
                 <Row>
-                    <Col md={{ span: 6, offset: 3 }}>
-                        <h1>Inicio de sesión</h1>
+                    <Col md={{ span: 6, offset: 5 }}>
+                        <h1 style={{textAlign: "center"}}>Inicio de sesión</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
@@ -48,7 +50,7 @@ class Login extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button variant="dark" type="submit">Iniciar sesión</Button>
+                            <Button className="default-button login" type="submit">Iniciar sesión</Button>
                         </Form>
                     </Col>
                 </Row>

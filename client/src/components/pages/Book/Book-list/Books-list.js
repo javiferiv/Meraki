@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
 import BooksService from '../../../../service/book.service'
 import BookCard from './Book-card'
-import './Books-list.css'
+import './Books-list.scss'
 
 class BookList extends Component {
 
@@ -69,18 +69,21 @@ class BookList extends Component {
                         <Col md={{ span: 6, offset: 7 }}>
                     <Form inline>
                 <FormControl type="text" placeholder="Encuentra tu novela" name="busqueda" className="mr-sm-2 searchbar" value={this.state.busqueda} onChange={this.handleInputChange} />
-                            <Button className="searchbar-button">Buscar novela</Button>
+                            <Button className="default-button">Buscar novela</Button>
                
                             </Form>
                         </Col>
                     </Row>
             </Container>
             <Container>
+                   
 
                     <h1>Listado de libros</h1>
+             
                    
                     <hr></hr>
-                        
+                  
+                
                     {
                         adventuresBooks.length >= 1 
                         &&
@@ -229,6 +232,8 @@ class BookList extends Component {
                         </Row>
                     </>
                     }
+
+                       
 
                 </Container>
             </>

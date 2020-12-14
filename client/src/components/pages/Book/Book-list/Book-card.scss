@@ -1,0 +1,18 @@
+.book-card img{
+    height: 200px;
+    object-fit: contain;
+}
+.book-title-card{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9em;
+}
+
+.btn-book-card{
+    background-color: #FAF5EC;
+    &:hover 
+    {
+    background-color: #F3E7DC;
+    &::before { width: 0; }
+    &::after { height: 0; }
+}
+}

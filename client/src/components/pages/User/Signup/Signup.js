@@ -38,11 +38,11 @@ class Signup extends Component {
 
         return (
 
-            <Container>
+            <Container className="form">
 
                 <Row>
-                    <Col md={{ span: 6, offset: 3 }}>
-                        <h1>Registro de usuario</h1>
+                    <Col md={{ span: 6, offset: 5 }}>
+                        <h1 style={{textAlign : "center"}}>Registro de usuario</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
@@ -82,7 +82,7 @@ class Signup extends Component {
                                 <Form.Label>Imagen de perfil</Form.Label>
                                 <Form.Control type="text" name="image" onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <Button className="default-button" type="submit">Registrarme</Button>
                         </Form>
                     </Col>
                 </Row>
