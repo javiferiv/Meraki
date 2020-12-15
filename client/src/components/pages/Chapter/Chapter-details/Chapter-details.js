@@ -33,18 +33,8 @@ class ChapterDetails extends Component {
             .then(res => {
                 this.setState({ chapters: res.data })
             })
-
-    componentDidUpdate = (res) => {
-        if (this.props.match.params.capitulo_id != this.props.match.params.capitulo_id) {
-            this.bookService
-                .getBook(res.data.book._id)
-                .then((res) => {
-                    console.log(res.data._id, res.data.chapters) //saca la info del libro
-                    this.bookService
-                        .editBook(res.data._id, { chapters: res.data.chapters })
-                })
-        }
     }
+    
 
     deleteChapter = () => {
 
@@ -52,35 +42,18 @@ class ChapterDetails extends Component {
             .deleteChapter(this.props.match.params.capitulo_id)
             .then(res => {
                 this.setState({ chapters: res.data })
-                this.bookService.getBook(res.data.book._id)
+                this.bookService.getBook(res.data.book)
                     .then(res => {
                         this.setState({ book: res.data })
-                        console.log(res.data)
-                        console.log(this.state.chapter._id)
-                    })
-                    .then(res => {
                         const newChapters = [...this.state.book.chapters]
                         const anotherChapter = newChapters.filter(elm => elm._id !== this.props.match.params.capitulo_id)
-                        const stateChapter = [...anotherChapter, this.state.chapter]
-                        console.log(stateChapter)
-                        this.setState({ book: { ...this.state.book, chapters: stateChapter } })
-                        this.bookService.editBook(this.state.chapter.book._id, this.state.book)
-                        this.props.history.push(`/libros/${this.state.chapter._id}`)
+                        this.setState({ book: { ...this.state.book, chapters: anotherChapter } })
+                        this.bookService.editBook(this.state.book._id, this.state.book)
+                        this.props.history.push(`/libros/${this.state.book._id}`)
                     })
             })
 
             .catch(err => console.log(err))
-
-
-            //this.state.book.splice(chapter.id,1)
-            //.deleteChapter(this.props.match.params.capitulo_id)
-            // .then(() => {
-            //     this.bookService.editBook(book_id, { chapters: capitulos })
-            //     this.props.history.push('/libros')
-            // })
-            //.then(res => this.props.history.push('/libros'))
-            .catch(err => console.log(err))
-
     }
 
 

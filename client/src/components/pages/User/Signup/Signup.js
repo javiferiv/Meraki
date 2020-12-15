@@ -14,7 +14,7 @@ class Signup extends Component {
                 password: '',
                 name: '',
                 role: '',
-                birthday: '',
+                birthday: Date,
                 imageUrl: '',
             },
         }
@@ -24,6 +24,7 @@ class Signup extends Component {
     }
 
     handleInputChange = e => this.setState({ user: { ...this.state.user ,[e.target.name]: e.target.value }})
+    handleDateChange = e => this.setState({ user: { ...this.state.user ,[e.target.name]: new Date(e.target.value) }})
  
 
 
@@ -81,7 +82,7 @@ class Signup extends Component {
                             </Form.Group>
                             <Form.Group controlId="birthday">
                                 <Form.Label>Fecha de nacimiento</Form.Label>
-                                <Form.Control type="date" name="birthday" onChange={this.handleInputChange} />
+                                <Form.Control type="date" name="birthday" onChange={this.handleDateChange} />
                             </Form.Group>
                             <Form.Group controlId="gender">
                                 <Form.Label>Género</Form.Label>

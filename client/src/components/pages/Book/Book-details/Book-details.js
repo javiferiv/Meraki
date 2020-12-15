@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import BooksService from '../../../../service/book.service'
-import AuthService from '../../../../service/auth.service'
+import UserService from '../../../../service/user.service'
 import ChapterService from '../../../../service/chapter.service'
 
 import './Book-details.css'
@@ -43,7 +43,7 @@ class BookDetails extends Component {
 
 
         this.bookService = new BooksService()
-        this.authService = new AuthService()
+        this.userService = new UserService()
         this.chapterService = new ChapterService()
 
     }
@@ -58,29 +58,38 @@ class BookDetails extends Component {
                 this.setState({ book: res.data })
                 this.isAuthorised()
             })
+            // .then( () => {
+            //     this.refreshChapters()
+            // } )
 
             .catch(err => console.log(err))
-
-        this.refreshChapters()
         this.getUser()
         this.isUser()
 
         console.log(this.state)
     }
 
+    componentDidUpdate = (res) => {
+        this.refreshChapters()
+        // if (this.props.match.params.capitulo_id != this.props.match.params.capitulo_id) {
+        //     this.bookService
+        //         .getBook(res.data.book._id)
+        //         .then((res) => {
+        //             console.log(res.data._id, res.data.chapters) //saca la info del libro
+        //             this.bookService
+        //                 .editBook(res.data._id, { chapters: res.data.chapters })
+        //         })
+        // }
+    }
 
     getUser = () => {
 
-
-        this.authService
+        this.userService
             .getAllUser()
             .then(res => {
                 this.setState({ user: res.data })
             })
             .catch(err => console.log(err))
-
-
-
     }
 
     deleteThisBook = () => {
@@ -131,7 +140,7 @@ class BookDetails extends Component {
 
         favoriteBook.push(bookID)
 
-        this.authService
+        this.userService
             .editUser(this.props.loggedUser._id, { favoriteBooks: favoriteBook })
             .then((response) => { this.props.setTheUser(response.data) })
             .catch(err => console.log(err))
@@ -143,11 +152,13 @@ class BookDetails extends Component {
         const book_id = this.props.match.params.book_id
 
         this.chapterService
-            .getChapters(book_id)
+            .getAllBookChapters(book_id)
             .then(res => {
-                this.setState({ chapters: res.data })
-
+                const newState = { ...this.state }
+                newState.book.chapters = res.data
+                this.setState(newState)
             })
+            
             .catch(err => console.log(err))
 
     }

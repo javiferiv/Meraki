@@ -43,7 +43,7 @@ class ChapterForm extends Component {
             .then(res => chaptersInfo.push(res.data))
             .then(() => {
                 this.bookService.editBook(book_id, { chapters: chaptersInfo})
-                this.props.history.push('/libros')
+                this.props.history.push(`/libros/${book_id}`)
             })
             .catch(err => console.log(err))
         

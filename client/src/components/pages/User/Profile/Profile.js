@@ -3,8 +3,8 @@ import './Profile.scss'
 import UserService from '../../../../service/user.service'
 import BookService from '../../../../service/book.service'
 import { Container, Row, Col, Carousel } from 'react-bootstrap'
-import FavoriteBooksCard from './favorite-books'
-import FavoriteAuthCard from './favorite-authors'
+import FavoriteBooksCard from './Favorite-books'
+import FavoriteAuthCard from './Favorite-authors'
 import { Link } from 'react-router-dom'
 
 
@@ -16,7 +16,7 @@ class Profile extends Component {
             user: {
                 username: "",
                 name: "",
-                birthday: Date,
+                birthday: '',
                 favoriteBooks: [],
                 favoriteAuthors: []
             },
@@ -86,7 +86,7 @@ class Profile extends Component {
 
         let birthdayDate = day + "-" + month + "-" + year
 
-        let newmonth = this.state.user.birthday 
+        let newmonth = new Date(this.state.user.birthday) 
 
         let mesdeprueba = newmonth.getMonth()
 
