@@ -60,7 +60,6 @@ class Profile extends Component {
 
     isBookAvailable = () => {
 
-
         const Books = this.state.user.favoriteBooks
         const userBooks = [...this.state.books]
 

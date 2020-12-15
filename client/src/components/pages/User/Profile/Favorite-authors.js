@@ -22,7 +22,7 @@ class FavoriteAuthsCard extends Component {
 
         const auth_id = this.state.authors.author
         
-        this.authService
+        this.userService
             .getOneUser(auth_id)
             .then(res => {
                 console.log(res.data)
