@@ -26,9 +26,7 @@ class ProfileEdit extends Component {
 
         this.userService
             .editUser(this.props.match.params.user_id, this.state)
-            .then(res => {
-                this.props.history.push('/perfil')
-            })
+            .then(res => {this.props.history.push('/perfil')})
             .catch(err => console.log('Error', err))
     }
 

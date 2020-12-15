@@ -14,7 +14,7 @@ class Signup extends Component {
                 password: '',
                 name: '',
                 role: '',
-                birthday: Date,
+                birthday: '',
                 imageUrl: '',
             },
         }
@@ -50,7 +50,7 @@ class Signup extends Component {
         this.filesService
             .uploadImage(uploadData)
             .then(response => {
-                console.log(response.data.secure_url)
+
                 this.setState({user: { ...this.state.user, imageUrl: response.data.secure_url }})
             })
             .catch(err => console.log(err))
@@ -97,14 +97,10 @@ class Signup extends Component {
                                 <Form.Label>Rol</Form.Label>
                                 <Form.Control as="select" defaultValue="Elige una opción" name="role" value={this.state.user.role} onChange={this.handleInputChange} >
                                     <option>Selecciona una opción: </option>
-                                    <option>Lector</option>
                                     <option>Escritor</option>
+                                    <option>Lector</option>
                                 </Form.Control>
                             </Form.Group>
-                            {/* <Form.Group controlId="image">
-                                <Form.Label>Imagen de perfil</Form.Label>
-                                <Form.Control type="text" name="image" onChange={this.handleInputChange} />
-                            </Form.Group>*/}
                             <Form.Group> 
                                 <Form.Label>Imagen de perfil</Form.Label>
                                 <Form.Control type="file" onChange={this.handleImageUpload} />

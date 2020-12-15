@@ -28,9 +28,8 @@ class BookDetails extends Component {
                 author: '',
             },
 
-            user: {
-
-            },
+      
+            newComment: "",
 
             authority: false,
 
@@ -58,28 +57,16 @@ class BookDetails extends Component {
                 this.setState({ book: res.data })
                 this.isAuthorised()
             })
-            // .then( () => {
-            //     this.refreshChapters()
-            // } )
+       
 
             .catch(err => console.log(err))
         this.getUser()
         this.isUser()
-
-        console.log(this.state)
     }
 
     componentDidUpdate = (res) => {
         this.refreshChapters()
-        // if (this.props.match.params.capitulo_id != this.props.match.params.capitulo_id) {
-        //     this.bookService
-        //         .getBook(res.data.book._id)
-        //         .then((res) => {
-        //             console.log(res.data._id, res.data.chapters) //saca la info del libro
-        //             this.bookService
-        //                 .editBook(res.data._id, { chapters: res.data.chapters })
-        //         })
-        // }
+   
     }
 
     getUser = () => {
@@ -176,23 +163,41 @@ class BookDetails extends Component {
         
     }
 
-    // handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+    handleInputChange = e => this.setState( { newComment : {[e.target.name] : e.target.value } }) 
 
-    // handleSubmit = e => {
-        
-    //     e.preventDefault()
-        
-    //     const book_id = this.props.match.params.book_id
 
-    //     this.bookService
-    //         .editBook(book_id, this.state)
-    //         .then(res =>
-    //         {
-    //             this.props.history.push(`/libros`)
-    //         console.log(this.state)})
-    //         .catch(err => console.log('Error', err))
+
+    handleSubmit = e => {
+            
+            e.preventDefault()
+
+        const newComment = this.state.newComment
         
-    // }
+   
+            const bookComments = [...this.state.book.comments]
+
+            const book_id = this.props.match.params.book_id
+            
+            bookComments.push(this.state.newComment)
+
+        console.log(bookComments)
+
+            this.bookService
+            
+                    .editBook(book_id, this.state)
+
+                    .then(res => {
+
+                        this.setState({ book: { ...this.state.book, comments: bookComments } })
+
+                    })
+
+                    .catch(err => console.log('Error', err))
+        
+    }
+
+
+    
 
     handleModal = visible => this.setState({ showModal: visible })
     handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
@@ -233,10 +238,10 @@ class BookDetails extends Component {
 
 
                         </Col>
-                        <Col md={4}>
+                        {/* <Col md={4}>
                             <h3>Lista de capítulos</h3>
                             {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm} />)}
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
                 <br />
@@ -267,8 +272,8 @@ class BookDetails extends Component {
                     
                                 <Form.Group controlId="text">
                                     
-                                        <Form.Label>Deja aquí tu comentario</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="comments" value={this.state.comments} onChange={this.handleInputChange} />
+                                    <Form.Label>Deja aquí tu comentario</Form.Label>
+                                    <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
 
                                 </Form.Group>
                                 
