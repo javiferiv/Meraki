@@ -44,12 +44,13 @@ class Profile extends Component {
     componentDidMount = () => {
 
         const userID = this.props.loggedUser._id
-
+        
+        this.isBookAvailable()
+        
         this.userService
             .getOneUser(userID)
             .then(res => {
                 this.setState({ user: res.data })
-                this.isBookAvailable()
                 this.newBirthdayDate()
             })
             .catch(err => console.log(err))
@@ -60,26 +61,26 @@ class Profile extends Component {
 
     isBookAvailable = () => {
 
-
-        const Books = this.state.user.favoriteBooks
+        
+        const Books = this.props.loggedUser.favoriteBooks
         const userBooks = [...this.state.books]
-
+        
         if (Books !== undefined) {
-
+            
             Books.forEach(elm =>
-
+                
                 this.bookService
-                    .getBook(elm)
-                    .then(res => res.data != null && userBooks.push(res.data._id))
+                .getBook(elm)
+                    .then(res => res.data !== null && userBooks.push(res.data))
                     .catch(err => console.log(err))
-
+                    
             )
         }
-
+        
     }
 
     newBirthdayDate = () => {
-
+        
         // let month = this.state.user.birthday.slice(5,7)
         // let day = this.state.user.birthday.slice(8, 10)
         // let year = this.state.user.birthday.slice(0, 4)
@@ -94,13 +95,14 @@ class Profile extends Component {
 
         //var currentTime = new Date(parseInt(dateString)); 
 
-
+        
         console.log(time)
  
     }
-
-
+    
+    
     render() {
+        console.log(this.state.books)
 
         return (
             <Container>
@@ -119,7 +121,7 @@ class Profile extends Component {
                         <p>Nombre: {this.state.user.name}</p>
                         <p>Tu fecha de nacimiento es: {this.state.user.newBirthday}!</p>
 
-                        <Container style={{ display: 'flex', justifyContent:'space-between'}}>
+                        <Container >
                         <Link className="default-button" to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
                         <br />
                         <br />
@@ -130,7 +132,7 @@ class Profile extends Component {
                 </Row>
                 <br />
                 {
-                    this.state.user.favoriteBooks.length >= 1
+                    this.state.books.length >= 1
                     &&
                     <>
                         <Row>
@@ -143,7 +145,7 @@ class Profile extends Component {
 
                             <>
                                 {
-                                    this.state.user.favoriteBooks.map(elm =>
+                                    this.state.books.map(elm =>
 
 
                                         <FavoriteBooksCard

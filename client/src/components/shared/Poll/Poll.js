@@ -3,28 +3,34 @@ import './Poll.css'
 
 import Poll from 'react-polls'
 
-
-const pollQuestion1 = '¿Cómo continúa la historia?'
 const pollAnswers1 = [
     { option: 'Muere', votes: 7 },
     { option: 'Permanece en el hospital', votes: 2 },
     { option: 'Vive', votes: 5 },
 ]
-const pollStyles1 = {
+
+const pollStyles = {
     questionSeparator: true,
     questionSeparatorWidth: 'question',
     questionBold: true,
     questionColor: '#303030',
     align: 'center',
-    theme: 'purple'
+    theme: 'red'
 }
 
+const pollAnswers2 = [
+    { option: 'Casa', votes: 4 },
+    { option: 'Dormir', votes: 8 },
+    { option: 'Correr', votes: 1 },
+]
 
 
 
 export default class thePoll extends Component {
+    
     state = {
-        pollAnswers1: [...pollAnswers1]
+        pollAnswers1: [...pollAnswers1],
+        pollAnswers2: [...pollAnswers2]
     }
 
     handleVote = (voteAnswer, pollAnswers, pollNumber) => {
@@ -57,13 +63,10 @@ export default class thePoll extends Component {
         const { pollAnswers1 } = this.state
 
         return (
-            <div className='poll'>
-                <main className='main'>
-                    <div>
-                        <Poll question={pollQuestion1} answers={pollAnswers1} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers1, 1)} customStyles={pollStyles1} noStorage />
-                    </div>
-                </main>
-            </div>
-        )
+            <>
+            <Poll className='poll main' answers={pollAnswers1} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers1, 1)} customStyles={pollStyles} noStorage />
+            <Poll className='poll main' answers={pollAnswers2} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers1, 1)} customStyles={pollStyles} noStorage />
+            </>
+            )
     }
 }
