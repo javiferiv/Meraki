@@ -7,13 +7,11 @@
     display:block;
 }
 
-.profile-data p{
+.profile-data p, a{
     font-family: 'Open Sans', sans-serif;
     font-size: 0.8em;
 }
 
-.profile-btn{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.8em;
-    background-color:#f3e7dc;
+a {
+    border-radius: 0.25em;
 }

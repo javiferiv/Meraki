@@ -44,12 +44,13 @@ class Profile extends Component {
     componentDidMount = () => {
 
         const userID = this.props.loggedUser._id
-
+        
+        this.isBookAvailable()
+        
         this.userService
             .getOneUser(userID)
             .then(res => {
                 this.setState({ user: res.data })
-                this.isBookAvailable()
                 this.newBirthdayDate()
             })
             .catch(err => console.log(err))
@@ -65,9 +66,9 @@ class Profile extends Component {
            
 
         if (Books !== undefined) {
-
+            
             Books.forEach(elm =>
-
+                
                 this.bookService
                     .getBook(elm)
                     .then(res => {
@@ -78,10 +79,10 @@ class Profile extends Component {
                     })
         
                     .catch(err => console.log(err))
-
+                    
             )
         }
-
+        
     }
 
     newBirthdayDate = () => {
@@ -94,9 +95,10 @@ class Profile extends Component {
         
  
     }
-
-
+    
+    
     render() {
+        console.log(this.state.books)
 
 
         return (
@@ -116,7 +118,7 @@ class Profile extends Component {
                         <p>Nombre: {this.state.user.name}</p>
                         <p>Tu fecha de nacimiento es: {this.state.user.birthday}!</p>
 
-                        <Container style={{ display: 'flex', justifyContent:'space-between'}}>
+                        <Container >
                         <Link className="default-button" to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
                         <br />
                         <br />

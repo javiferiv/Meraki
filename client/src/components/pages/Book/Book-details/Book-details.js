@@ -4,10 +4,10 @@ import BooksService from '../../../../service/book.service'
 import UserService from '../../../../service/user.service'
 import ChapterService from '../../../../service/chapter.service'
 
-import './Book-details.css'
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
-import Popup from './../../../shared/Popup/Popup'
-//si ponemos loader, irá aquí 
+import Poll from '../../../shared/Poll/Poll'
+//si ponemos loader, irá aquí
+import './Book-details.css'
 
 import { Form, Container, Row, Col, Button, Modal } from 'react-bootstrap'
 
@@ -145,9 +145,7 @@ class BookDetails extends Component {
                 newState.book.chapters = res.data
                 this.setState(newState)
             })
-
             .catch(err => console.log(err))
-
     }
 
     isAuthorised = () => {
@@ -197,7 +195,6 @@ class BookDetails extends Component {
 
 
     handleModal = visible => this.setState({ showModal: visible })
-    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
     render() {
 
@@ -252,11 +249,18 @@ class BookDetails extends Component {
                     </Row>
                 </Container>
 
-                <Popup show={this.state.showModal} handleModal={this.handleModal} loggedUser={this.props.loggedUser} />
+                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Decide el destino de la historia</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Poll book={this.state.book} loggedUser={this.state.loggedInUser}/>
+                    </Modal.Body>
+                </Modal>
 
                 <Container>
 
-                    <Col md={12}>
+                    <Col md={4}>
                         <h3>Comentarios</h3>
                         <hr></hr>
                         {this.state.book.comments.map(elm => 
@@ -273,10 +277,11 @@ class BookDetails extends Component {
 
                                 <Form className="form" onSubmit={this.handleSubmit}>
 
-                                    <Form.Group controlId="text">
-
-                                        <Form.Label>Deja aquí tu comentario</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
+                    
+                                <Form.Group controlId="text">
+                                    
+                                    <Form.Label>Deja aquí tu comentario</Form.Label>
+                                    <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
 
                                     </Form.Group>
 
