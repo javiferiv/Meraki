@@ -3,7 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Book = require('./../models/book.model')
 const Chapter = require('./../models/chapter.model')
-const { checkId } = require('./middlewares.js')
+//const { checkId } = require('./middlewares.js')
 
 router.get('/getAllChapters', (req, res) => {
 
@@ -15,6 +15,10 @@ router.get('/getAllChapters', (req, res) => {
 
 router.get('/getAllBookChapters/:book_id', (req, res) => {
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+        res.status(404).json({ message: 'Invalid ID' })
+        return
+    }
 
     Chapter
         .find({ book: req.params.book_id})
