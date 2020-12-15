@@ -24,9 +24,7 @@ class FavoriteAuthsCard extends Component {
         
         this.authService
             .getOneUser(auth_id)
-            .then(res => {
-                console.log(res.data)
-                this.setState({ newauthors: res.data })})
+            .then(res => {this.setState({ newauthors: res.data })})
             .catch(err => console.log(err))
 
     }

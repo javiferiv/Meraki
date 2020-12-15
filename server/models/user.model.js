@@ -25,7 +25,6 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: true,
-        default: 'user',
         unique: true,
     },
     password: {
@@ -42,9 +41,7 @@ const userSchema = new Schema({
     role: {
         type: String,
         enum: ['Escritor', 'Lector'],
-        default: "Lector",
-        required: true
-
+        default: "Escritor",
     }
 }, {
     timestamps: true

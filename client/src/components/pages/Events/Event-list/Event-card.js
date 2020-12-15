@@ -6,11 +6,12 @@ import './Event-card.css'
 const EventCard = ({date, name, _id}) => {
 
 
-    let month = date.slice(5, 7)
-    let day = date.slice(8, 10)
-    let year = date.slice(0, 4)
+    let dateObject = new Date((date));
+    let newEventDate = `${dateObject.getDay()} / ${dateObject.getMonth() + 1} / ${dateObject.getFullYear()}`
 
-    let eventDay = day + "-" + month + "-" + year
+    console.log(date)
+    console.log(newEventDate)
+
 
 
     return (
@@ -18,7 +19,7 @@ const EventCard = ({date, name, _id}) => {
                 <Card.Body>
                    
                     <Card.Title>{name}</Card.Title>
-                <Card.Title>{eventDay}</Card.Title>
+                <Card.Title>{newEventDate}</Card.Title>
                     <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
                         <Link className="btn btn-dark" to={`/eventos/editar-evento/${_id}`}>Editar</Link>
                         <Link className="btn btn-dark" to={`/eventos/${_id}`}>Ver detalles</Link>

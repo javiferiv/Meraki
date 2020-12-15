@@ -60,18 +60,24 @@ class Profile extends Component {
     }
 
     isBookAvailable = () => {
-
-        
-        const Books = this.props.loggedUser.favoriteBooks
+        const Books = this.state.user.favoriteBooks
         const userBooks = [...this.state.books]
         
+           
+
         if (Books !== undefined) {
             
             Books.forEach(elm =>
                 
                 this.bookService
-                .getBook(elm)
-                    .then(res => res.data !== null && userBooks.push(res.data))
+                    .getBook(elm)
+                    .then(res => {
+                        if (res.data != null) {
+                        userBooks.push(res.data._id)
+                        }
+                        this.setState({ books: userBooks})
+                    })
+        
                     .catch(err => console.log(err))
                     
             )
@@ -80,29 +86,20 @@ class Profile extends Component {
     }
 
     newBirthdayDate = () => {
+
+
+        let birthdayDate = this.state.user.birthday
+        let birthdayDateObject = new Date((birthdayDate)); 
+        let newBirthdayDate = `${birthdayDateObject.getDay()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
+        this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
         
-        // let month = this.state.user.birthday.slice(5,7)
-        // let day = this.state.user.birthday.slice(8, 10)
-        // let year = this.state.user.birthday.slice(0, 4)
-
-        // let birthdayDate = day + "-" + month + "-" + year
-
-        // let newmonth = this.state.user.birthday 
-
-        // let mesdeprueba = newmonth.getMonth()
-
-        let time = this.state.user.birthday
-
-        //var currentTime = new Date(parseInt(dateString)); 
-
-        
-        console.log(time)
  
     }
     
     
     render() {
         console.log(this.state.books)
+
 
         return (
             <Container>
@@ -119,7 +116,7 @@ class Profile extends Component {
 
                         <h2>Datos del perfil: </h2>
                         <p>Nombre: {this.state.user.name}</p>
-                        <p>Tu fecha de nacimiento es: {this.state.user.newBirthday}!</p>
+                        <p>Tu fecha de nacimiento es: {this.state.user.birthday}!</p>
 
                         <Container >
                         <Link className="default-button" to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
