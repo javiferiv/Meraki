@@ -23,7 +23,7 @@ class Profile extends Component {
             favoritesAuthors: this.props.loggedUser ? this.props.loggedUser.favoriteAuthors : [],
         }
 
-            
+
         this.userService = new UserService()
         this.bookService = new BookService()
     }
@@ -60,7 +60,6 @@ class Profile extends Component {
                     .getBook(elm)
                     .then(res => res.data != null && userBooks.push(res.data._id))
                     .catch(err => console.log(err))
-
             )
         }
 
@@ -72,7 +71,7 @@ class Profile extends Component {
 
         favoriteAuthor.push(authID)
 
-        this.authService
+        this.userService
             .editUser(this.props.loggedUser._id, { favoriteAuthors: favoriteAuthor })
             .then((response) => { this.props.setTheUser(response.data) })
             .catch(err => console.log(err))
@@ -99,59 +98,64 @@ class Profile extends Component {
                         <p>Su fecha de nacimiento es: {this.state.user.birthday}</p>
 
                         <Button className="btn btn-sm btn-dark"><Link to={`/libros`}>Volver a libros</Link></Button>
-                        <br/>
-                        <br/>
-                        {
-                            this.props.loggedUser && <Button className="btn btn-sm btn-warning" onClick={() => this.saveFav(this.state.user._id)} >Añadir a favoritos</Button>
-
-                        }
+                        <br />
+                        <br />
+                        {this.props.loggedUser && <Button className="btn btn-sm btn-warning" onClick={() => this.saveFav(this.state.user._id)} >Añadir a favoritos</Button>}
 
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={6}>
-                        <h2>Estos son sus libros favoritos</h2>
-                    </Col>
-                    <hr></hr>
-                </Row>
-                <Row>
+                {
+                    this.state.user.favoriteBooks.length >= 1
+                    &&
+                    <>
+                        <Row>
+                            <Col md={6}>
+                                <h2>Estos son sus libros favoritos</h2>
+                            </Col>
+                            <hr></hr>
+                        </Row>
+                        <Row>
 
-                    {this.state.user.favoriteBooks.map(elm =>
-
-
-                        <FavoriteBooksCard
-
-                            key={elm._id}
-                            books={elm}
+                            {this.state.user.favoriteBooks.map(elm =>
 
 
-                        />)}
+                                <FavoriteBooksCard
+
+                                    key={elm._id}
+                                    books={elm}
 
 
-                </Row>
-                <Row>
-                    <Col md={6}>
-                        <h2>Estos son sus autores favoritos</h2>
-                    </Col>
-                    <hr></hr>
-                </Row>
-                <Row>
+                                />)}
+                        </Row>
+                    </>
+                }
+                {
+                    this.state.user.favoriteBooks.length >= 1
+                    &&
+                    <>
+                        <Row>
+                            <Col md={6}>
+                                <h2>Estos son sus autores favoritos</h2>
+                            </Col>
+                            <hr></hr>
+                        </Row>
+                        <Row>
 
-                    {this.state.user.favoriteAuthors.map(elm =>
-
-
-                        <FavoriteAuthCard
-
-                            key={elm._id}
-                            author={elm}
-
-
-                        />)}
+                            {this.state.user.favoriteAuthors.map(elm =>
 
 
-                </Row> 
+                                <FavoriteAuthCard
+
+                                    key={elm._id}
+                                    author={elm}
 
 
+                                />)}
+
+
+                        </Row>
+                    </>
+                }
 
             </Container>
         )
