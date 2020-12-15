@@ -45,12 +45,12 @@ class Profile extends Component {
 
         const userID = this.props.loggedUser._id
         
-        this.isBookAvailable()
         
         this.userService
-            .getOneUser(userID)
-            .then(res => {
-                this.setState({ user: res.data })
+        .getOneUser(userID)
+        .then(res => {
+            this.setState({ user: res.data })
+            this.isBookAvailable()
                 this.newBirthdayDate()
             })
             .catch(err => console.log(err))
