@@ -3,19 +3,17 @@ import { Link } from 'react-router-dom'
 
 import './Book-card.scss'
 
-const BookCard = ({ image, title, author, userId, _id }) => {
+const BookCard = ({ imageBook, title, author, userId, _id }) => {
     
     
     return (
-        
-    
-       
+
 
       <>
             <Col lg={4}>
             
                 <Card className="book-card">
-                    <Card.Img variant="top" src={image} />
+                    <Card.Img variant="top" src={imageBook} />
          
                         <Card.Title className="book-title-card">{title}</Card.Title>
                         <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
@@ -32,9 +30,7 @@ const BookCard = ({ image, title, author, userId, _id }) => {
                 </Card>
         
         </Col >
-        </>
-
-        
+        </>  
     )
     
 }

@@ -28,7 +28,7 @@ class BookDetails extends Component {
                 author: '',
             },
 
-      
+
             newComment: "",
 
             authority: false,
@@ -57,7 +57,7 @@ class BookDetails extends Component {
                 this.setState({ book: res.data })
                 this.isAuthorised()
             })
-       
+
 
             .catch(err => console.log(err))
         this.getUser()
@@ -66,7 +66,7 @@ class BookDetails extends Component {
 
     componentDidUpdate = (res) => {
         this.refreshChapters()
-   
+
     }
 
     getUser = () => {
@@ -145,7 +145,7 @@ class BookDetails extends Component {
                 newState.book.chapters = res.data
                 this.setState(newState)
             })
-            
+
             .catch(err => console.log(err))
 
     }
@@ -160,44 +160,41 @@ class BookDetails extends Component {
         }
 
         if (newUserID === newBookAuthorID) { this.setState({ authority: true }) }
-        
+
     }
 
-    handleInputChange = e => this.setState( { newComment : {[e.target.name] : e.target.value } }) 
+    handleInputChange = e => {
+    
+
+        const {name, value} = e.target
+
+        this.setState({ book: { ...this.state.book, [name]: value  } })
+
+    }
 
 
 
     handleSubmit = e => {
-            
-            e.preventDefault()
 
-        const newComment = this.state.newComment
+        e.preventDefault()
         
-   
-            const bookComments = [...this.state.book.comments]
+        const book_id = this.props.match.params.book_id
 
-            const book_id = this.props.match.params.book_id
-            
-            bookComments.push(this.state.newComment)
+        const newComment = this.state.book.newComment
 
-        console.log(bookComments)
+        this.bookService
+        .getBook(book_id)
+        .then(res => {
+                const commentPushed = [...res.data.comments]
+                commentPushed.push(newComment)
+                this.bookService
+                    .editBook(book_id, { comments: commentPushed })
+                    .then (res => console.log(res.data))
+            })
+            .catch(err => console.log(err))
 
-            this.bookService
-            
-                    .editBook(book_id, this.state)
-
-                    .then(res => {
-
-                        this.setState({ book: { ...this.state.book, comments: bookComments } })
-
-                    })
-
-                    .catch(err => console.log('Error', err))
-        
     }
 
-
-    
 
     handleModal = visible => this.setState({ showModal: visible })
     handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
@@ -212,7 +209,7 @@ class BookDetails extends Component {
                 <Container className="book-details">
                     <Row>
                         <Col md={{ span: 6, offset: 1 }} >
-                            <img src={this.state.book.image} alt={this.state.book.title} />
+                            <img src={this.state.book.imageBook} alt={this.state.book.title} />
                             <h3>Detalles</h3>
                             <p>{this.state.book.resume}</p>
                             <p>Autor/a:<Link to={`/usuario/${this.state.book.author._id}`}>{this.state.book.author.name}</Link></p>
@@ -238,10 +235,10 @@ class BookDetails extends Component {
 
 
                         </Col>
-                        {/* <Col md={4}>
+                        <Col md={4}>
                             <h3>Lista de capítulos</h3>
                             {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm} />)}
-                        </Col> */}
+                        </Col>
                     </Row>
                 </Container>
                 <br />
@@ -254,37 +251,43 @@ class BookDetails extends Component {
                         </Col>
                     </Row>
                 </Container>
-                
+
                 <Popup show={this.state.showModal} handleModal={this.handleModal} loggedUser={this.props.loggedUser} />
-                
+
                 <Container>
-                    
-                    <Col md={4}>
+
+                    <Col md={12}>
                         <h3>Comentarios</h3>
-                        {this.state.book.comments}
+                        <hr></hr>
+                        {this.state.book.comments.map(elm => 
+                        <ul>
+                   
+                        <li>{elm}</li>
+                        <hr></hr>
+                        </ul>)}
                     </Col>
                     <Row>
                         <Col md={12}>
-                            
-                            {this.props.loggedUser &&
-                                
-                                <Form className="form" onSubmit={this.handleSubmit}>
-                    
-                                <Form.Group controlId="text">
-                                    
-                                    <Form.Label>Deja aquí tu comentario</Form.Label>
-                                    <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
 
-                                </Form.Group>
-                                
+                            {this.props.loggedUser &&
+
+                                <Form className="form" onSubmit={this.handleSubmit}>
+
+                                    <Form.Group controlId="text">
+
+                                        <Form.Label>Deja aquí tu comentario</Form.Label>
+                                        <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
+
+                                    </Form.Group>
+
                                     <Button variant="dark" type="submit">Comentar</Button>
-                                
-                            </Form>
-                            
-                            
+
+                                </Form>
+
+
                             }
-                        
-                        
+
+
                         </Col>
                     </Row>
                 </Container>

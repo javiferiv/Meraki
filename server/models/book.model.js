@@ -25,9 +25,9 @@ const bookSchema = new Schema({
         type: [Object],
     },
 
-    image: {
+    imageBook: {
         type: String,
-        default: "https://www.gruposertec.com/wp-content/uploads/2015/03/no_image_available.jpeg",
+        // default: "https://www.gruposertec.com/wp-content/uploads/2015/03/no_image_available.jpeg",
 
     },
 

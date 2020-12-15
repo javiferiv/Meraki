@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FilesService from './../../../../service/upload.service'
 import { Container, Form, Button } from 'react-bootstrap'
 import BooksService from './../../../../service/book.service'
 
@@ -10,8 +11,11 @@ class BookForm extends Component {
             title: '',
             genre: '',
             resume: '',
+            imageBook: '',
             author: this.props.loggedUser._id
         }
+
+        this.filesService = new FilesService()
         this.booksService = new BooksService()
     }
 
@@ -24,6 +28,19 @@ class BookForm extends Component {
         this.booksService
             .saveBook(this.state)
             .then(res => {this.props.history.push('/libros')})
+            .catch(err => console.log(err))
+    }
+
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+
+        this.filesService
+            .uploadImage(uploadData)
+            .then(response => {
+                this.setState({ ...this.state, imageBook: response.data.secure_url })
+            })
             .catch(err => console.log(err))
     }
 
@@ -58,9 +75,9 @@ class BookForm extends Component {
                                 <option>Otro</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group controlId="image">
-                            <Form.Label>Imagen (URL)</Form.Label>
-                            <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                        <Form.Group>
+                            <Form.Label>Imagen</Form.Label>
+                            <Form.Control type="file" onChange={this.handleImageUpload} />
                         </Form.Group>
                         <Button variant="dark" type="submit">Crear nuevo libro</Button>
                     </Form>

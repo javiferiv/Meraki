@@ -29,7 +29,9 @@ router.get('/bookDetails/:book_id', (req, res) => {
 })
 
 router.post('/newBook', (req, res) => {
-    
+
+    // const { title, genre, name, resume, imageUrl, author } = req.body
+
     Book
         .create(req.body)
         .then(response => res.json(response))
