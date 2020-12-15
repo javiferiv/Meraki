@@ -39,9 +39,6 @@ class ChapterForm extends Component {
                 this.bookService.getBook(this.state.chapter.book._id)
                     .then(res => {
                         this.setState({ book: res.data })
-                        console.log()
-                    })
-                    .then(res => {
                         const newChapters = [...this.state.book.chapters]
                         const anotherChapter = newChapters.filter(elm => elm._id !== this.props.match.params.capitulo_id)
                         const stateChapter = [...anotherChapter, this.state.chapter]
