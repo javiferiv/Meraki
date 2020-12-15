@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import AuthService from '../../../../service/auth.service'
+import imageColumn1 from './images/image-column-1.jpeg'
+import coffeeSpot from './images/mancha-cafe.png'
+
+
 import './Login.scss'
 
 
@@ -35,11 +39,19 @@ class Login extends Component {
 
         return (
 
-            <Container className="form">
+            <Container className="form" style={{ marginTop: "80px" }}>
 
                 <Row>
-                    <Col md={{ span: 6, offset: 5 }}>
-                        <h1 style={{textAlign: "center"}}>Inicio de sesión</h1>
+       
+
+                    <Col md={{ span: 3, offset: 3 }}>
+                        <img className="image-login" src={imageColumn1} alt="pencil"></img>
+
+                    </Col>
+                   
+                    <Col md={{span: 4, offset: 1}}>
+
+                        <h1 style={{textAlign: "center", marginTop: "18px"}}>Inicio de sesión</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
@@ -50,8 +62,9 @@ class Login extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button className="default-button login" style={{ width: "100%" }} type="submit">Iniciar sesión</Button>
+                            <Button className="default-button login" style={{ width: "100%", marginBottom: "150px" }} type="submit">Iniciar sesión</Button>
                         </Form>
+                        <img className="image-coffee" src={coffeeSpot} alt="coffee-sport"></img>
                     </Col>
                 </Row>
             </Container>

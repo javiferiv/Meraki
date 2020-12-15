@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
 import imageColumn1 from './images/image-column-1.jpeg'
 import imageColumn2 from './images/image-column-2.jpeg'
+import imageColumn3 from './images/image-column3.jpeg'
 
 
 
@@ -43,7 +44,7 @@ const Home = (props) => {
                 
                 <Row >
                     <Col md={3}>
-                            <img className="first-home-image" src={imageColumn1} alt="pencil"></img>
+                            <img className="first-home-image" src={imageColumn3} alt="pencil"></img>
 
                     </Col>
                     <Col md={3}>
@@ -54,7 +55,7 @@ const Home = (props) => {
                         <h2 className="second-container-title">Descubre Meraki</h2>
                         <hr></hr>
                         <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                        <Link className="button-second" to={'/registro'}>Comienza tu aventura</Link>
+                        <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
 
                     </Col>
 
@@ -69,19 +70,19 @@ const Home = (props) => {
                         <h2 className="second-container-title">Descubre Meraki</h2>
                         <hr></hr>
                         <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                        <Link className="button-second" to={'/registro'}>Comienza tu aventura</Link>
+                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
                     </Col>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
                         <h2 className="second-container-title">Descubre Meraki</h2>
                         <hr></hr>
                         <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                        <Link className="button-second" to={'/registro'}>Comienza tu aventura</Link>
+                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
                     </Col>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
                         <h2 className="second-container-title">Descubre Meraki</h2>
                         <hr></hr>
                         <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                        <Link className="button-second" to={'/registro'}>Comienza tu aventura</Link>
+                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
                     </Col>
                 
                 </Row>

@@ -26,14 +26,14 @@ class navbar extends Component {
             <Navbar className="sticky-top" expand="lg">
                 <Navbar.Brand>
                     <Link to='/'>
-                        <Nav.Link as="div" id="basic-nav-dropdown">Meraki_</Nav.Link>
+                        <Nav.Link as="div" className ="brand-navbar">Meraki</Nav.Link>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
           
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <NavDropdown title="Zona Lector" id="basic-nav-dropdown">
+                        <NavDropdown title="Zona Lector">
                             <NavDropdown.Item>
                                 <Link to="/libros">
                                 <Nav.Link as="div" id="basic-nav-dropdown">Todas las novelas</Nav.Link>

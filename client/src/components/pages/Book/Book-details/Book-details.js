@@ -280,7 +280,7 @@ class BookDetails extends Component {
                     
                                 <Form.Group controlId="text">
                                     
-                                    <Form.Label>Deja aquí tu comentario</Form.Label>
+                                    <Form.Label>Valoración</Form.Label>
                                     <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
 
                                     </Form.Group>

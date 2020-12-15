@@ -45,13 +45,13 @@ class Profile extends Component {
 
         const userID = this.props.loggedUser._id
         
-        this.isBookAvailable()
         
         this.userService
-            .getOneUser(userID)
-            .then(res => {
-                this.setState({ user: res.data })
-                this.newBirthdayDate()
+        .getOneUser(userID)
+        .then(res => {
+            this.setState({ user: res.data })
+            this.isBookAvailable()
+            this.newBirthdayDate()
             })
             .catch(err => console.log(err))
 
@@ -98,11 +98,11 @@ class Profile extends Component {
     
     
     render() {
-        console.log(this.state.books)
-
+ 
 
         return (
-            <Container>
+            
+            <Container className="profile-container">
                 <h1>¡Bienvenid@, {this.state.user.username}!</h1>
                 <hr></hr>
                 <Row>

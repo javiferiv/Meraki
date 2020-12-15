@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 
@@ -12,19 +13,14 @@ a{
 }
 
 h1{
-    font-family: Atalla;
     font-size: 60px;
 
 }
 
-// h2 {
-//   padding-top: 30px;
-// }
 
-p {
-  font-size: 0.8em;
-  font-family: 'Open Sans', sans-serif;
-
+p{
+  font-size: 18px;
+  font-family: Derabaro;
 }
 
 .picture-home{
@@ -32,8 +28,8 @@ p {
      -webkit-box-reflect: reverse;
     background-image: url("https://www.edumpus.com/images/articles/SAT-Exam5f60bf3394927.jpg");
     background-size: cover;
-    background-position-y: -130px;
-    padding-bottom: 200px;
+    background-position-y: -110px;
+    padding-bottom: 300px;
 }
 
 .first-container-text {
@@ -44,17 +40,19 @@ p {
 .button-first {
   position: relative;
   background: none;
-  color: aqua;
+  color: black;
+  font-weight: 300;
+    margin: 0 30px;
   text-decoration: none;
-  border: 0.2em solid aqua;
-  padding: 0.5em 1em;
+  border: 0.2em solid #FAF5EC;
+  padding: 0.7em 1.5em;
 
-  &::before {
+  &::after {
     content: "";
     display: block;
     position: absolute;
     width: 10%;
-    background: #222;
+    background: #B9B8AB;
     height: 0.3em;
     right: 20%;
     top: -0.21em;
@@ -63,12 +61,32 @@ p {
     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   }
 
+  
+  &:hover {
+    &::after {
+      right: 80%;
+    }
+    &::before {
+      left: 80%;
+    }
+  }
+}
+.button-second {
+  position: relative;
+  background: none;
+  color: black;
+  text-decoration: none;
+  border: 0.2em solid #FAF5EC;
+   padding: 0.7em 1.2em;
+
+
+
   &::after {
     content: "";
     display: block;
     position: absolute;
     width: 10%;
-    background: #222;
+    background: #B9B7AB;
     height: 0.3em;
     left: 20%;
     bottom: -0.25em;
@@ -86,7 +104,14 @@ p {
     }
   }
 }
-.button-second {
+
+.container-background{
+  background-color: #FAF5EC;
+  padding-top: 30px;
+
+}
+
+.button-third {
   position: relative;
   background: none;
   color: black;
@@ -132,14 +157,6 @@ p {
   }
 }
 
-.container-background{
-  background-color: #FAF5EC;
-  padding-top: 30px;
-
-
-
-}
-
 .second-container-home{
   padding-bottom: 30px;
   
@@ -152,7 +169,10 @@ p {
 .first-home-image, .second-home-image{
     object-fit: contain;
     width: 260px; 
+}
 
+.first-home-image{
+  background-position-x: 100px;
 }
 
 .col-home-container{
@@ -171,6 +191,5 @@ p {
   text-align: center;
   
 }
-
 
 

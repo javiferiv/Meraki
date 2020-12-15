@@ -1,20 +1,24 @@
-@font-face { 
-    font-family: 'Derabaro'; 
-    src: url(../../../fonts/Derabaro.ttf) format('truetype'); 
-} 
-
 
 .navbar {
-    background-color: #FAF5EC;
+    background-color: rgba(250, 245, 236, 0.7);
 }
 .decoration{
     text-decoration: none;
 }
 
-
+.brand-navbar{
+    font-family: Atalla;
+    font-size: 30px;
+}
 
 * {
-    font-family: Atalla;
+    font-family: Derabaro;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.dropdown-toggle{
+        font-family: Derabaro;
     font-size: 20px;
     font-weight: 200;
 }
