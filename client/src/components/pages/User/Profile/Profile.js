@@ -80,21 +80,23 @@ class Profile extends Component {
 
     newBirthdayDate = () => {
 
-        let month = this.state.user.birthday.slice(5,7)
-        let day = this.state.user.birthday.slice(8, 10)
-        let year = this.state.user.birthday.slice(0, 4)
+        // let month = this.state.user.birthday.slice(5,7)
+        // let day = this.state.user.birthday.slice(8, 10)
+        // let year = this.state.user.birthday.slice(0, 4)
 
-        let birthdayDate = day + "-" + month + "-" + year
+        // let birthdayDate = day + "-" + month + "-" + year
 
-        let newmonth = this.state.user.birthday 
+        // let newmonth = this.state.user.birthday 
 
-        let mesdeprueba = newmonth.getMonth()
+        // let mesdeprueba = newmonth.getMonth()
+
+        let time = this.state.user.birthday
+
+        //var currentTime = new Date(parseInt(dateString)); 
 
 
-        console.log(mesdeprueba)
-        
-        this.setState({ newBirthday : birthdayDate })
-
+        console.log(time)
+ 
     }
 
 

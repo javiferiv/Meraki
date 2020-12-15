@@ -131,7 +131,7 @@ class ChapterDetails extends Component {
             </>
 
         )
-    }
+    
 }
 
 export default ChapterDetails
