@@ -16,6 +16,7 @@ class Signup extends Component {
                 role: '',
                 birthday: '',
                 imageUrl: '',
+                description: '',
             },
         }
         this.authService = new AuthService()
@@ -100,6 +101,10 @@ class Signup extends Component {
                                     <option>Escritor</option>
                                     <option>Lector</option>
                                 </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId="description">
+                                <Form.Label>¿Qué nos puedes contar de ti?</Form.Label>
+                                <Form.Control as="textarea" rows={3} placeholder="¡Descríbete!" type="text" name="description" value={this.state.user.description} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group> 
                                 <Form.Label>Imagen de perfil</Form.Label>

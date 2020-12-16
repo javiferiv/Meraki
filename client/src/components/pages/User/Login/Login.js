@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import AuthService from '../../../../service/auth.service'
 import imageColumn1 from './images/image-column-1.jpeg'
+import Alert from './../../../shared/Alert/Alert'
 import coffeeSpot from './images/mancha-cafe.png'
-
-
 import './Login.scss'
-
-
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+
 
 class Login extends Component {
 
@@ -15,10 +13,16 @@ class Login extends Component {
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            showToast: false,
+            toastText: ''
         }
+            
         this.authService = new AuthService()
-    }
+        }
+            
+            
+    
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -31,14 +35,19 @@ class Login extends Component {
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/perfil')       
             })
-            .catch(err => console.log({ err }))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+
     }
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
+
 
 
     render() {
 
         return (
 
+<>
             <Container className="form" style={{ marginTop: "80px" }}>
 
                 <Row>
@@ -68,6 +77,11 @@ class Login extends Component {
                     </Col>
                 </Row>
             </Container>
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} /> 
+                            
+                           
+</>
+       
         )
     }
 }

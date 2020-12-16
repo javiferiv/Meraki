@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import UserService from '../../../../service/user.service'
+import FilesService from './../../../../service/upload.service'
+
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 class ProfileEdit extends Component {
@@ -11,9 +13,12 @@ class ProfileEdit extends Component {
             password: this.props.loggedUser.password,
             name: this.props.loggedUser.name,
             birthday: this.props.loggedUser.birthday,
+            imageUrl: this.props.loggedUser.imageUrl
         }
 
         this.userService = new UserService()
+        this.filesService = new FilesService()
+
      
 
     }
@@ -28,6 +33,20 @@ class ProfileEdit extends Component {
             .editUser(this.props.match.params.user_id, this.state)
             .then(res => {this.props.history.push('/perfil')})
             .catch(err => console.log('Error', err))
+    }
+
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+
+        this.filesService
+            .uploadImage(uploadData)
+            .then(response => {
+
+                this.setState({imageUrl : response.data.secure_url })
+            })
+            .catch(err => console.log(err))
     }
 
 
@@ -77,9 +96,9 @@ class ProfileEdit extends Component {
                                     <option>Otro</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Form.Group controlId="image">
+                            <Form.Group>
                                 <Form.Label>Imagen de perfil</Form.Label>
-                                <Form.Control type="text" name="image" onChange={this.handleInputChange} />
+                                <Form.Control type="file" onChange={this.handleImageUpload} />
                             </Form.Group>
                             <Button variant="dark" type="submit">Editar perfil</Button>    
 

@@ -42,6 +42,9 @@ const userSchema = new Schema({
         type: String,
         enum: ['Escritor', 'Lector'],
         default: "Escritor",
+    },
+    description: {
+        type: String,
     }
 }, {
     timestamps: true
