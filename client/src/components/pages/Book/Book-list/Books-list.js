@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, FormControl, Button, Modal } from 'react-bootstrap'
 import BooksService from '../../../../service/book.service'
 import BookCard from './Book-card'
+import Poll from '../../../shared/Poll/Poll'
 import './Books-list.scss'
 
 class BookList extends Component {
@@ -13,7 +14,9 @@ class BookList extends Component {
             filteredBook: [],
             user: "",
             search: "",
-        }
+            showModal: false
+        }   
+            
         this.booksService = new BooksService()
     }
 
@@ -46,6 +49,9 @@ class BookList extends Component {
         this.setState({ filteredBook : searchBook })
 
     }
+
+
+    handleModal = visible => this.setState({ showModal: visible })
 
     render() {
 
@@ -80,7 +86,22 @@ class BookList extends Component {
 
                     <h1>Listado de libros</h1>
              
-                   
+                    <hr></hr>
+                    <Container>
+                        <Row>
+                            <Col md={{ span: 8, offset: 2 }}>
+                                {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>}
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Decide el destino de la historia</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Poll book={this.state.book} loggedUser={this.state.loggedInUser} />
+                        </Modal.Body>
+                    </Modal>
                     <hr></hr>
                   
                 
@@ -236,6 +257,8 @@ class BookList extends Component {
                        
 
                 </Container>
+
+
             </>
         )
     }

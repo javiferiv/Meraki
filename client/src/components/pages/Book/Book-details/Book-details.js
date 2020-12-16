@@ -5,11 +5,11 @@ import UserService from '../../../../service/user.service'
 import ChapterService from '../../../../service/chapter.service'
 
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
-import Poll from '../../../shared/Poll/Poll'
+
 //si ponemos loader, irá aquí
 import './Book-details.css'
 
-import { Form, Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { Form, Container, Row, Col, Button } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
 
@@ -35,7 +35,7 @@ class BookDetails extends Component {
 
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
 
-            showModal: false,
+            
             showToast: false,
             toastText: ''
         }
@@ -194,7 +194,6 @@ class BookDetails extends Component {
     }
 
 
-    handleModal = visible => this.setState({ showModal: visible })
 
     render() {
 
@@ -241,22 +240,6 @@ class BookDetails extends Component {
                 <br />
                 <br />
                 <br />
-                <Container>
-                    <Row>
-                        <Col md={{ span: 8, offset: 2 }}>
-                            {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>}
-                        </Col>
-                    </Row>
-                </Container>
-
-                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Decide el destino de la historia</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Poll book={this.state.book} loggedUser={this.state.loggedInUser}/>
-                    </Modal.Body>
-                </Modal>
 
                 <Container>
 

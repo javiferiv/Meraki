@@ -1,82 +1,85 @@
 import { Col, Card, ButtonGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Bookmark from './images/bookmark.jpg'
+import Children from './images/children.jpg'
+import Murder from './images/murder.jpg'
 
 import './Book-card.scss'
 
-const BookCard = ({ imageBook, title, author, userId, _id }) => {
+const BookCard = ({ imageBook, title, author, userId, _id, chapters }) => {
 
 
     return (
 
+        //         // <>
+        //             {/* <Col lg={4}>
 
-          <>
-                <Col lg={4}>
+        //                     <Card className="book-card">
+        //                         <Card.Img variant="top" src={imageBook} />
 
-                    <Card className="book-card">
-                        <Card.Img variant="top" src={imageBook} />
+        //                             <Card.Title className="book-title-card">{title}</Card.Title>
+        //                             <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+        //                                 {
+        //                                     userId === author
+        //                                     &&
+        //                                     <Link className="btn btn-book-card" to={`/libros/editar/${_id}`}>Editar</Link>
 
-                            <Card.Title className="book-title-card">{title}</Card.Title>
-                            <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                                {
-                                    userId === author
-                                    &&
-                                    <Link className="btn btn-book-card" to={`/libros/editar/${_id}`}>Editar</Link>
-
-                                }
-                            <Link className="btn btn-book-card" to={`/libros/${_id}`}>Ver detalles</Link>
-                            </ButtonGroup>
+        //                                 }
+        //                             <Link className="btn btn-book-card" to={`/libros/${_id}`}>Ver detalles</Link>
+        //                             </ButtonGroup>
 
 
-                    </Card>
+        //                     </Card>
 
-            </Col >
-            </>  
+        //             </Col > */}
 
-        // <Col lg={4}>
-        //     <div className="flip-card-container" style="--hue: 220">
-        //         <div className="flip-card">
-        //             <div className="card-front">
-        //                 <figure>
-        //                     <div className="img-bg"></div>
-        //                     <img src="https://images.unsplash.com/photo-1486162928267-e6274cb3106f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Brohm Lake" />
-        //                     <figcaption>Brohm Lake</figcaption>
-        //                 </figure>
+        <Col md={3} className="flip-card-container" style={{ "--hue": "170" }}>
+            <div className="flip-card">
 
-        //                 <ul>
-        //                     <li>Detail 1</li>
-        //                     <li>Detail 2</li>
-        //                     <li>Detail 3</li>
-        //                     <li>Detail 4</li>
-        //                     <li>Detail 5</li>
-        //                 </ul>
-        //             </div>
+                <div className="card-front">
+                    <figure>
+                        <div className="img-bg"></div>
+                        <img src={Children} alt="Image 2" />
+                        <figcaption>{title}</figcaption>
+                    </figure>
 
-        //             <div className="card-back">
-        //                 <figure>
-        //                     <div className="img-bg"></div>
-        //                     <img src="https://images.unsplash.com/photo-1486162928267-e6274cb3106f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Brohm Lake" />
-        //                 </figure>
+                    <ul>
+                        {/* //<li>{chapters.map(elm=> elm)}</li> */}
+                    </ul>
+                </div>
 
-        //                 <button>Book</button>
+                <div className="card-back">
+                    <figure>
+                        <div className="img-bg"></div>
+                        <img src={Bookmark} alt="image-2" />
+                    </figure>
 
-        //                 <div className="design-container">
-        //                     <span className="design design--1"></span>
-        //                     <span className="design design--2"></span>
-        //                     <span className="design design--3"></span>
-        //                     <span className="design design--4"></span>
-        //                     <span className="design design--5"></span>
-        //                     <span className="design design--6"></span>
-        //                     <span className="design design--7"></span>
-        //                     <span className="design design--8"></span>
-        //                 </div>
-        //             </div>
+                    <button><Link className="btn btn-book-card" to={`/libros/${_id}`}>Ver detalles</Link></button>
 
-        //         </div>
-        //     </div>
-        // </Col>
+                    <div className="design-container">
+                        <span className="design design--1"></span>
+                        <span className="design design--2"></span>
+                        <span className="design design--3"></span>
+                        <span className="design design--4"></span>
+                        <span className="design design--5"></span>
+                        <span className="design design--6"></span>
+                        <span className="design design--7"></span>
+                        <span className="design design--8"></span>
+                    </div>
+                </div>
 
+            </div>
+                    {
+                        userId === author
+                        &&
+                        <button><Link className="btn btn-book-card" to={`/libros/editar/${_id}`}>Editar</Link></button>
+                        
+                    }
+        </Col>
     )
 
 }
 
 export default BookCard
+
+
