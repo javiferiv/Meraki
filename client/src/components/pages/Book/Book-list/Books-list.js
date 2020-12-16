@@ -75,7 +75,7 @@ class BookList extends Component {
                         <Col md={{ span: 6, offset: 7 }}>
                     <Form inline>
                 <FormControl type="text" placeholder="Encuentra tu novela" name="busqueda" className="mr-sm-2 searchbar" value={this.state.busqueda} onChange={this.handleInputChange} />
-                            <Button className="default-button">Buscar novela</Button>
+                                <Button className="default-button" variant="light">Buscar novela</Button>
                
                             </Form>
                         </Col>
@@ -86,29 +86,12 @@ class BookList extends Component {
 
                     <h1>Listado de libros</h1>
              
-                    <hr></hr>
-                    <Container>
-                        <Row>
-                            <Col md={{ span: 8, offset: 2 }}>
-                                {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="success" size="lg">Tú decides cómo continuar la historia</Button>}
-                            </Col>
-                        </Row>
-                    </Container>
-                    <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Decide el destino de la historia</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Poll book={this.state.book} loggedUser={this.state.loggedInUser} />
-                        </Modal.Body>
-                    </Modal>
-                    <hr></hr>
                   
                 
                     {
                         adventuresBooks.length >= 1 
                         &&
-                    <>
+                        <>
                         <h2>Novelas de aventuras</h2>
                         <hr></hr>
                         <Row>
@@ -167,7 +150,7 @@ class BookList extends Component {
                     {
                         terrorBooks.length >= 1
                         &&
-                    <>
+                        <>
                         <h2>Novelas de Terror</h2>
                         <hr></hr>
                         <Row>
@@ -186,7 +169,7 @@ class BookList extends Component {
                     {
                         misteriousBooks.length >= 1
                         &&
-                    <>
+                        <>
                         <h2>Novelas de misterio</h2>
                         <hr></hr>
                         <Row>
@@ -257,6 +240,23 @@ class BookList extends Component {
                        
 
                 </Container>
+<hr></hr>
+<Container>
+    <Row>
+        <Col md={{ span: 6, offset: 4 }}>
+            {this.props.loggedUser && <Button className="default-button" style={{padding:'20px', fontSize: '18px'}} onClick={() => this.handleModal(true)} variant="light" size="lg">Tú decides cómo continuar la historia</Button>}
+        </Col>
+    </Row>
+</Container>
+<Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+    <Modal.Header closeButton>
+        <Modal.Title>Decide el destino de las historias</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        <Poll book={this.state.book} loggedUser={this.state.loggedInUser} />
+    </Modal.Body>
+</Modal>
+<hr></hr>
 
 
             </>

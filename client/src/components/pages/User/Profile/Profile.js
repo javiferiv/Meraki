@@ -92,7 +92,7 @@ class Profile extends Component {
 
         let birthdayDate = this.state.user.birthday
         let birthdayDateObject = new Date((birthdayDate)); 
-        let newBirthdayDate = `${birthdayDateObject.getDay()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
+        let newBirthdayDate = `${birthdayDateObject.getDate()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
         this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
         
  

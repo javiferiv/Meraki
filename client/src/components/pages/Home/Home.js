@@ -54,8 +54,8 @@ const Home = (props) => {
                     <Col md={6}>
                         <h2 className="second-container-title">Descubre Meraki</h2>
                         <hr></hr>
-                        <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                        <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
+                        <p className="second-container-paragraph">La web literaria donde tú eliges el final perfecto para tus historias favoritas. Únete a la comunidad y crea la historia perfecta. El destino del protagonista lo eliges tú.</p>
+                        <Link className="button-third" style={{fontFamily: "Atalla"}} to={'/registro'}>Comienza tu aventura</Link>
 
                     </Col>
 
@@ -67,22 +67,22 @@ const Home = (props) => {
             <Container>
                 <Row>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
-                        <h2 className="second-container-title">Descubre Meraki</h2>
+                        <h2 className="second-container-title">Comienza tu historia</h2>
                         <hr></hr>
-                        <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
+                            <p>Regístrate en Meraki y forma parte de la mayor comunidad literaria creativa. Escribe tus propias historias o participa las demás.</p>
+                            <Link className="button-third" to={'/registro'}>Únete a Meraki</Link>
                     </Col>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
-                        <h2 className="second-container-title">Descubre Meraki</h2>
+                        <h2 className="second-container-title">Eventos y comunidad</h2>
                         <hr></hr>
-                        <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
+                        <p>Descubre los mejores eventos literarios y asiste a las presentaciones de tus historias favoritas. </p>
+                            <Link className="button-third" to={'/eventos'}>Conoce nuestros eventos</Link>
                     </Col>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
-                        <h2 className="second-container-title">Descubre Meraki</h2>
+                        <h2 className="second-container-title">Crea tu propio camino</h2>
                         <hr></hr>
-                        <p>¡ PENDIENTE DE TIPOGRAFÍA ! Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem </p>
-                            <Link className="button-third" to={'/registro'}>Comienza tu aventura</Link>
+                        <p>Participa en las mil y una historias que encontrarás en nuestra web y decide junto a los demás el destino de tus protagonistas preferidos.  </p>
+                            <Link className="button-third" to={'/libros'}>Sumérgete en la lectura</Link>
                     </Col>
                 
                 </Row>

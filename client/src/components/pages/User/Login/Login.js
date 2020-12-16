@@ -71,7 +71,7 @@ class Login extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button className="default-button login" style={{ width: "100%", marginBottom: "150px" }} type="submit">Iniciar sesión</Button>
+                            <Button className="default-button login" style={{ width: "100%", marginBottom: "150px" }} variant="ligth" type="submit">Iniciar sesión</Button>
                         </Form>
                         <img className="image-coffee" src={coffeeSpot} alt="coffee-sport"></img>
                     </Col>
