@@ -1,0 +1,79 @@
+.profile-img{
+    width: 280px;
+    height: 300px;
+    object-fit: cover;
+    border: 1px solid #E4C887;
+    margin:auto;
+    display:block;
+
+}
+
+.first-division-container{
+    padding: 20px 0;
+ background-color: rgba(252, 248, 242, 0.7);
+}
+
+.division-book-container{
+    padding: 20px;
+    background-color: rgb(252, 248, 242);
+    background: linear-gradient(0deg, #FCF8F2, #FDFAF6);
+    
+
+}
+.division-author-container{
+    padding-top: 20px;
+    background-color: rgba(252, 248, 242, 0.7);
+        background: linear-gradient(0deg, #FCF8F2, #FDF9F4);
+}
+
+.profile-data-buttons{
+    margin-top: 10px;
+    padding: 0 10px;
+    display: flex;
+    height: 50px;
+}
+
+.profile-data p, a{
+    font-family: 'Derabaro';
+    font-size: 0.9em;
+}
+
+a {
+    border-radius: 0.25em;
+}
+
+
+.first-row-profile{
+
+    justify-content: center;
+}
+
+.favorite-books-container{
+    margin-top: 30px;
+}
+
+.image-favorite-book{
+    position: absolute;
+         transform: rotate(7deg);
+    top: -80px;
+    left: 110px;
+    width: 120%;
+    opacity: 0.5;
+     z-index: 1;
+}
+
+.image-favorite-author{
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    height: 70px;
+    width: 140%;
+    opacity: 0.5;
+     z-index: 1;
+}
+
+.title-favorite-book{
+    z-index:2;
+}
+
+

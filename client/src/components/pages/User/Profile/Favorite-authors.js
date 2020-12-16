@@ -25,12 +25,10 @@ class FavoriteAuthsCard extends Component {
         
         this.userService
             .getOneUser(auth_id)
-            .then(res => {this.setState({ newauthors: res.data })})
+            .then(res => { if (res.data != null) {this.setState({ newauthors: res.data })} })
             .catch(err => console.log(err))
 
     }
-
-
 
     render() {
 
@@ -42,7 +40,7 @@ class FavoriteAuthsCard extends Component {
                     <div className="card-front">
                         <figure>
                             <div className="img-bg"></div>
-                            <img className="img-bg-pic" src={this.state.newauthors.image} alt="author" />
+                            <img className="img-bg-pic" src={this.state.newauthors.imageUrl} alt="author" />
                             <figcaption>{this.state.newauthors.name}</figcaption>
                         </figure>
                     </div>
@@ -71,11 +69,7 @@ class FavoriteAuthsCard extends Component {
 
             </Col >
 
-
-
         )
-
-
     }
 }
 
