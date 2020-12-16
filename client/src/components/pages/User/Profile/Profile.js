@@ -166,22 +166,11 @@ class Profile extends Component {
                         </Row>
                     
                         <Row>
-
                             <>
                                 {
-                                    this.state.books.map(elm =>
-
-
-                                        <FavoriteBooksCard
-
-                                            key={elm._id}
-                                            books={elm}
-
-
-                                        />)
+                                    this.state.books.map(elm =><FavoriteBooksCard key={elm._id} books={elm}/>)
                                 }
                             </>
-
 
                         </Row>
                     </>
