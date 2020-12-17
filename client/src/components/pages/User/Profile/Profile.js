@@ -80,22 +80,20 @@ class Profile extends Component {
         this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
     }
     
+    myBooks = () => {
+        const Books = this.state.user.myWrittenBooks
+        const myBooks = [...this.state.books]
 
-        myBooks = () => {
-            const Books = this.state.user.myWrittenBooks
-            const myBooks = [...this.state.books]
-    
-            if (Books !== undefined) {
-                Books.forEach(elm => this.bookService.getBook(elm)
-                    .then(res => {
-                        if (res.data != null) { myBooks.push(res.data._id) }
-                        this.setState({ user: { ...this.state.user, myWrittenBooks: myBooks } })
-                    })
-                    .catch(err => console.log(err))
-                )
-            }
-    
+        if (Books !== undefined) {
+            Books.forEach(elm => this.bookService.getBook(elm)
+                .then(res => {
+                    if (res.data != null) { myBooks.push(res.data._id) }
+                    this.setState({ user: { ...this.state.user, myWrittenBooks: myBooks } })
+                })
+                .catch(err => console.log(err))
+            )
         }
+    }
 
     render() {
 
