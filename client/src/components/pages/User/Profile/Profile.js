@@ -79,8 +79,22 @@ class Profile extends Component {
         let newBirthdayDate = `${birthdayDateObject.getDate()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
         this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
     }
-<<<<<<< HEAD
     
+    myBooks = () => {
+        const Books = this.state.user.myWrittenBooks
+        const myBooks = [...this.state.books]
+
+        if (Books !== undefined) {
+            Books.forEach(elm => this.bookService.getBook(elm)
+                .then(res => {
+                    if (res.data != null) { myBooks.push(res.data._id) }
+                    this.setState({ user: { ...this.state.user, myWrittenBooks: myBooks } })
+                })
+                .catch(err => console.log(err))
+            )
+        }
+
+    }
     
     render() {
  
@@ -105,24 +119,7 @@ class Profile extends Component {
 
                     </Col>
                     </Row>
-=======
->>>>>>> 5c695567387d990b8cbbaccf843640c28ee75618
 
-    myBooks = () => {
-        const Books = this.state.user.myWrittenBooks
-        const myBooks = [...this.state.books]
-
-        if (Books !== undefined) {
-            Books.forEach(elm => this.bookService.getBook(elm)
-                .then(res => {
-                    if (res.data != null) { myBooks.push(res.data._id) }
-                    this.setState({ user: { ...this.state.user, myWrittenBooks: myBooks } })
-                })
-                .catch(err => console.log(err))
-            )
-        }
-
-    }
 
 
     render() {
@@ -139,13 +136,10 @@ class Profile extends Component {
                                 <br></br>
                             </Col>
                             <Col md={6}>
-<<<<<<< HEAD
                                         <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
                                         <h2 style={{ zIndex: "50"  }} className="title-favorite-book">Estos son tus libros favoritos</h2>
 
-=======
                                 <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
->>>>>>> 5c695567387d990b8cbbaccf843640c28ee75618
                             </Col>
                         </Row>
                         <br></br>
