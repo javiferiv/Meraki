@@ -22,7 +22,7 @@ class Profile extends Component {
                 name: "",
                 favoriteBooks: [],
                 favoriteAuthors: [],
-                birthday:''
+                birthday: ''
             },
             books: [],
             isFavorite: false,
@@ -110,55 +110,31 @@ class Profile extends Component {
                     <Container className="profile-container">
                         <h1>¡Bienvenid@ al perfil de {this.state.user.name}!</h1>
                         <hr></hr>
-<<<<<<< HEAD
-                                <Row className='first-row-profile justify-content-center' >
-                                    <Col md={12}>
-                                        <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
-                                        <br></br>
-                                        
-                                      </Col>
-
-                                    <Col md={6}>
-                                        <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
-                                    </Col>
-                            <Col md={{ span: 6, offset: 5 }}>
-                                
-=======
                         <Row className='first-row-profile justify-content-center' >
                             <Col md={12}>
                                 <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
                                 <br></br>
 
                             </Col>
-                            <Col md={{ span: 5, offset: 1 }}>
 
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
+                            <Col md={6}>
+                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
+                            </Col>
+                            <Col md={{ span: 6, offset: 5 }}>
+
                                 {
                                     this.props.loggedUser
 
                                     &&
 
                                     <Button variant="ligth" onClick={() => {
-<<<<<<< HEAD
-                                        this.isFavorite()}}>
-                                        {this.state.isFavorite ? <img className="heart" src={fullHeart}  /> : <img className="heart" src={emptyHeart}  />}
-                                    </Button>}
-                            </Col>
-
-                                </Row>
-=======
                                         this.isFavorite()
                                     }}>
-                                        {this.state.isFavorite ? <img src={fullHeart} style={{ width: "10%" }} /> : <img src={emptyHeart} style={{ width: "10%" }} />}
+                                        {this.state.isFavorite ? <img className="heart" src={fullHeart} /> : <img className="heart" src={emptyHeart} />}
                                     </Button>}
-                            </Col>
-
-                            <Col md={6}>
-                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
                             </Col>
 
                         </Row>
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
 
                         <br></br>
 
@@ -171,17 +147,9 @@ class Profile extends Component {
                             </Col>
                         </Row>
 
-<<<<<<< HEAD
-                                <Row>
-                                    <Col className="profile-data-buttons" md={12}>
-                               <Link className="default-button"to={`/libros`}>Volver a libros</Link>
-                        
-                                    </Col>
-=======
                         <Row>
                             <Col className="profile-data-buttons" md={12}>
-                                <Button className="btn btn-sm btn-dark"><Link to={`/libros`}>Volver a libros</Link></Button>
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
+                                <Link className="default-button" to={`/libros`}>Volver a libros</Link>
 
                             </Col>
 
