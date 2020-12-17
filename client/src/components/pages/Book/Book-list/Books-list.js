@@ -26,7 +26,6 @@ class BookList extends Component {
     componentDidMount = () => {
         this.refreshBooks()
         this.isLoggedUser()
-
     }
 
     refreshBooks = () => {

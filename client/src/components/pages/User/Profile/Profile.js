@@ -20,10 +20,11 @@ class Profile extends Component {
                 name: "",
                 birthday: '',
                 favoriteBooks: [],
-                favoriteAuthors: []
+                favoriteAuthors: [],
+                myWrittenBooks: []
             },
             books: [],
-            newBirthday : "",
+            newBirthday: "",
         }
 
         this.userService = new UserService()
@@ -33,7 +34,6 @@ class Profile extends Component {
 
 
     deleteThisUser = () => {
-
         const userID = this.props.loggedUser._id
 
         this.userService
@@ -44,177 +44,158 @@ class Profile extends Component {
     }
 
     componentDidMount = () => {
-
         const userID = this.props.loggedUser._id
-        
-        
+
         this.userService
-        .getOneUser(userID)
-        .then(res => {
-            this.setState({ user: res.data })
-            this.isBookAvailable()
-            this.newBirthdayDate()
+            .getOneUser(userID)
+            .then(res => {
+                this.setState({ user: res.data })
+                this.myBooks()
+                this.isBookAvailable()
+                this.newBirthdayDate()
             })
             .catch(err => console.log(err))
-
-
-
     }
 
     isBookAvailable = () => {
         const Books = this.state.user.favoriteBooks
         const userBooks = [...this.state.books]
-        
-           
 
         if (Books !== undefined) {
-            
-            Books.forEach(elm =>
-                
-                this.bookService
-                    .getBook(elm)
-                    .then(res => {
-                        if (res.data != null) {
-                        userBooks.push(res.data._id)
-                        }
-                        this.setState({ books: userBooks})
-                    })
-        
-                    .catch(err => console.log(err))
-                    
+            Books.forEach(elm => this.bookService.getBook(elm)
+                .then(res => {
+                    if (res.data != null) { userBooks.push(res.data._id) }
+                    this.setState({ books: userBooks })
+                })
+                .catch(err => console.log(err))
             )
         }
-        
     }
 
     newBirthdayDate = () => {
-
-
         let birthdayDate = this.state.user.birthday
-        let birthdayDateObject = new Date((birthdayDate)); 
+        let birthdayDateObject = new Date((birthdayDate));
         let newBirthdayDate = `${birthdayDateObject.getDate()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
         this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
-        
- 
     }
-    
-    
+
+    myBooks = () => {
+        const Books = this.state.user.myWrittenBooks
+        const myBooks = [...this.state.books]
+
+        if (Books !== undefined) {
+            Books.forEach(elm => this.bookService.getBook(elm)
+                .then(res => {
+                    if (res.data != null) { myBooks.push(res.data._id) }
+                    this.setState({ user: { ...this.state.user, myWrittenBooks: myBooks } })
+                })
+                .catch(err => console.log(err))
+            )
+        }
+
+    }
+
+
     render() {
- 
 
         return (
             <>
-            <div className="first-division-container">
-            
-            <Container className="profile-container">
-                <h1>¡Bienvenid@, {this.state.user.username}!</h1>
-                <hr></hr>
-                <Row className='first-row-profile justify-content-center' >
-                    <Col md={12} >
-
+                <div className="first-division-container">
+                    <Container className="profile-container">
+                        <h1>¡Bienvenid@, {this.state.user.username}!</h1>
+                        <hr></hr>
+                        <Row className='first-row-profile justify-content-center' >
+                            <Col md={12} >
                                 <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
                                 <br></br>
-                                </Col>
+                            </Col>
                             <Col md={6}>
-                        <p style={{fontStyle: "italic", textAlign : "center"}}>{this.state.user.description}</p>
+                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
+                            </Col>
+                        </Row>
+                        <br></br>
+                        <Row>
+                            <Col className="profile-data" md={6}>
 
+                                <h2>Datos del perfil: </h2>
+                                <p>Nombre: {this.state.user.name}</p>
+                                <p>Tu fecha de nacimiento es: {this.state.user.birthday}!</p>
 
-                    </Col>
-                    </Row>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="profile-data-buttons" md={6}>
 
-<br></br>
-                    <Row>
-                    <Col className="profile-data" md={6}>
+                                <Link className="default-button" style={{ marginRight: "20px" }} to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
+                                <br />
+                                <br />
+                                <Link className="default-button" onClick={() => this.deleteThisUser()}>Borrar perfil</Link>
 
-                        <h2>Datos del perfil: </h2>
-                        <p>Nombre: {this.state.user.name}</p>
-                        <p>Tu fecha de nacimiento es: {this.state.user.birthday}!</p>
-
-                    </Col>
-                        
-                </Row>
-                    
-                    <Row>
-
-                        <Col className="profile-data-buttons" md={6}>
-
-                            <Link className="default-button" style={{marginRight : "20px"}} to={`/editar-perfil/${this.state.user._id}`}>Editar perfil</Link>
-                            <br />
-                            <br />
-                            <Link className="default-button" onClick={() => this.deleteThisUser()}>Borrar perfil</Link>
-
-                        </Col>
-
-                    </Row>
-
+                            </Col>
+                        </Row>
                     </Container>
-                
-               </div>
-                    <div className="division-book-container">
-               <Container>
-                <br />
-                {
-                    this.state.books.length >= 1
-                    &&
-                    <>
-                        <Row className="favorite-books-container">
-                            <Col md={6}>
-                                <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
-                                <h2 className="title-favorite-book">Estos son tus libros favoritos</h2>
-
-                            </Col>
-                        </Row>
-                    
-                        <Row>
+                </div>
+                <div className="division-book-container">
+                    <Container>
+                        <br />
+                        {this.state.user.myWrittenBooks.length >= 1 &&
                             <>
-                                {
-                                    this.state.books.map(elm =><FavoriteBooksCard key={elm._id} books={elm}/>)
-                                }
+                                <Row className="favorite-books-container">
+                                    <Col md={6}>
+                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
+                                        <h2 className="title-favorite-book">Estos son tus libros publicados</h2>
+
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <>
+                                        {this.state.user.myWrittenBooks.map(elm => <FavoriteBooksCard key={elm._id} books={elm} />)}
+                                    </>
+                                </Row>
                             </>
+                        }
+                    </Container>
+                </div>
+                <div className="division-book-container">
+                    <Container>
+                        <br />
+                        {this.state.books.length >= 1 &&
+                            <>
+                                <Row className="favorite-books-container">
+                                    <Col md={6}>
+                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
+                                        <h2 className="title-favorite-book">Estos son tus libros favoritos</h2>
 
-                        </Row>
-                    </>
-                }
-                </Container>
-                            </div>
-            
-
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <>
+                                        {this.state.books.map(elm => <FavoriteBooksCard key={elm._id} books={elm} />)}
+                                    </>
+                                </Row>
+                            </>
+                        }
+                    </Container>
+                </div>
                 <div className="division-author-container">
-                <Container>
-                {
-                    this.state.user.favoriteAuthors.length >= 1
-                    &&
-                    <>
-                        <Row className="favorite-author-container">
-                            <Col md={6}>
-                                        <img className="image-favorite-author" src={wavyLine}  alt="wavy-line"></img>
-                                <h2 style={{marginBottom : "40px"}}>Estos son tus autores favoritos</h2>
-                            </Col>
-                        </Row>
-                     
+                    <Container>
+                        {this.state.user.favoriteAuthors.length >= 1 &&
+                            <>
+                                <Row className="favorite-author-container">
+                                    <Col md={6}>
+                                        <img className="image-favorite-author" src={wavyLine} alt="wavy-line"></img>
+                                        <h2 style={{ marginBottom: "40px" }}>Estos son tus autores favoritos</h2>
+                                    </Col>
+                                </Row>
 
-                        <Row>
-
-                            {this.state.user.favoriteAuthors.map(elm =>
-
-
-                                <FavoriteAuthCard
-
-                                    key={elm._id}
-                                    author={elm}
-
-
-                                />)}
-
-
-                        </Row>
-                    </>
-                }
-
-            </Container >
-            </div>
+                                <Row>
+                                    {this.state.user.favoriteAuthors.map(elm => <FavoriteAuthCard key={elm._id} author={elm} />)}
+                                </Row>
+                            </>
+                        }
+                    </Container >
+                </div>
             </>
-            
         )
     }
 }
