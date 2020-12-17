@@ -50,7 +50,7 @@ class FavoriteBooksCard extends Component {
                     <div className="card-front">
                         <figure>
                             <div className="img-bg"></div>
-                            <img className="img-bg-pic" src={this.state.newbooks.image} alt="Image 2" />
+                            <img className="img-bg-pic" src={this.state.newbooks.imageBook} alt="Image 2" />
                             <figcaption>{this.state.newbooks.title}</figcaption>
                         </figure>
                     </div>

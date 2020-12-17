@@ -208,7 +208,7 @@ class BookDetails extends Component {
                             <img src={this.state.book.imageBook} alt={this.state.book.title} />
                             <h3>Detalles</h3>
                             <p>{this.state.book.resume}</p>
-                            <p>Autor/a:<Link to={`/usuario/${this.state.book.author._id}`}>{this.state.book.author.name}</Link></p>
+                            <p>Autor/a:<Link to={`/usuario/${this.state.book.author._id}`}> {this.state.book.author.name}</Link></p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
                             <>
