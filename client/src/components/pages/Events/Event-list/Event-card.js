@@ -7,7 +7,7 @@ const EventCard = ({date, name, _id}) => {
 
 
     let dateObject = new Date((date));
-    let newEventDate = `${dateObject.getDay()} / ${dateObject.getMonth() + 1} / ${dateObject.getFullYear()}`
+    let newEventDate = `${dateObject.getDate()} / ${dateObject.getMonth() + 1} / ${dateObject.getFullYear()}`
 
 
 
