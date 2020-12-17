@@ -104,6 +104,7 @@ class Profile extends Component {
 
 
         return (
+
             <>
 
                 <div className="first-division-container">
@@ -146,90 +147,92 @@ class Profile extends Component {
                                 <p>Su fecha de nacimiento es: {this.state.user.birthday}</p>
                             </Col>
                         </Row>
+             
+                            <Row>
+                                <Col className="profile-data-buttons" md={12}>
+                                    <Link className="default-button" to={`/libros`}>Volver a libros</Link>
 
-                        <Row>
-                            <Col className="profile-data-buttons" md={12}>
-                                <Link className="default-button" to={`/libros`}>Volver a libros</Link>
+                                </Col>
 
-                            </Col>
 
-                        </Row>
+
+                            </Row>
 
                     </Container>
 
                 </div>
 
-                <div className="division-book-container">
-                    <Container>
-                        <br />
-                        {
-                            this.state.user.favoriteBooks.length >= 1
-                            &&
-                            <>
-                                <Row className="favorite-books-container">
-                                    <Col md={6}>
-                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
-                                        <h2 className="title-favorite-book">Estos son sus libros favoritos</h2>
-                                    </Col>
-                                    <hr></hr>
-                                </Row>
+                    <div className="division-book-container">
+                        <Container>
+                            <br />
+                            {
+                                this.state.user.favoriteBooks.length >= 1
+                                &&
+                                <>
+                                    <Row className="favorite-books-container">
+                                        <Col md={6}>
+                                            <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
+                                            <h2 className="title-favorite-book">Estos son sus libros favoritos</h2>
+                                        </Col>
+                                        <hr></hr>
+                                    </Row>
 
-                                <Row>
-                                    <>
+                                    <Row>
+                                        <>
 
-                                        {this.state.user.favoriteBooks.map(elm =>
+                                            {this.state.user.favoriteBooks.map(elm =>
 
 
-                                            <FavoriteBooksCard
+                                                <FavoriteBooksCard
+
+                                                    key={elm._id}
+                                                    books={elm}
+
+
+                                                />)}
+                                        </>
+
+
+                                    </Row>
+                                </>
+                            }
+                        </Container>
+                    </div>
+
+
+                    <div className="division-author-container">
+                        <Container>
+                            {
+                                this.state.user.favoriteBooks.length >= 1
+                                &&
+                                <>
+                                    <Row className="favorite-author-container">
+                                        <Col md={6}>
+                                            <img className="image-favorite-author" src={wavyLine} alt="wavy-line"></img>
+                                            <h2 style={{ marginBottom: "40px" }}>Estos son sus autores favoritos</h2>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+
+                                        {this.state.user.favoriteAuthors.map(elm =>
+
+
+                                            <FavoriteAuthCard
 
                                                 key={elm._id}
-                                                books={elm}
+                                                author={elm}
 
 
                                             />)}
-                                    </>
 
 
-                                </Row>
-                            </>
-                        }
-                    </Container>
-                </div>
+                                    </Row>
+                                </>
+                            }
 
-
-                <div className="division-author-container">
-                    <Container>
-                        {
-                            this.state.user.favoriteBooks.length >= 1
-                            &&
-                            <>
-                                <Row className="favorite-author-container">
-                                    <Col md={6}>
-                                        <img className="image-favorite-author" src={wavyLine} alt="wavy-line"></img>
-                                        <h2 style={{ marginBottom: "40px" }}>Estos son sus autores favoritos</h2>
-                                    </Col>
-                                </Row>
-
-                                <Row>
-
-                                    {this.state.user.favoriteAuthors.map(elm =>
-
-
-                                        <FavoriteAuthCard
-
-                                            key={elm._id}
-                                            author={elm}
-
-
-                                        />)}
-
-
-                                </Row>
-                            </>
-                        }
-
-                    </Container >
-                </div >
+                        </Container >
+                    </div >
             </>
         )
     }

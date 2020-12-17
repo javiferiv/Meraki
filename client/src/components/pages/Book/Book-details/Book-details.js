@@ -31,7 +31,8 @@ class BookDetails extends Component {
 
             isFavorite: false,
             newComment: "",
-            key: 1,
+            key: "1",
+            commentUpdate: [],
 
             authority: false,
 
@@ -187,9 +188,11 @@ class BookDetails extends Component {
                 commentPushed.push(newComment)
                 this.bookService
                     .editBook(book_id, { comments: commentPushed })
+                    .then(res => this.setState({ commentUpdate: commentPushed}))
                     .then (res => this.setState( {key : this.state.key +1}))
-            })
-            .catch(err => console.log(err))
+        })
+            
+        .catch(err => console.log(err))
 
     }
 
@@ -201,7 +204,6 @@ class BookDetails extends Component {
     
 
     render() {
-        console.log(this.state.key)
         
 
         return (
@@ -223,23 +225,27 @@ class BookDetails extends Component {
                                     this.state.authority === true
                                     &&
                                     <>
-                                        <Button onClick={() => this.newChapter()} className="default-button">Nuevo capítulo</Button>
-                                        <Button onClick={() => this.deleteThisBook()} className="default-button">Borrar</Button>
+                                        <Link onClick={() => this.newChapter()} className="default-button" style={{ marginRight: "20px" }}>Nuevo capítulo</Link>
+                                        <Link onClick={() => this.deleteThisBook()} className="default-button" style={{ marginRight: "20px" }}>Borrar</Link>
                                     </>
-
                                 }
                             </>
 
                             <Link to="/libros" className="default-button">Volver</Link>
                             {
-                                this.props.loggedUser && <Button className="like" variant="ligth" onClick={() => { this.isFavorite() }}>{this.state.isFavorite ? <img className="heart" src={fullHeart} /> : <img className="heart" src={emptyHeart} />}</Button>
+                                this.props.loggedUser && <Link className="like" variant="ligth" onClick={() => { this.isFavorite() }}>{this.state.isFavorite ? <img className="fullHeart" src={fullHeart} /> : <img className="emptyHeart" src={emptyHeart} />}</Link>
                             }
-                                
-
+                            
                         </Col>
+
                         <Col md={4}>
+                            
                             <h2>Lista de capítulos</h2>
-                            {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm} />)}
+                            {this.state.book.chapters.map(elm => <ChapterCard
+                                userId={this.props.loggedUser}
+                                key={elm._id}
+                                {...elm} 
+                                />)}
                         </Col>
                     </Row>
                 </Container>
@@ -248,17 +254,11 @@ class BookDetails extends Component {
                 <br />
 
                 <Container>
-
                     <>
                         <h3>Comentarios</h3>
-                        {this.state.book.comments.map(elm => <BookComments key={this.state.key} comments={elm} />)}
-                    
+                        {this.state.commentUpdate.map(elm => <BookComments key={this.state.key} comments={elm} />)}
                     </>
-
-                    <Row>
-
-                    </Row>
-
+                  
                     <Row>
                         <Col md={12}>
 

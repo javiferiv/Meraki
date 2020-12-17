@@ -2,19 +2,37 @@
     width: 350px;
     object-fit: contain;
     margin-bottom: 30px; 
+        &:hover 
+    {
+           transition:all .5s ease-in-out;
+   -webkit-transform:scale(1.2);transform:scale(1.1);
+         }
+         transition:all .5s ease-in-out;
 }
 
 .like{
     margin-left: 20px;
     padding: 0;
     width: 10px;
+    &:hover 
+    {
+    
+        .fullHeart{
+        display:block; 
+        z-index: 50;
+  
 }
-
-
+}
+}
+         
 li{
 list-style: none;
 }
 
-.heart{
+.emptyHeart{
+        width: 40px;
+}
+
+.fullHeart{
         width: 40px;
 }
