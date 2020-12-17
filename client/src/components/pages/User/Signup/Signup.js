@@ -110,7 +110,7 @@ class Signup extends Component {
                                 <Form.Label>Imagen de perfil</Form.Label>
                                 <Form.Control type="file" onChange={this.handleImageUpload} />
                             </Form.Group>
-                            <Button className="default-button" style={{width : "100%"}} type="submit">Registrarme</Button>
+                            <Button className="default-button" style={{width : "100%"}} variant='ligth' type="submit">Registrarme</Button>
                         </Form>
                     </Col>
                 </Row>
