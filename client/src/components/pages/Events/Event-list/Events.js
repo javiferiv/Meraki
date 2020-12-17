@@ -55,17 +55,17 @@ class Events extends Component {
 
                     <Row>
 
-                                <h3>Próximos eventos</h3>
-                        <Col md={4}>        
+                              
+                                <h3 style={{marginTop : "30px"}}>Próximos eventos</h3>
                                 <hr></hr>
+                    </Row>
+                    <Row>
                                 {this.state.events.map(elm => <EventCard
+                                    userId={this.props.loggedUser?._id}
                                     key={elm._id}
                                     {...elm} />)}
-
-                            
-                        </Col>
+</Row>
                         
-                    </Row>
 
 
                 </Container>

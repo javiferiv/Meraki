@@ -22,7 +22,7 @@ class Profile extends Component {
                 name: "",
                 favoriteBooks: [],
                 favoriteAuthors: [],
-                birthday:''
+                birthday: ''
             },
             books: [],
             isFavorite: false,
@@ -104,61 +104,42 @@ class Profile extends Component {
 
 
         return (
+
             <>
 
                 <div className="first-division-container">
                     <Container className="profile-container">
                         <h1>¡Bienvenid@ al perfil de {this.state.user.name}!</h1>
                         <hr></hr>
-<<<<<<< HEAD
-                                <Row className='first-row-profile justify-content-center' >
-                                    <Col md={12}>
-                                        <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
-                                        <br></br>
-                                        
-                                      </Col>
 
-                                    <Col md={6}>
-                                        <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
-                                    </Col>
-                            <Col md={{ span: 6, offset: 5 }}>
-                                
-=======
                         <Row className='first-row-profile justify-content-center' >
                             <Col md={12}>
                                 <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
                                 <br></br>
 
                             </Col>
-                            <Col md={{ span: 5, offset: 1 }}>
 
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
+                            <Col md={6}>
+                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
+                            </Col>
+                            <Col md={{ span: 6, offset: 5 }}>
+
+
                                 {
                                     this.props.loggedUser
 
                                     &&
 
                                     <Button variant="ligth" onClick={() => {
-<<<<<<< HEAD
-                                        this.isFavorite()}}>
-                                        {this.state.isFavorite ? <img className="heart" src={fullHeart}  /> : <img className="heart" src={emptyHeart}  />}
-                                    </Button>}
-                            </Col>
 
-                                </Row>
-=======
                                         this.isFavorite()
                                     }}>
-                                        {this.state.isFavorite ? <img src={fullHeart} style={{ width: "10%" }} /> : <img src={emptyHeart} style={{ width: "10%" }} />}
+                                        {this.state.isFavorite ? <img className="heart" src={fullHeart} /> : <img className="heart" src={emptyHeart} />}
                                     </Button>}
-                            </Col>
-
-                            <Col md={6}>
-                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
                             </Col>
 
                         </Row>
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
+
 
                         <br></br>
 
@@ -170,98 +151,92 @@ class Profile extends Component {
                                 <p>Su fecha de nacimiento es: {this.state.user.birthday}</p>
                             </Col>
                         </Row>
+             
+                            <Row>
+                                <Col className="profile-data-buttons" md={12}>
+                                    <Link className="default-button" to={`/libros`}>Volver a libros</Link>
 
-<<<<<<< HEAD
-                                <Row>
-                                    <Col className="profile-data-buttons" md={12}>
-                               <Link className="default-button"to={`/libros`}>Volver a libros</Link>
-                        
-                                    </Col>
-=======
-                        <Row>
-                            <Col className="profile-data-buttons" md={12}>
-                                <Button className="btn btn-sm btn-dark"><Link to={`/libros`}>Volver a libros</Link></Button>
->>>>>>> af9e444e1fdadf7f1eb85c97adea5b7a22236bc6
+                                </Col>
 
-                            </Col>
 
-                        </Row>
+
+                            </Row>
 
                     </Container>
 
                 </div>
 
-                <div className="division-book-container">
-                    <Container>
-                        <br />
-                        {
-                            this.state.user.favoriteBooks.length >= 1
-                            &&
-                            <>
-                                <Row className="favorite-books-container">
-                                    <Col md={6}>
-                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
-                                        <h2 className="title-favorite-book">Estos son sus libros favoritos</h2>
-                                    </Col>
-                                    <hr></hr>
-                                </Row>
+                    <div className="division-book-container">
+                        <Container>
+                            <br />
+                            {
+                                this.state.user.favoriteBooks.length >= 1
+                                &&
+                                <>
+                                    <Row className="favorite-books-container">
+                                        <Col md={6}>
+                                            <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
+                                            <h2 className="title-favorite-book">Estos son sus libros favoritos</h2>
+                                        </Col>
+                                        <hr></hr>
+                                    </Row>
 
-                                <Row>
-                                    <>
+                                    <Row>
+                                        <>
 
-                                        {this.state.user.favoriteBooks.map(elm =>
+                                            {this.state.user.favoriteBooks.map(elm =>
 
 
-                                            <FavoriteBooksCard
+                                                <FavoriteBooksCard
+
+                                                    key={elm._id}
+                                                    books={elm}
+
+
+                                                />)}
+                                        </>
+
+
+                                    </Row>
+                                </>
+                            }
+                        </Container>
+                    </div>
+
+
+                    <div className="division-author-container">
+                        <Container>
+                            {
+                                this.state.user.favoriteBooks.length >= 1
+                                &&
+                                <>
+                                    <Row className="favorite-author-container">
+                                        <Col md={6}>
+                                            <img className="image-favorite-author" src={wavyLine} alt="wavy-line"></img>
+                                            <h2 style={{ marginBottom: "40px" }}>Estos son sus autores favoritos</h2>
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+
+                                        {this.state.user.favoriteAuthors.map(elm =>
+
+
+                                            <FavoriteAuthCard
 
                                                 key={elm._id}
-                                                books={elm}
+                                                author={elm}
 
 
                                             />)}
-                                    </>
 
 
-                                </Row>
-                            </>
-                        }
-                    </Container>
-                </div>
+                                    </Row>
+                                </>
+                            }
 
-
-                <div className="division-author-container">
-                    <Container>
-                        {
-                            this.state.user.favoriteBooks.length >= 1
-                            &&
-                            <>
-                                <Row className="favorite-author-container">
-                                    <Col md={6}>
-                                        <img className="image-favorite-author" src={wavyLine} alt="wavy-line"></img>
-                                        <h2 style={{ marginBottom: "40px" }}>Estos son sus autores favoritos</h2>
-                                    </Col>
-                                </Row>
-
-                                <Row>
-
-                                    {this.state.user.favoriteAuthors.map(elm =>
-
-
-                                        <FavoriteAuthCard
-
-                                            key={elm._id}
-                                            author={elm}
-
-
-                                        />)}
-
-
-                                </Row>
-                            </>
-                        }
-
-                    </Container >
-                </div >
+                        </Container >
+                    </div >
             </>
         )
     }

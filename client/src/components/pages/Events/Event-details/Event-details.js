@@ -109,10 +109,10 @@ class EventDetails extends Component {
                             <hr />
                             <p>{this.state.eventDetail.name}</p>
                             <p>Descripción: {this.state.eventDetail.description}</p>
-                                <Link className="default-button" to="/eventos" className="default-button">Volver</Link>
+                                <Link className="default-button" style={{marginRight: "20px"}} to="/eventos" >Volver</Link>
 
                                 {
-                                    this.state.isAuthorized === true && <Button onClick={() => this.deleteEvent()} className="default-button">Borrar</Button>
+                                    this.state.isAuthorized === true && <Link onClick={() => this.deleteEvent()} className="default-button">Borrar</Link>
                                 }
 
 

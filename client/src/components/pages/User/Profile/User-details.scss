@@ -5,6 +5,12 @@
     border: 1px solid #E4C887;
     margin:auto;
     display:block;
+        &:hover 
+    {
+           transition:all .5s ease-in-out;
+   -webkit-transform:scale(1.2);transform:scale(1.1);
+         }
+          transition:all .6s ease-in-out;
 
 }
 

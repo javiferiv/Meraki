@@ -6,7 +6,14 @@
     margin:auto;
     display:block;
 
+    &:hover 
+    {
+           transition:all .5s ease-in-out;
+   -webkit-transform:scale(1.2);transform:scale(1.1);
+         }
+          transition:all .5s ease-in-out;
 }
+
 
 .first-division-container{
     padding: 20px 0;
