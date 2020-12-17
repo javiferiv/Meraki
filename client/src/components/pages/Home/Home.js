@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
-import imageColumn1 from './images/image-column-1.jpeg'
 import imageColumn2 from './images/image-column-2.jpeg'
 import imageColumn3 from './images/image-column3.jpeg'
+import spotBeige from './images/acuarela_mancha.png'
+
 
 
 
@@ -62,9 +63,13 @@ const Home = (props) => {
                 </Row>
             </Container>
             </div>
-
+                
             <div className="third-container-home">
+            </div>
+
+                <img className="color-spot-image" src={spotBeige} style={{ position: "absolute", right: "1px", top: "1100px", zIndex: "50" }}alt="color-spot-image"></img>
             <Container>
+
                 <Row>
                     <Col className="col-home-container" md={{ span: 3, offset: 1 }}>
                         <h2 className="second-container-title">Comienza tu historia</h2>
@@ -89,7 +94,7 @@ const Home = (props) => {
                     
             </Container>
           
-</div>
+
             <Container fluid className="phrase-container">
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>

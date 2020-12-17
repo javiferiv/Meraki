@@ -19,10 +19,7 @@ class Login extends Component {
         }
             
         this.authService = new AuthService()
-        }
-            
-            
-    
+        }    
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -48,12 +45,12 @@ class Login extends Component {
         return (
 
 <>
-            <Container className="form" style={{ marginTop: "80px" }}>
+                <Container className="form" style={{ marginTop: "50px", marginBottom: "100px"  }}>
 
                 <Row>
        
 
-                    <Col md={{ span: 3, offset: 3 }}>
+                    <Col md={{ span: 3, offset: 4 }}>
                         <img className="image-login" src={imageColumn1} alt="pencil"></img>
 
                     </Col>
@@ -71,7 +68,7 @@ class Login extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button className="default-button login" style={{ width: "100%", marginBottom: "150px" }} variant="ligth" type="submit">Iniciar sesión</Button>
+                            <Button className="default-button login" style={{ width: "100%", marginBottom: "100px" }} variant="ligth" type="submit">Iniciar sesión</Button>
                         </Form>
                         <img className="image-coffee" src={coffeeSpot} alt="coffee-sport"></img>
                     </Col>

@@ -87,7 +87,7 @@ class EventEditForm extends Component {
                             <Form.Label>Fecha (URL)</Form.Label>
                             <Form.Control type="date" name="date" value={this.state.event.date} onChange={this.handleInputChange} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Editar evento</Button>
+                        <Button className="default-button"type="submit">Editar evento</Button>
                     </Form>
                 </Container>
 

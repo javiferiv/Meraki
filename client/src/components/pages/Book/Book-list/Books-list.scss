@@ -6,16 +6,10 @@
 .graphics{
     height: 450px;
 }
-// .default-button{
-//     color: black;
-//     background-color: #F3E7DC;
-//     padding: 10px;
-//     border: none;
-//       &:hover 
-//     {
-//     background-color: white;
-//     color: black;
-//     border: 1px solid;
-//     &::before { width: 0; }
-//     &::after { height: 0; }
-// }
+
+.color-spot-image{
+    opacity: 0.6;
+    right: 60px;
+    top: 3730px
+    
+}

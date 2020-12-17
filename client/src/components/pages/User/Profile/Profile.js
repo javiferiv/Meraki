@@ -4,7 +4,8 @@ import UserService from '../../../../service/user.service'
 import BookService from '../../../../service/book.service'
 import imageFavoriteBooks from './images/painting-purple.png'
 import wavyLine from './images/wavy_line.png'
-import { Container, Row, Col, Carousel } from 'react-bootstrap'
+import blueSpot from './images/blue_spot.png'
+import { Container, Row, Col } from 'react-bootstrap'
 import FavoriteBooksCard from './Favorite-books'
 import FavoriteAuthCard from './Favorite-authors'
 import { Link } from 'react-router-dom'
@@ -104,8 +105,9 @@ class Profile extends Component {
 
         return (
             <>
+                    <img className="image-favorite-book" src={blueSpot} style={{ position: "absolute", top: "100px", zIndex: "0", width: "90%"}}alt="mancha"></img>
             <div className="first-division-container">
-            
+
             <Container className="profile-container">
                 <h1>¡Bienvenid@, {this.state.user.username}!</h1>
                 <hr></hr>
@@ -159,8 +161,8 @@ class Profile extends Component {
                     <>
                         <Row className="favorite-books-container">
                             <Col md={6}>
-                                <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
-                                <h2 className="title-favorite-book">Estos son tus libros favoritos</h2>
+                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
+                                        <h2 style={{ zIndex: "50"  }} className="title-favorite-book">Estos son tus libros favoritos</h2>
 
                             </Col>
                         </Row>

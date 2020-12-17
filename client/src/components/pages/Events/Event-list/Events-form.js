@@ -37,7 +37,7 @@ class EventForm extends Component {
         return (
             <>
                 <div style={{ backgroundColor: "#FDFAF6"}}>
-                <Container>
+                    <Container style={{ paddingBottom: "40px", paddingTop: "40px"}}>
                     <h1> Nuevo evento</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>

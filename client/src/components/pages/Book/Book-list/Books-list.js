@@ -6,6 +6,9 @@ import PopUp from '../../../shared/Popup/Popup'
 import Poll from '../../../shared/Poll/Poll'
 import Pie from '../../Graphics/Graphics'
 import Pie2 from '../../Graphics/Genre-graphics'
+import coffeeSpot from './images/mancha_002.png'
+import coffeeSpot2 from './images/mancha_003.png'
+import spot3 from './images/mancha_004.png'
 import './Books-list.scss'
 
 class BookList extends Component {
@@ -82,6 +85,8 @@ class BookList extends Component {
                             </Col>
                         </Row>
                     </Container>
+                    <div>
+                        <img className="coffee-spot-image" style={{ position: "absolute", left: "800px", top: "770px"}} src={coffeeSpot} alt="coffee-spot"></img>
                     <Container>
 
                         <h1>Listado de libros</h1>
@@ -98,6 +103,7 @@ class BookList extends Component {
                         }
 
                     </Container>
+                    </div>
 
                     <Container>
                         {fictionBooks.length >= 1 &&
@@ -113,6 +119,9 @@ class BookList extends Component {
                         }
 
                     </Container>
+                    <div>
+                        <img className="coffee-spot-image" style={{ position: "absolute"}} src={coffeeSpot2} alt="coffee-spot"></img>
+
 
                     <Container>
                         {childrenBooks.length >= 1 &&
@@ -128,7 +137,7 @@ class BookList extends Component {
                         }
 
                     </Container>
-
+                    </div>
                     <Container>
                         {terrorBooks.length >= 1 &&
                             <>
@@ -156,7 +165,8 @@ class BookList extends Component {
                         }
 
                     </Container>
-
+                    <div>
+                        <img className="color-spot-image" style={{ position: "absolute"}} src={spot3} alt="ccolor-spot-image"></img>
                     <Container>
                         {darkBooks.length >= 1 &&
                             <>
@@ -170,6 +180,7 @@ class BookList extends Component {
                         }
 
                     </Container>
+                    </div>
                     <Container>
                         {romanticBooks.length >= 1 &&
                             <>

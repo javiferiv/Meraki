@@ -49,7 +49,9 @@ class BookForm extends Component {
 
         return (
             <>
-                <Container>
+                <div style={{ backgroundColor: "#FDFAF6" }}>
+
+                <Container style={{paddingBottom: "120px", paddingTop: "50px"}}>
                     <h1> Nuevo libro</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>
@@ -79,9 +81,10 @@ class BookForm extends Component {
                             <Form.Label>Imagen</Form.Label>
                             <Form.Control type="file" onChange={this.handleImageUpload} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Crear nuevo libro</Button>
+                        <Button className="default-button" type="submit">Crear nuevo libro</Button>
                     </Form>
                 </Container>
+                </div>
             </>
         )
     }
