@@ -96,52 +96,34 @@ class Profile extends Component {
 
     }
     
-    render() {
  
 
-        return (
-            <>
-                    <img className="image-favorite-book" src={blueSpot} style={{ position: "absolute", top: "100px", zIndex: "0", width: "90%"}}alt="mancha"></img>
-            <div className="first-division-container">
-
-            <Container className="profile-container">
-                <h1>¡Bienvenid@, {this.state.user.username}!</h1>
-                <hr></hr>
-                <Row className='first-row-profile justify-content-center' >
-                    <Col md={12} >
-
-                                <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
-                                <br></br>
-                                </Col>
-                            <Col md={6}>
-                        <p style={{fontStyle: "italic", textAlign : "center"}}>{this.state.user.description}</p>
-
-
-                    </Col>
-                    </Row>
 
 
 
     render() {
 
-        return (
+             return (
             <>
-                <div className="first-division-container">
-                    <Container className="profile-container">
-                        <h1>¡Bienvenid@, {this.state.user.username}!</h1>
-                        <hr></hr>
-                        <Row className='first-row-profile justify-content-center' >
-                            <Col md={12} >
-                                <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
-                                <br></br>
-                            </Col>
-                            <Col md={6}>
-                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
-                                        <h2 style={{ zIndex: "50"  }} className="title-favorite-book">Estos son tus libros favoritos</h2>
+                            <img className="image-favorite-book" src={blueSpot} style={{ position: "absolute", top: "100px", zIndex: "0", width: "90%" }} alt="mancha"></img>
+                            <div className="first-division-container">
 
-                                <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
-                            </Col>
-                        </Row>
+                                <Container className="profile-container">
+                                    <h1>¡Bienvenid@, {this.state.user.username}!</h1>
+                                    <hr></hr>
+                                    <Row className='first-row-profile justify-content-center' >
+                                        <Col md={12} >
+
+                                            <img className="profile-img" src={this.state.user.imageUrl} alt="profile"></img>
+                                            <br></br>
+                                        </Col>
+                                        <Col md={6}>
+                                            <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
+
+
+                                        </Col>
+                                    </Row>
+                    
                         <br></br>
                         <Row>
                             <Col className="profile-data" md={6}>
@@ -171,7 +153,6 @@ class Profile extends Component {
                             <>
                                 <Row className="favorite-books-container">
                                     <Col md={6}>
-                                        <img className="image-favorite-book" src={imageFavoriteBooks} alt="mancha"></img>
                                         <h2 className="title-favorite-book">Estos son tus libros publicados</h2>
 
                                     </Col>
