@@ -131,7 +131,7 @@ class Profile extends Component {
                                     <Button variant="ligth" onClick={() => {
                                         this.isFavorite()
                                     }}>
-                                        {this.state.isFavorite ? <img className="heart" src={fullHeart} /> : <img className="heart" src={emptyHeart} />}
+                                        {this.state.isFavorite ? <img className="fullHeart" src={fullHeart} /> : <img className="emptyHeart" src={emptyHeart} />}
                                     </Button>}
                             </Col>
 

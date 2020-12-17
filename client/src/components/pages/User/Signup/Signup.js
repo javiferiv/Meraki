@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthService from '../../../../service/auth.service'
 import FilesService from './../../../../service/upload.service'
+import paintBackground from './images/mancha-pincel.png'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 
@@ -61,11 +62,13 @@ class Signup extends Component {
     render() {
 
         return (
+            <>
+                <img src={paintBackground} style={{ opacity: "0.5", zIndex:"0", rotate: "35deg", width: "30%", position: "absolute", left: "900px", top: "100px"}}alt="mancha"></img>
 
-            <Container className="form">
+            <Container className="form" style={{ marginTop: "50px", marginBottom: "100px" }}>
 
                 <Row>
-                    <Col md={{ span: 6, offset: 5 }}>
+                    <Col md={{ span: 6, offset: 6 }}>
                         <h1 style={{textAlign : "center"}}>Registro de usuario</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
@@ -114,7 +117,8 @@ class Signup extends Component {
                         </Form>
                     </Col>
                 </Row>
-            </Container>
+                </Container>
+                </>
         )
     }
 }

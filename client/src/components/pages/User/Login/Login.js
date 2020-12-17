@@ -46,10 +46,8 @@ class Login extends Component {
 
 <>
                 <Container className="form" style={{ marginTop: "50px", marginBottom: "100px"  }}>
-
                 <Row>
-       
-
+    
                     <Col md={{ span: 3, offset: 4 }}>
                         <img className="image-login" src={imageColumn1} alt="pencil"></img>
 

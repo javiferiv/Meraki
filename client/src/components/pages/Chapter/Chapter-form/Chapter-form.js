@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ChaptersService from './../../../../service/chapter.service'
 import BookService from './../../../../service/book.service'
+import inkSpot from './images/ink-spot.png'
 import { Container, Form, Button } from 'react-bootstrap'
 
 class ChapterForm extends Component {
@@ -53,7 +54,9 @@ class ChapterForm extends Component {
 
         return (
             <>
-                <Container>
+                <div style={{ backgroundColor: "#FDFAF6" }}>
+                    <img className="image-login" src={inkSpot} style={{ width: "20%", position: "absolute", left: "900px", top:"10px", zIndex: "0"}}alt="pencil"></img>
+                    <Container style={{ paddingBottom: "120px", paddingTop: "50px" }}>
                     <h1> Nuevo capítulo</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>
@@ -71,7 +74,8 @@ class ChapterForm extends Component {
                         </Form.Group>
                         <Button className="default-button" type="submit">Crear nuevo capítulo</Button>
                     </Form>
-                </Container>
+                    </Container>
+                    </div>
             </>
         )
     }
