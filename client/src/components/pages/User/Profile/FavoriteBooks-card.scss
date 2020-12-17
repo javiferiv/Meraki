@@ -152,33 +152,6 @@ figcaption {
   border-right-color: var(--primary);
 }
 
-/* ul */
-ul {
-  padding-top: 50%;
-  margin: 0 auto;
-  width: 70%;
-  height: 100%;
-
-  list-style: none;
-  color: var(--white-1);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* li */
-li {
-  width: 100%;
-  margin-top: 12px;
-  padding-bottom: 12px;
-
-  font-size: 14px;
-  text-align: center;
-
-  position: relative;
-}
 
 li:nth-child(2n) {
   color: var(--white-2);

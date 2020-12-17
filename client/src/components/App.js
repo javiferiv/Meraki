@@ -68,10 +68,10 @@ class App extends Component {
             <Route path="/acceso-usuario" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/editar-perfil/:user_id" render={props => this.state.loggedInUser ? <ProfileDetails {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
-            <Route path="/eventos" exact render={() => <Events />} />
+            <Route path="/eventos" exact render={() => <Events loggedUser={this.state.loggedInUser} />} />
             <Route path="/eventos/nuevo-evento" render={props => this.state.loggedInUser ? <EventsForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/eventos/editar-evento/:event_id" render={props => this.state.loggedInUser ? <EventEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
-            <Route path="/eventos/:event_id" render={props => <EventDetails {...props} />} />
+            <Route path="/eventos/:event_id" render={props => <EventDetails {...props} loggedUser={this.state.loggedInUser} />} />
             <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser} />} />
             <Route path="/libros/crear" render={props => this.state.loggedInUser ? <BookForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/libros/editar/:book_id" exact render={props => this.state.loggedInUser ? <BookEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />

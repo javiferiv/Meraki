@@ -13,19 +13,17 @@ class EventDetails extends Component {
         super()
         this.state = {
             event: [],
-            eventDetail: ""
+            eventDetail: "",
+            isAuthorized: false,
         }
-
-
-
         this.eventService = new EventService()
-
     }
 
 
     componentDidMount = () => {
-
+ 
         this.refreshEvents()
+   
 
     }
 
@@ -42,12 +40,14 @@ class EventDetails extends Component {
                 this.setState({ event: eventInfo })
             })
             
-                .then(() => {
-                    const eventDetails = [...this.state.event[0]]
-                    this.setState({ eventDetail: eventDetails })
-                })
+            .then(() => {
+                    const eventDetails = this.state.event[0]
+                this.setState({ eventDetail: eventDetails })
+                this.isAuthorized()
+            })
             
             .catch(err => console.log(err))
+
     }
 
 
@@ -62,17 +62,33 @@ class EventDetails extends Component {
 
     }
 
+    isAuthorized = () => {
+
+        const userId = this.props.loggedUser._id
+
+        const eventAuthor = this.state.eventDetail.author._id
+
+        if (userId === eventAuthor) {
+            this.setState({isAuthorized : true})
+        } 
+
+    }
 
     render() {
 
+    console.log(this.state.isAuthorized)
+
+     
+
         return (
             <>
+            <div style={{margin: "40px 0 70px"}}>
                 <Container>
                     <h1>{this.state.eventDetail.name}</h1>
                 </Container>
                 <Container className="event-details">
                     <Row>
-                        <Col md={{ span: 6, offset: 1 }} >
+                        <Col md={{ span: 6,}} >
 
                             {this.state.event.map(elm =>
 
@@ -86,18 +102,24 @@ class EventDetails extends Component {
 
                             )}
 
-                            <h3>Detalles</h3>
-
-                            <p>{this.state.eventDetail.name}</p>
-                            <hr />
-                            <p>Descripción: {this.state.eventDetail.description}</p>
-                            <Link to="/eventos" className="btn btn-sm btn-dark">Volver</Link>
-                            <Button onClick={() => this.deleteEvent()} className="btn btn-sm btn-danger">Borrar</Button>
                         </Col>
                         <Col md={4}>
+                            <h3>Detalles</h3>
+
+                            <hr />
+                            <p>{this.state.eventDetail.name}</p>
+                            <p>Descripción: {this.state.eventDetail.description}</p>
+                                <Link className="default-button" to="/eventos" className="default-button">Volver</Link>
+
+                                {
+                                    this.state.isAuthorized === true && <Button onClick={() => this.deleteEvent()} className="default-button">Borrar</Button>
+                                }
+
+
                         </Col>
                     </Row>
-                </Container>
+                    </Container>
+                </div>
             </>
 
         )

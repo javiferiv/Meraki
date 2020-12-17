@@ -7,12 +7,13 @@ const ChapterCard = ({title, _id,}) => {
 
     return (
         <>
-            <h2>{title}</h2>
+            <h3 style={{fontSize: "27px",marginTop: "10px"}}>{title}</h3>
             <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
             
-                <Link className="btn btn-dark" to={`/capitulo/editar/${_id}`}>Editar</Link>
-                <Link className="btn btn-dark" to={`/capitulo/${_id}`}>Leer</Link>
+                <Link className="default-button edit-book" to={`/capitulo/editar/${_id}`}>Editar</Link>
+                <Link className="default-button read-book" to={`/capitulo/${_id}`}>Leer</Link>
             </ButtonGroup>
+          
         </>
     )
 }

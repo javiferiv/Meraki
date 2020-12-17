@@ -95,8 +95,8 @@ class ChapterDetails extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to='/libros' className="btn btn-sm btn-dark">Volver a todos los libros</Link>
-                            <Button onClick={() => this.deleteChapter()} className="btn btn-sm btn-danger">Borrar</Button>
+                            <Link to='/libros' className="default-button">Volver a todos los libros</Link>
+                            <Button onClick={() => this.deleteChapter()} className="default-button">Borrar</Button>
                             {/* <Button onClick={() => this.goBack()} className="btn btn-sm btn-primary">Volver al libro</Button> */}
                         </Col>
                     </Row>

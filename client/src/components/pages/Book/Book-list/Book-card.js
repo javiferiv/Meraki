@@ -19,8 +19,8 @@ const BookCard = ({ imageBook, title, author, userId, _id, chapters }) => {
                         <figcaption>{title}</figcaption>
                     </figure>
 
-                    <ul>
-                        {chapters.map(elm => <li>{elm.title}</li>)}
+                    <ul className="ul-card">
+                        {chapters.map(elm => <li className="li-card">{elm.title}</li>)}
                     </ul>
                 </div>
 

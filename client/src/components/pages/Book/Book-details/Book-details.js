@@ -3,11 +3,12 @@ import React, { Component } from 'react'
 import BooksService from '../../../../service/book.service'
 import UserService from '../../../../service/user.service'
 import ChapterService from '../../../../service/chapter.service'
-
 import ChapterCard from '../../Chapter/Chapter-card/Chapter-card'
+import BookComments from './Book-comments'
+import fullHeart from '../../User/Profile/images/full_heart.png'
+import emptyHeart from './../../User/Profile/images/empty_heart.png'
 
-//si ponemos loader, irá aquí
-import './Book-details.css'
+import './Book-details.scss'
 
 import { Form, Container, Row, Col, Button } from 'react-bootstrap'
 
@@ -28,8 +29,9 @@ class BookDetails extends Component {
                 author: '',
             },
 
-
+            isFavorite: false,
             newComment: "",
+            key: 1,
 
             authority: false,
 
@@ -108,8 +110,6 @@ class BookDetails extends Component {
 
     }
 
-
-
     newChapter = () => {
 
         const book_id = this.props.match.params.book_id
@@ -187,15 +187,22 @@ class BookDetails extends Component {
                 commentPushed.push(newComment)
                 this.bookService
                     .editBook(book_id, { comments: commentPushed })
-                    .then (res => console.log(res.data))
+                    .then (res => this.setState( {key : this.state.key +1}))
             })
             .catch(err => console.log(err))
 
     }
 
 
+    isFavorite = () => {
+            this.saveFav(this.state.book._id)
+            this.setState({ isFavorite: !this.state.isFavorite })
+        }     
+    
 
     render() {
+        console.log(this.state.key)
+        
 
         return (
             <>
@@ -205,10 +212,10 @@ class BookDetails extends Component {
                 <Container className="book-details">
                     <Row>
                         <Col md={{ span: 6, offset: 1 }} >
-                            <img src={this.state.book.imageBook} alt={this.state.book.title} />
+                            <img className="book-details-img" src={this.state.book.imageBook} alt={this.state.book.title} />
                             <h3>Detalles</h3>
                             <p>{this.state.book.resume}</p>
-                            <p>Autor/a:<Link to={`/usuario/${this.state.book.author._id}`}>{this.state.book.author.name}</Link></p>
+                            <p>Autor/a: <Link style={{ textDecoration: "underline", color: "blue", fontSize: "18px" }} to={`/usuario/${this.state.book.author._id}`}>{this.state.book.author.name}</Link></p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
                             <>
@@ -216,23 +223,22 @@ class BookDetails extends Component {
                                     this.state.authority === true
                                     &&
                                     <>
-                                        <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
-                                        <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
+                                        <Button onClick={() => this.newChapter()} className="default-button">Nuevo capítulo</Button>
+                                        <Button onClick={() => this.deleteThisBook()} className="default-button">Borrar</Button>
                                     </>
 
                                 }
                             </>
 
-                            <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                            <Link to="/libros" className="default-button">Volver</Link>
                             {
-                                this.props.loggedUser && <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
-
+                                this.props.loggedUser && <Button className="like" variant="ligth" onClick={() => { this.isFavorite() }}>{this.state.isFavorite ? <img className="heart" src={fullHeart} /> : <img className="heart" src={emptyHeart} />}</Button>
                             }
-
+                                
 
                         </Col>
                         <Col md={4}>
-                            <h3>Lista de capítulos</h3>
+                            <h2>Lista de capítulos</h2>
                             {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm} />)}
                         </Col>
                     </Row>
@@ -243,16 +249,16 @@ class BookDetails extends Component {
 
                 <Container>
 
-                    <Col md={4}>
+                    <>
                         <h3>Comentarios</h3>
-                        <hr></hr>
-                        {this.state.book.comments.map(elm => 
-                        <ul>
-                   
-                        <li>{elm}</li>
-                        <hr></hr>
-                        </ul>)}
-                    </Col>
+                        {this.state.book.comments.map(elm => <BookComments key={this.state.key} comments={elm} />)}
+                    
+                    </>
+
+                    <Row>
+
+                    </Row>
+
                     <Row>
                         <Col md={12}>
 
@@ -265,10 +271,9 @@ class BookDetails extends Component {
                                     
                                     <Form.Label>Valoración</Form.Label>
                                     <Form.Control as="textarea" rows={3} placeholder="Deja aquí tu comentario" type="text" name="newComment" onChange={this.handleInputChange} />
-
                                     </Form.Group>
 
-                                    <Button variant="dark" type="submit">Comentar</Button>
+                                <Button className="default-button" type="submit">Comentar</Button>
 
                                 </Form>
 

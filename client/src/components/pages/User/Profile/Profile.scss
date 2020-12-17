@@ -52,6 +52,9 @@ a {
     margin-top: 30px;
 }
 
+.title-favorite-book{
+    z-index:50;
+}
 .image-favorite-book{
     position: absolute;
          transform: rotate(7deg);
@@ -59,7 +62,7 @@ a {
     left: 110px;
     width: 120%;
     opacity: 0.5;
-     z-index: 1;
+    z-index: 1;
 }
 
 .image-favorite-author{
@@ -72,8 +75,5 @@ a {
      z-index: 1;
 }
 
-.title-favorite-book{
-    z-index:2;
-}
 
 

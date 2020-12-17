@@ -1,0 +1,14 @@
+.edit-book{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+
+}
+
+.read-book{
+    text-align: center;
+    margin-bottom: 20px;
+
+}

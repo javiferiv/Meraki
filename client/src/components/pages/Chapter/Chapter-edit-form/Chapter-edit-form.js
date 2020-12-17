@@ -72,7 +72,7 @@ class ChapterForm extends Component {
                             <Form.Label>Texto</Form.Label>
                             <Form.Control as="textarea" rows={15} value={this.state.chapter.text} type="text" name="text" onChange={this.handleInputChange} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Guardar capítulo</Button>
+                        <Button className="default-button" type="submit">Guardar capítulo</Button>
                     </Form>
                 </Container>
             </>

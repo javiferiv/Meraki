@@ -100,17 +100,10 @@ figure,
 }
 
 /* img */
-<<<<<<< HEAD
 .img-bg-pic {
   height: 100%;
   border-radius: 24px;
 }
-=======
-// img {
-//   height: 100%;
-//   border-radius: 24px;
-// }
->>>>>>> 88b6e362948e68a3453b3f036936463bf9f5385a
 
 /* figcaption */
 figcaption {
@@ -172,7 +165,7 @@ figcaption {
 }
 
 /* ul */
-ul {
+.ul-card {
   padding-top: 50%;
   margin: 0 auto;
   width: 70%;
@@ -188,7 +181,7 @@ ul {
 }
 
 /* li */
-li {
+.li-card{
   width: 100%;
   margin-top: 12px;
   padding-bottom: 12px;

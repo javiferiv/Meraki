@@ -21,7 +21,8 @@ class Profile extends Component {
                 username: "",
                 name: "",
                 favoriteBooks: [],
-                favoriteAuthors: []
+                favoriteAuthors: [],
+                birthday:''
             },
             books: [],
             isFavorite: false,
@@ -43,6 +44,7 @@ class Profile extends Component {
             .then(res => {
                 this.setState({ user: res.data })
                 this.isBookAvailable()
+                this.newBirthdayDate()
             })
             .catch(err => console.log(err))
 
@@ -87,10 +89,19 @@ class Profile extends Component {
         this.setState({ isFavorite: !this.state.isFavorite })
     }
 
+    newBirthdayDate = () => {
+
+
+        let birthdayDate = this.state.user.birthday
+        let birthdayDateObject = new Date((birthdayDate));
+        let newBirthdayDate = `${birthdayDateObject.getDate()} / ${birthdayDateObject.getMonth() + 1} / ${birthdayDateObject.getFullYear()}`
+        this.setState({ user: { ...this.state.user, birthday: newBirthdayDate } })
+
+    }
+
 
     render() {
 
-        console.log(this.state.isFavorite)
 
         return (
                 <>
@@ -105,7 +116,11 @@ class Profile extends Component {
                                         <br></br>
                                         
                                       </Col>
-                            <Col md={{ span: 5, offset: 1 }}>
+
+                                    <Col md={6}>
+                                        <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
+                                    </Col>
+                            <Col md={{ span: 6, offset: 5 }}>
                                 
                                 {
                                     this.props.loggedUser
@@ -114,13 +129,9 @@ class Profile extends Component {
     
                                     <Button variant="ligth" onClick={() => {
                                         this.isFavorite()}}>
-                                        {this.state.isFavorite ? <img src={fullHeart} style={{ width: "10%" }} /> : <img src={emptyHeart} style={{ width: "10%" }} />}
+                                        {this.state.isFavorite ? <img className="heart" src={fullHeart}  /> : <img className="heart" src={emptyHeart}  />}
                                     </Button>}
                             </Col>
-
-                                    <Col md={6}>
-                                        <p style={{ fontStyle: "italic", textAlign: "center" }}>{this.state.user.description}</p>
-                                    </Col>
 
                                 </Row>
 
@@ -137,7 +148,7 @@ class Profile extends Component {
 
                                 <Row>
                                     <Col className="profile-data-buttons" md={12}>
-                                        <Button className="btn btn-sm btn-dark"><Link to={`/libros`}>Volver a libros</Link></Button>
+                               <Link className="default-button"to={`/libros`}>Volver a libros</Link>
                         
                                     </Col>
 

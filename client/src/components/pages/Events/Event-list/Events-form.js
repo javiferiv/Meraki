@@ -36,6 +36,7 @@ class EventForm extends Component {
 
         return (
             <>
+                <div style={{ backgroundColor: "#FDFAF6"}}>
                 <Container>
                     <h1> Nuevo evento</h1>
                     <hr />
@@ -64,9 +65,10 @@ class EventForm extends Component {
                             <Form.Label>Fecha (URL)</Form.Label>
                             <Form.Control type="date" name="date" value={this.state.date} onChange={this.handleInputChange} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Crear nuevo evento</Button>
+                        <Button className="default-button" type="submit">Crear nuevo evento</Button>
                     </Form>
                 </Container>
+                </div> 
             </>
         )
     }

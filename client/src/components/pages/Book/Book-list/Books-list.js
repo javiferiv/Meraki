@@ -26,8 +26,6 @@ class BookList extends Component {
 
     }
 
-
-
     refreshBooks = () => {
 
         this.booksService
@@ -70,6 +68,7 @@ class BookList extends Component {
         return (
             
             <>
+                <div className="book-list" style={{ backgroundColor: "#FDFAF6" }}>
                 <Container>
                     <Row>
                         <Col md={{ span: 6, offset: 7 }}>
@@ -83,11 +82,8 @@ class BookList extends Component {
             </Container>
             <Container>
                    
-
                     <h1>Listado de libros</h1>
-             
-                  
-                
+                    
                     {
                         adventuresBooks.length >= 1 
                         &&
@@ -238,7 +234,6 @@ class BookList extends Component {
                     }
 
                        
-
                 </Container>
 <hr></hr>
 <Container>
@@ -258,7 +253,7 @@ class BookList extends Component {
 </Modal>
 <hr></hr>
 
-
+</div>
             </>
         )
     }

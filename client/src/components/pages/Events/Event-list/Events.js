@@ -10,8 +10,8 @@ const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credential
 
 class Events extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             events: [],
         }
@@ -36,10 +36,12 @@ class Events extends Component {
 
 
     render() {
+
         
 
         return (
             <>
+                <div className="event-list" style={{ backgroundColor: "#FDFAF6" }}>
                 <Container>
                     <h1>Listado de eventos</h1>
                             <MapContainer
@@ -53,11 +55,12 @@ class Events extends Component {
 
                     <Row>
 
-                        <Col md={12}>
-                           
                                 <h3>Próximos eventos</h3>
+                        <Col md={4}>        
                                 <hr></hr>
-                            {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
+                                {this.state.events.map(elm => <EventCard
+                                    key={elm._id}
+                                    {...elm} />)}
 
                             
                         </Col>
@@ -66,6 +69,7 @@ class Events extends Component {
 
 
                 </Container>
+                    </div>
             </>
         )
     }

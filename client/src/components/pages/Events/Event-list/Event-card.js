@@ -9,20 +9,17 @@ const EventCard = ({date, name, _id}) => {
     let dateObject = new Date((date));
     let newEventDate = `${dateObject.getDay()} / ${dateObject.getMonth() + 1} / ${dateObject.getFullYear()}`
 
-    console.log(date)
-    console.log(newEventDate)
-
 
 
     return (
+
             <Card className="event-card">
-                <Card.Body>
-                   
+                <Card.Body>  
                     <Card.Title>{name}</Card.Title>
                 <Card.Title>{newEventDate}</Card.Title>
-                    <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                        <Link className="btn btn-dark" to={`/eventos/editar-evento/${_id}`}>Editar</Link>
-                        <Link className="btn btn-dark" to={`/eventos/${_id}`}>Ver detalles</Link>
+                    <ButtonGroup  style={{ width: '100%' }}>
+                        <Link className="default-button" to={`/eventos/editar-evento/${_id}`}>Editar</Link>
+                    <Link className="default-button"  to={`/eventos/${_id}`}>Ver detalles</Link>
                         </ButtonGroup>
                     
                 </Card.Body>
