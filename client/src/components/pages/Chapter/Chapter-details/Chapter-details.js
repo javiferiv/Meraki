@@ -67,23 +67,13 @@ class ChapterDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    // goBack = () => {
-    //     const book_id = this.state.book.
-    //     console.log(book_id)
-    //     // this.bookService
-    //     //     .getBook(book_id)
-    //     //     .then(res => {
-    //     //         this.setState({ chapters: res.data })
-    //     //     })
-    //     //     //.then(res => this.props.history.push(`/libros/${props._id}`))
-    //     //     .catch(err => console.log(err))
-    // }
 
     render() {
 
+
         return (
             <>
-                <Container>
+                <Container style={{marginBottom: "150px"}}>
                     <h1 className="title-book-chapter">{this.state.chapters.title}</h1>
                     <hr></hr>
                     <h3>{this.state.chapters.resume}</h3>
@@ -95,9 +85,11 @@ class ChapterDetails extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to='/libros' className="default-button">Volver a todos los libros</Link>
-                            <Button onClick={() => this.deleteChapter()} className="default-button">Borrar</Button>
-                            {/* <Button onClick={() => this.goBack()} className="btn btn-sm btn-primary">Volver al libro</Button> */}
+                            <Link to='/libros' className="default-button" style={{ marginRight: "30px" }}>Volver a todos los libros</Link>
+                            {this.props.loggedUser._id === this.state.chapters.book.author
+                                &&
+                                <Link onClick={() => this.deleteChapter()} className="default-button">Borrar</Link>
+                            }
                         </Col>
                     </Row>
                 </Container>
