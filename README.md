@@ -1,7 +1,5 @@
 # Final-project
-## First version
 
--- Versión de prueba para unir ramas
 
 
 ## Endpoints table
@@ -22,3 +20,8 @@
 | 12 | post | /api/events/newEvent | Send the information of the new event to the database |
 | 13 | put | /api/events/editEvent/:event_id | Send edit form of event edition to the database |
 | 14 | delete | /api/events/deleteEvent/:event_id | Delete an event from the database |
+| 15 | post | /api/chapter/newChapter | Send the information of the new chapter to the database |
+| 16 | get | /api/chapter/getAllChapters | Show different chapters from the database |
+| 17 | get | /api/chapter/chapterDetails/:chapter_id | Show chapter's details |
+| 18 | put | /api/chapter/editChapter/:chapter_id | Send edit form of chapter edition to the database |
+| 19 | delete | /api/chapter/deleteChapter/:chapter_id | Delete a chapter from the database |
